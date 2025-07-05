@@ -1,0 +1,118 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900;
+  }
+}
+
+/* Custom styles for content pages */
+.prose-custom {
+  @apply max-w-none text-gray-700 leading-relaxed;
+}
+
+.prose-custom h1 {
+  @apply text-4xl font-bold text-blue-900 mb-6;
+}
+
+.prose-custom h2 {
+  @apply text-2xl font-semibold text-blue-800 mt-8 mb-4;
+}
+
+.prose-custom h3 {
+  @apply text-xl font-medium text-blue-700 mt-6 mb-3;
+}
+
+.prose-custom p {
+  @apply mb-4 text-gray-700 leading-relaxed;
+}
+
+.prose-custom ul, .prose-custom ol {
+  @apply mb-4 pl-6;
+}
+
+.prose-custom li {
+  @apply mb-2;
+}
+
+.prose-custom strong {
+  @apply font-semibold text-gray-900;
+}
+
+.prose-custom blockquote {
+  @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 my-4;
+}
+
+.prose-custom table {
+  @apply w-full border-collapse border border-gray-300 mb-4;
+}
+
+.prose-custom th, .prose-custom td {
+  @apply border border-gray-300 px-4 py-2;
+}
+
+.prose-custom th {
+  @apply bg-gray-100 font-semibold;
+}
+
+/* Animation classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax effect */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}

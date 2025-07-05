@@ -2,7 +2,7 @@
 
 ## Introdução
 
-O legado técnico de Furnas Centrais Elétricas na área de tecnologia do concreto representa um dos mais importantes acervos de conhecimento da engenharia brasileira. Sob a liderança técnica de Roy W. Carlson e sua equipe, Furnas desenvolveu metodologias e padrões que se tornaram referência nacional e internacional.
+O legado técnico de Furnas Centrais Elétricas na área de tecnologia do concreto representa um dos mais importantes acervos de conhecimento da engenharia brasileira. Sob a liderança técnica de Walton Pacelli de Andrade (entre outros, antes e depois dele) e sua equipe, Furnas desenvolveu metodologias e padrões que se tornaram referência nacional e internacional.
 
 ## Seções Principais
 
