@@ -9,10 +9,10 @@ especiais e parcerias acadêmicas.
 
 ## Objetivos
 
-- **Preservar o Legado**: Documentar e disponibilizar o conhecimento técnico acumulado por Roy W. Carlson e sua equipe
-- **Educação Técnica**: Fornecer recursos educacionais sobre tecnologia do concreto, simulação computacional e engenharia estrutural
-- **Inovação**: Promover pesquisa e desenvolvimento em concretos especiais e ensaios não convencionais
-- **Colaboração Acadêmica**: Facilitar parcerias entre instituições de ensino e pesquisa
+- **Preservar o Legado**: Documentar e disponibilizar o conhecimento técnico acumulado pela equipe de FURNAS no Laboratório de Concreto de Goiânia.
+- **Educação Técnica**: Fornecer recursos educacionais sobre tecnologia do concreto, simulação computacional e engenharia de barragens.
+- **Inovação**: Contribuir com pesquisa e desenvolvimento em concretos especiais, ensaios não convencionais e modelagem termomecânica de concreto massa.
+- **Colaboração Acadêmica**: Colaborar na forma de parcerias com instituições de ensino e pesquisa
 
 ## Estrutura do Projeto
 
@@ -48,8 +48,7 @@ instituto-roy-carlson/
 
 ### Meta 2: Página Institucional
 - [ ] Redigir texto institucional completo
-- [ ] Incluir trajetória de Roy W. Carlson
-- [ ] Adicionar referências a Berkeley e Itaipu
+- [ ] Incluir biografia e trajetória de Roy W. Carlson,com referências a Berkeley e Itaipu
 
 ### Meta 3: Seção Legado Furnas
 - [ ] Estruturar subseções (Ensaios, Serviços, Casos, Galeria, Linha do Tempo)
@@ -63,7 +62,7 @@ instituto-roy-carlson/
 
 ### Meta 5-9: Demais Seções
 - [ ] Estudos de Caso
-- [ ] Lajes de Fundação
+- [ ] Laje de Fundação de Edifícios Altos - Contribuição
 - [ ] Blog de Concretos Especiais
 - [ ] Ensaios Especiais
 - [ ] Parcerias Acadêmicas
@@ -113,7 +112,7 @@ Este projeto está sob licença [MIT](LICENSE) - veja o arquivo LICENSE para det
 ## Contato
 
 Para mais informações sobre o Instituto Roy Carlson:
-- Email: [a definir]
+- Email: flaviomamede.gomes@gmail.com ou fmpgomes@eletrobras.com
 - Website: [em desenvolvimento]
 
 ---
