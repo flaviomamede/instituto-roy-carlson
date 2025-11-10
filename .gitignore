@@ -25,6 +25,7 @@ Thumbs.db
 # Arquivos de build
 build/
 dist/
+out/
 *.min.js
 *.min.css
 
