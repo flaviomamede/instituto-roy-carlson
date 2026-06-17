@@ -1,0 +1,10 @@
+{
+  "siteBaseUrl": "https://institutoroycarlson.org",
+  "ogTitle": "REVISTA IRC - Instituto Roy Carlson",
+  "ogDescriptionShort": "A Revista IRC tem por objetivo contribuir para manter viva a memória técnica da engenharia de barragens, notadamente do concreto massa.",
+  "ogDescriptionLong": "A Revista IRC tem por objetivo contribuir para manter viva a memória técnica da engenharia de barragens, notadamente do concreto massa. Homenagens a eminentes engenheiros, relatos interessantes de obras emblemáticas e artigos técnicos estão disponíveis na revista. Novidades relacionadas a grandes obras do presente: perspectivas de atuação nacional e internacional é uma oportunidade para os especialistas.",
+  "flipbookUrl": "/revista/leitura/index.html",
+  "embedUrl": "/revista/embed",
+  "ogImage": "/revista/og/capa-v1n1-og.png",
+  "ogImageEmbed": "/revista/og/capa-v1n1.png"
+}

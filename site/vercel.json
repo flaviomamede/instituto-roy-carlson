@@ -1,0 +1,44 @@
+{
+  "buildCommand": "bash build.sh",
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/revista",
+      "destination": "/revista/",
+      "permanent": true
+    },
+    {
+      "source": "/revista/leitura",
+      "destination": "/revista/leitura/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.institutoroycarlson.org" }],
+      "destination": "https://institutoroycarlson.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "instituto-roy-carlson.vercel.app" }],
+      "destination": "https://institutoroycarlson.org/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/revista/leitura/revista.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    }
+  ]
+}

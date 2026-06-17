@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revista IRC — incorporar em outro site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/revista/revista.css" />
+    <style>
+      pre {
+        overflow-x: auto;
+        padding: 1rem 1.25rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      .preview-box {
+        max-width: 540px;
+        margin: 1.5rem auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .preview-box iframe {
+        display: block;
+        width: 100%;
+        height: 305px;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">IRC</span>
+        <span>Revista IRC</span>
+      </a>
+      <nav class="nav" aria-label="Navegação da Revista IRC">
+        <a href="/revista/">Início</a>
+        <a href="/revista/leitura/">Flipbook</a>
+        <a href="/revista/incorporar.html" aria-current="page">Incorporar</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="eyebrow">Divulgação</p>
+      <h1>Incorporar a Revista IRC em outro site</h1>
+      <p class="lead">
+        Use o bloco abaixo em páginas do Instituto Roy Carlson, LinkedIn, parceiros ou landing pages.
+        O visitante vê a capa e a chamada; ao clicar, abre o flipbook em nova aba.
+      </p>
+
+      <h2>Prévia</h2>
+      <div class="preview-box">
+        <iframe
+          title="Revista IRC — prévia incorporada"
+          src="/revista/embed.html"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <h2>Código para copiar</h2>
+      <p>Domínio atual: <code>https://institutoroycarlson.org</code></p>
+
+      <h3>Chamada visual (recomendado)</h3>
+      <pre id="code-iframe">&lt;iframe
+  title="Revista IRC — Instituto Roy Carlson"
+  width="540"
+  height="305"
+  src="https://institutoroycarlson.org/revista/embed"
+  frameborder="0"
+  scrolling="no"
+  loading="lazy"
+  allowfullscreen
+  style="display:block;margin-left:auto;margin-right:auto;max-width:100%;border:0;border-radius:8px;"&gt;
+&lt;/iframe&gt;</pre>
+
+      <h3>Link simples (sem iframe)</h3>
+      <pre id="code-link">&lt;a href="https://institutoroycarlson.org/revista/leitura/"&gt;
+  Ler a Revista IRC — Vol. 1, No. 1
+&lt;/a&gt;</pre>
+
+      <h2>Prévia ao compartilhar o link</h2>
+      <p>
+        WhatsApp, LinkedIn e outras redes leem as tags Open Graph da página inicial
+        (<code>/revista/</code>). Título e texto configurados:
+      </p>
+      <ul>
+        <li><strong>Título:</strong> REVISTA IRC - Instituto Roy Carlson</li>
+        <li>
+          <strong>Descrição (curta):</strong> A Revista IRC tem por objetivo contribuir para manter
+          viva a memória técnica da engenharia de barragens, notadamente do concreto massa.
+        </li>
+      </ul>
+      <p>
+        Ao publicar em domínio definitivo, atualize <code>site/revista/site-config.json</code> e as
+        URLs absolutas em <code>og:image</code> / <code>og:url</code> — ver
+        <code>revista/ATUALIZAR_PUBLICACAO.md</code>.
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="/revista/index.html">← Voltar à Revista IRC</a></p>
+    </footer>
+  </body>
+</html>
