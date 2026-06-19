@@ -44,5 +44,8 @@ export const state = {
       try { localStorage.setItem(k, v); }
       catch (e) { memStore[k] = v; }
     }
+  },
+  uiHooks: {
+    onPageChange: () => {}
   }
 };

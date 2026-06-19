@@ -31,7 +31,17 @@ export const el = {
   gateSubmit: document.getElementById('gateSubmit'),
   gateMsg: document.getElementById('gateMsg'),
   gateSkip: document.getElementById('gateSkip'),
-  buildTag: document.getElementById('buildTag')
+  buildTag: document.getElementById('buildTag'),
+  thumbBtn: document.getElementById('thumbBtn'),
+  thumbPanel: document.getElementById('thumbPanel'),
+  searchBtn: document.getElementById('searchBtn'),
+  searchPanel: document.getElementById('searchPanel'),
+  searchInput: document.getElementById('searchInput'),
+  searchClose: document.getElementById('searchClose'),
+  searchResults: document.getElementById('searchResults'),
+  searchStatus: document.getElementById('searchStatus'),
+  shareBtn: document.getElementById('shareBtn'),
+  sfBuildProgress: document.getElementById('sfBuildProgress')
 };
 
 export function showLoader(text) {

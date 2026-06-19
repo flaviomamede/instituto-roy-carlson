@@ -45,7 +45,7 @@ export function clearPageCache() {
   pageCache.clear();
 }
 
-async function getPdfPage(pageIndex) {
+export async function getPdfPage(pageIndex) {
   if (pageCache.has(pageIndex)) return pageCache.get(pageIndex);
   const page = await state.Book.pdf.getPage(pageIndex + 1);
   pageCache.set(pageIndex, page);

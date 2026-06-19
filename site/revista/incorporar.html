@@ -39,16 +39,53 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">
-        <span class="brand-mark">IRC</span>
-        <span>Revista IRC</span>
-      </a>
-      <nav class="nav" aria-label="Navegação da Revista IRC">
-        <a href="/revista/">Início</a>
-        <a href="/revista/leitura/">Flipbook</a>
-        <a href="/revista/incorporar.html" aria-current="page">Incorporar</a>
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
       </nav>
     </header>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+      var root = document.documentElement;
+      root.classList.toggle('section-revista', isRevista);
+      root.classList.toggle('section-institutional', !isRevista);
+      var instNav = document.querySelector('.nav-institutional');
+      var revNav = document.querySelector('.nav-revista');
+      if (instNav) instNav.hidden = isRevista;
+      if (revNav) revNav.hidden = !isRevista;
+      document.querySelectorAll('[data-brand="revista"]').forEach(function (el) {
+        el.hidden = !isRevista;
+      });
+      document.querySelectorAll('[data-brand="institucional"]').forEach(function (el) {
+        el.hidden = isRevista;
+      });
+    })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
 
     <main>
       <p class="eyebrow">Divulgação</p>

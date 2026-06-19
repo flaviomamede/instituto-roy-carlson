@@ -6,8 +6,8 @@ SITE="$ROOT/site"
 TMP="/tmp/irc-vercel-deploy-$$"
 trap 'rm -rf "$TMP"' EXIT
 
-echo "→ Atualizando PDF V3 no flipbook…"
-cp "$ROOT/revista/revista_piloto001_FINAL_V3.pdf" "$SITE/revista/leitura/revista.pdf"
+echo "→ Build do site (revista + biblioteca)…"
+(cd "$SITE" && bash build.sh)
 
 echo "→ Copiando site para deploy temporário…"
 rsync -a --exclude '.vercel' "$SITE/" "$TMP/"

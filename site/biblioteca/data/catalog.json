@@ -1,0 +1,396 @@
+{
+  "$schema": "../schema/catalog.schema.json",
+  "version": 1,
+  "libraryName": "Biblioteca IRC",
+  "libraryTagline": "Memória técnica e acervo do Instituto Roy Carlson",
+  "documents": [
+    {
+      "id": "estudos-hgen",
+      "slug": "estudos-hgen",
+      "title": "Estudos HGen",
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
+      "year": 2024,
+      "language": "pt",
+      "type": "relatorio",
+      "collection": "Pesquisa IRC",
+      "tags": [
+        "geração hidrelétrica",
+        "concreto massa",
+        "barragens"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Estudos técnicos sobre geração hidrelétrica e concreto massa. Acesso exclusivo a assinantes e planos superiores."
+      }
+    },
+    {
+      "id": "concreto-massa-brasil",
+      "slug": "concreto-massa-brasil",
+      "title": "Concreto de massa no Brasil",
+      "authors": [
+        "Epaminondas Amaral"
+      ],
+      "year": 1981,
+      "language": "pt",
+      "type": "artigo",
+      "collection": "Memória técnica",
+      "tags": [
+        "concreto massa",
+        "Brasil",
+        "história"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Histórico da tecnologia do concreto de massa no Brasil. Acesso exclusivo a assinantes e planos superiores. Também disponível na Revista IRC Vol. 1, No. 1."
+      },
+      "related": {
+        "revistaArticle": "historico-concreto-massa-brasil"
+      }
+    },
+    {
+      "id": "iwhr-2014",
+      "slug": "iwhr-2014",
+      "title": "IWHR 2014",
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
+      "year": 2014,
+      "language": "en",
+      "type": "congresso",
+      "collection": "Congressos",
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Trabalho apresentado no IWHR 2014 — acervo aberto."
+      },
+      "assets": {
+        "pdf": "iwhr-2014.pdf"
+      }
+    },
+    {
+      "id": "iwhr-2024",
+      "slug": "iwhr-2024",
+      "title": "IWHR 2024",
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
+      "year": 2024,
+      "language": "en",
+      "type": "congresso",
+      "collection": "Congressos",
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Trabalho apresentado no IWHR 2024 — acervo aberto."
+      },
+      "assets": {
+        "pdf": "iwhr-2024.pdf"
+      }
+    },
+    {
+      "id": "iwhr-2025",
+      "slug": "iwhr-2025",
+      "title": "IWHR 2025",
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
+      "year": 2025,
+      "language": "en",
+      "type": "congresso",
+      "collection": "Congressos",
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Trabalho apresentado no IWHR 2025 — acervo aberto."
+      },
+      "assets": {
+        "pdf": "iwhr-2025.pdf"
+      }
+    },
+    {
+      "id": "p183-andriolo",
+      "slug": "p183-conhecimento-estatisticas-gestao-riscos",
+      "title": "Conhecimento, estatísticas e gestão de riscos — previsibilidade e segurança de barragens",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "gestão de riscos",
+        "barragens",
+        "estatísticas",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P183 (2025) — aspectos de conhecimento, estatísticas e gestão de riscos para previsibilidade e segurança de barragens. Acesso exclusivo a assinantes e planos superiores."
+      }
+    },
+    {
+      "id": "p184-andriolo",
+      "slug": "p184-aspectos-gestao-qualidade-construcao",
+      "title": "Aspectos de gestão da qualidade na construção — retrospectiva e potenciais causas de riscos",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "qualidade",
+        "construção",
+        "barragens",
+        "riscos"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P184 (2025) — gestão da qualidade na construção de barragens. Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p185-andriolo",
+      "slug": "p185-barragens-contemporaneas-conhecimento-falhas",
+      "title": "Barragens contemporâneas — conhecimento, falhas e riscos",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "barragens",
+        "falhas",
+        "riscos"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P185 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p186-andriolo",
+      "slug": "p186-comportamento-juntas-fundacao-concreto",
+      "title": "Comportamento de juntas de fundação e concreto e juntas de construção em concreto",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "juntas",
+        "concreto massa",
+        "barragens"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P186 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p187-andriolo",
+      "slug": "p187-habitos-pratica-projeto-construcao",
+      "title": "Hábitos e prática recentes em projeto e construção de barragens — redução de qualidade e segurança",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "projeto",
+        "construção",
+        "qualidade",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P187 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p188-andriolo",
+      "slug": "p188-treinamento-qualidade-construcoes",
+      "title": "Necessário treinamento para qualidade das construções e sustentabilidade de barragens",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "treinamento",
+        "qualidade",
+        "sustentabilidade"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P188 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p189-andriolo",
+      "slug": "p189-operacao-manutencao-inspecao",
+      "title": "Operação, manutenção e inspeção — necessidade de atenções à segurança de barragens",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "operação",
+        "manutenção",
+        "inspeção",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P189 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p190-andriolo",
+      "slug": "p190-ocupacoes-entorno-barragens",
+      "title": "Ocupações no entorno de barragens — responsabilidades e cuidados",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "entorno",
+        "barragens",
+        "responsabilidade"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P190 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p191-andriolo",
+      "slug": "p191-disponibilidades-inspecao-monitoramento",
+      "title": "Disponibilidades crescentes de inspeção, monitoramento e controle de barragens",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "inspeção",
+        "monitoramento",
+        "controle"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P191 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "p192-andriolo",
+      "slug": "p192-inspecoes-manutencoes-reabilitacoes",
+      "title": "Inspeções, manutenções, reabilitações e reparos de barramentos e estruturas",
+      "authors": [
+        "Francisco Andriolo"
+      ],
+      "year": 2025,
+      "language": "pt",
+      "type": "congresso",
+      "collection": "Francisco Andriolo — P183–P192",
+      "tags": [
+        "inspeção",
+        "manutenção",
+        "reabilitação"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Paper P192 (2025). Acesso exclusivo a assinantes."
+      }
+    },
+    {
+      "id": "reminiscencias-roy-carlson",
+      "slug": "reminiscencias-roy-carlson",
+      "title": "Reminiscências — Dr. Roy W. Carlson (85th Birthday)",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "year": 1996,
+      "language": "en",
+      "type": "livro",
+      "collection": "Memória técnica",
+      "tags": [
+        "Roy Carlson",
+        "Furnas",
+        "concreto massa",
+        "memória"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Relatos pessoais e técnicos do pioneiro do concreto massa. Leitura integral disponível na Revista IRC; acervo completo para assinantes."
+      },
+      "related": {
+        "revistaArticle": "roy-carlson-reminiscencias"
+      }
+    }
+  ]
+}

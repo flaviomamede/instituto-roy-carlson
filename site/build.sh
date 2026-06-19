@@ -9,3 +9,9 @@ elif [ -f "$SRC_V2" ]; then cp "$SRC_V2" "$DST"
 elif [ -f "$SRC_V1" ]; then cp "$SRC_V1" "$DST"
 elif [ -f "$DST" ]; then exit 0
 else echo "PDF da revista não encontrado" >&2; exit 1; fi
+bash build-library.sh
+bash build-favicons.sh
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+if [ -f "$ROOT/imagens/Logo5.svg" ]; then
+  convert -background none "$ROOT/imagens/Logo5.svg" -resize 192x192 "$ROOT/site/favicon-192.png" 2>/dev/null || true
+fi

@@ -28,6 +28,10 @@ import {
 import { loadStPageFlip, bindSfResize, upgradeToStPageFlipInBackground } from './flip-sf.js';
 import { bindStageFit, fit } from './stage-fit.js';
 import { initNavigation } from './navigation.js';
+import { initThumbnails, onPageChange } from './thumbnails.js';
+import { initPageJump } from './page-jump.js';
+import { initSearch, clearSearchIndex } from './search.js';
+import { initShare } from './share.js';
 import { clearPageCache, loadPdfJs } from './pdf.js';
 import { DEMO } from './demo.js';
 
@@ -88,7 +92,8 @@ async function loadMagazinePdf() {
   try {
     const lib = await loadPdfJs();
     const url = CONFIG.DEFAULT_PDF_URL;
-    const pdf = await lib.getDocument({ url, withCredentials: false }).promise;
+    const needsCreds = url.startsWith('/api/');
+    const pdf = await lib.getDocument({ url, withCredentials: needsCreds }).promise;
     state.Book.source = 'pdf';
     state.Book.pdf = pdf;
     state.Book.Nfull = pdf.numPages;
@@ -100,6 +105,7 @@ async function loadMagazinePdf() {
     state.pdfDocumentReady = true;
     state.prefetchStarted = false;
     clearPageCache();
+    clearSearchIndex();
     await openMagazineView();
   } catch (err) {
     hideLoader();
@@ -167,7 +173,44 @@ function applyConfigToDom() {
   }
 }
 
+function applyBibliotecaModeFromUrl() {
+  try {
+    const sp = new URLSearchParams(location.search);
+    const pdf = sp.get('pdf');
+    if (!pdf) return;
+
+    CONFIG.DEFAULT_PDF_URL = pdf;
+    CONFIG.GATE.enabled = false;
+    CONFIG.READER_CONTEXT = 'biblioteca';
+
+    const src = sp.get('src') || '';
+    if (src.startsWith('biblioteca-')) {
+      CONFIG.DOC_SLUG = src.slice('biblioteca-'.length);
+    }
+
+    const tocRaw = sp.get('toc');
+    if (tocRaw) {
+      try {
+        CONFIG.DOC_TOC = JSON.parse(decodeURIComponent(tocRaw));
+      } catch {
+        CONFIG.DOC_TOC = [];
+      }
+    }
+
+    const title = sp.get('title');
+    if (title) {
+      CONFIG.MAGAZINE.name = title;
+      CONFIG.MAGAZINE.kicker = 'Biblioteca IRC';
+      CONFIG.MAGAZINE.tagline = 'Instituto Roy Carlson';
+      CONFIG.MAGAZINE.coverLine = title;
+      CONFIG.MAGAZINE.coverKicker = 'leitura';
+    }
+    if (src) CONFIG.GATE.source = src;
+  } catch (e) { /* ignore */ }
+}
+
 function bootstrap() {
+  applyBibliotecaModeFromUrl();
   applyConfigToDom();
 
   setupGateFromUrl(ARTICLE_SLUGS);
@@ -183,6 +226,11 @@ function bootstrap() {
   bindStageFit();
   bindSfResize();
   initNavigation({ handleFile });
+  initThumbnails();
+  initPageJump(refreshUI);
+  initSearch();
+  initShare();
+  state.uiHooks.onPageChange = onPageChange;
 
   if (CONFIG.FLIP_LIB) {
     loadStPageFlip()

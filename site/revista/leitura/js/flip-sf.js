@@ -4,14 +4,15 @@ import { CONFIG } from './config.js';
 import { state } from './state.js';
 import { el, showLoader, hideLoader } from './dom.js';
 import { gateActive } from './gate.js';
+import { isEditingPage } from './page-jump-state.js';
 import {
   buildSheets,
   pageToDataURL,
   refreshUI,
-  refreshUIWithProgress,
   setStateImmediate
 } from './flip-css.js';
 import { fit } from './stage-fit.js';
+import { scheduleSearchHighlights } from './search-highlight.js';
 
 export function loadStPageFlip() {
   if (state.sfLib) return Promise.resolve(state.sfLib);
@@ -60,6 +61,7 @@ export function sfVisibleIndices() {
 }
 
 export function sfRefreshUI() {
+  if (isEditingPage()) return;
   if (!state.sf) return;
   const locked = gateActive();
   const i = state.sf.getCurrentPageIndex();
@@ -85,6 +87,22 @@ function currentLeadIndexForBuild() {
   return (Book.k <= 0) ? 0 : (2 * Book.k - 1);
 }
 
+function showSfBuildProgress(cur, total) {
+  if (!el.sfBuildProgress) return;
+  el.sfBuildProgress.hidden = false;
+  el.sfBuildProgress.setAttribute('aria-hidden', 'false');
+  const pct = total ? Math.round((cur / total) * 100) : 0;
+  el.sfBuildProgress.querySelector('.sf-build-bar').style.width = pct + '%';
+  el.sfBuildProgress.querySelector('.sf-build-label').textContent =
+    'Preparando virada suave… ' + cur + ' / ' + total;
+}
+
+function hideSfBuildProgress() {
+  if (!el.sfBuildProgress) return;
+  el.sfBuildProgress.hidden = true;
+  el.sfBuildProgress.setAttribute('aria-hidden', 'true');
+}
+
 export async function buildStPageFlip(startIndex, opts) {
   opts = opts || {};
   const silent = !!opts.silent;
@@ -98,7 +116,7 @@ export async function buildStPageFlip(startIndex, opts) {
     for (let p = 0; p < Book.N; p++) {
       if (p % 4 === 0) {
         const msg = 'Preparando página ' + (p + 1) + ' de ' + Book.N + '…';
-        if (silent) refreshUIWithProgress(msg);
+        if (silent) showSfBuildProgress(p + 1, Book.N);
         else el.loaderTxt.textContent = msg;
       }
       imgs.push(await pageToDataURL(p));
@@ -139,7 +157,11 @@ export async function buildStPageFlip(startIndex, opts) {
       state.sfOrientation = (e.data && e.data.mode) || state.sfOrientation;
       sfRefreshUI();
     });
-    state.sf.on('flip', () => { sfRefreshUI(); state.hasInteracted = true; });
+    state.sf.on('flip', () => {
+      sfRefreshUI();
+      state.hasInteracted = true;
+      scheduleSearchHighlights();
+    });
     state.sf.on('changeOrientation', (e) => {
       state.sfOrientation = e.data || state.sfOrientation;
       sfRefreshUI();
@@ -158,11 +180,13 @@ export async function buildStPageFlip(startIndex, opts) {
 
     state.FLIP = 'sf';
     el.stage.classList.add('sf-mode');
+    hideSfBuildProgress();
     if (!silent) hideLoader();
     sfRefreshUI();
     requestAnimationFrame(sizeSfRoot);
   } catch (err) {
     console.warn('StPageFlip indisponível; usando a virada em CSS.', err);
+    hideSfBuildProgress();
     if (!silent) hideLoader();
     state.FLIP = 'custom';
     el.stage.classList.remove('sf-mode');

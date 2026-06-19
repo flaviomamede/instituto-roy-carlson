@@ -3,6 +3,8 @@
 import { CONFIG } from './config.js';
 import { el } from './dom.js';
 import { closeGate, submitLead, finishUnlock } from './gate.js';
+import { closePanel, isPanelOpen } from './thumbnails.js';
+import { isSearchOpen } from './search.js';
 import {
   next,
   prev,
@@ -106,6 +108,11 @@ export function initNavigation(opts = {}) {
   el.stage.addEventListener('pointercancel', () => { stageTap.active = false; });
 
   document.addEventListener('keydown', (e) => {
+    if (isPanelOpen()) {
+      if (e.key === 'Escape') closePanel();
+      return;
+    }
+    if (isSearchOpen()) return;
     if (el.gate.classList.contains('open')) {
       if (e.key === 'Escape') closeGate();
       return;

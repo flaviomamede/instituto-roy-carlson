@@ -1,0 +1,182 @@
+.dam-banner {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: var(--ink, #283244);
+  border-bottom: 1px solid var(--line, rgba(40, 50, 68, 0.16));
+}
+
+.dam-banner__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dam-banner__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.dam-banner__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.dam-banner__slide img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dam-banner__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  padding: 0.55rem 1rem 0.65rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 26, 36, 0.82) 100%);
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.dam-banner__name {
+  font-family: var(--serif, Georgia, serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.dam-banner__credit {
+  opacity: 0.88;
+  font-size: 0.75rem;
+}
+
+.dam-banner__credit a {
+  color: inherit;
+}
+
+.dam-banner__controls {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.dam-banner__btn {
+  pointer-events: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(20, 26, 36, 0.45);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.dam-banner__btn:hover,
+.dam-banner__btn:focus-visible {
+  background: rgba(20, 26, 36, 0.72);
+  outline: none;
+}
+
+.dam-banner__btn--prev {
+  left: 0.65rem;
+}
+
+.dam-banner__btn--next {
+  right: 0.65rem;
+}
+
+.dam-banner__dots {
+  pointer-events: auto;
+  position: absolute;
+  left: 50%;
+  bottom: 0.55rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  max-width: calc(100% - 5rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dam-banner__dots > li {
+  display: contents;
+}
+
+.dam-banner__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+.dam-banner__dot.is-active,
+.dam-banner__dot:hover,
+.dam-banner__dot:focus-visible {
+  background: #fff;
+  outline: none;
+}
+
+.dam-banner__context {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0.55rem 1.5rem 0;
+  color: var(--muted, #6f7580);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.dam-banner__context a {
+  color: inherit;
+}
+
+@media (max-width: 520px) {
+  .dam-banner__caption {
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .dam-banner__btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dam-banner__slide {
+    transition: none;
+  }
+}

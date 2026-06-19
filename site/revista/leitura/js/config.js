@@ -1,11 +1,13 @@
 'use strict';
 
-export const BUILD = '2026-06-19-v3';
+export const BUILD = '2026-06-19-v8';
 
 export const CONFIG = {
   DEFAULT_PDF_URL: '/revista/leitura/revista.pdf',
   PDFJS_BASE: '/revista/leitura/pdfjs',
   SHOW_FILE_UPLOAD: false,
+  ALLOW_SHARE: true,
+  ALLOW_DOWNLOAD: false,
   MAGAZINE: {
     name: 'Revista IRC',
     kicker: 'Vol. 1, No. 1 · Junho 2026',
@@ -16,6 +18,11 @@ export const CONFIG = {
   PAGE_WIDTH: 470,
   FLIP_LIB: true,
   MOBILE_BREAKPOINT: 680,
+  /** 'revista' | 'biblioteca' — contexto do leitor */
+  READER_CONTEXT: 'revista',
+  DOC_SLUG: '',
+  /** Sumário do documento (biblioteca), ex.: [{ title, page }] */
+  DOC_TOC: [],
   GATE: {
     enabled: true,
     indexPage: 2,
@@ -47,6 +54,15 @@ export const ARTICLE_SLUGS = {
   'homenagem-roy-carlson': 25,
   'homenagem-walton-pacelli': 31,
   'damworld-2025': 39
+};
+
+export const ARTICLE_TITLES = {
+  'china-barragens': 'China e barragens',
+  'historico-concreto-massa-brasil': 'Concreto de massa no Brasil',
+  'roy-carlson-reminiscencias': 'Roy Carlson — Reminiscências',
+  'homenagem-roy-carlson': 'Homenagem a Roy Carlson',
+  'homenagem-walton-pacelli': 'Homenagem a Walton Pacelli',
+  'damworld-2025': 'Dam World 2025'
 };
 
 export const RS = 2.5;

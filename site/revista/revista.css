@@ -1,0 +1,391 @@
+:root {
+  --paper: #f3f3f0;
+  --ink: #283244;
+  --muted: #6f7580;
+  --blue-deep: #344258;
+  --line: rgba(40, 50, 68, 0.16);
+  --white: #ffffff;
+  --serif: "Libre Baskerville", Georgia, serif;
+  --sans: "DM Sans", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  background: linear-gradient(180deg, #ffffff 0%, var(--paper) 100%);
+  line-height: 1.65;
+}
+
+a {
+  color: var(--blue-deep);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.brand-title[aria-current="page"] {
+  color: var(--ink);
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.brand .brand-mark {
+  /* legado: marca dentro de .brand */
+}
+
+.nav-institutional,
+.nav-revista {
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.nav-institutional {
+  display: flex;
+}
+
+.nav-revista {
+  display: none;
+}
+
+body.section-revista .nav-institutional,
+html.section-revista .nav-institutional {
+  display: none !important;
+}
+
+body.section-revista .nav-revista,
+html.section-revista .nav-revista {
+  display: flex;
+}
+
+body.section-institutional .nav-revista,
+html.section-institutional .nav-revista {
+  display: none !important;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger::after {
+  content: " ▾";
+  font-size: 0.72em;
+  opacity: 0.65;
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  padding: 0.35rem 0;
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(40, 50, 68, 0.12);
+  z-index: 30;
+}
+
+/* ponte invisível — evita sumir ao descer o mouse */
+.nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -0.65rem;
+  left: 0;
+  right: 0;
+  height: 0.65rem;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.55rem 1rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a[aria-current="page"] {
+  color: var(--ink);
+  background: rgba(52, 66, 88, 0.06);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.brand-title[aria-current="page"] {
+  color: var(--ink);
+}
+
+.nav a[aria-current="page"],
+.nav a:hover {
+  color: var(--ink);
+}
+
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  line-height: 1.2;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+}
+
+h2 {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+.lead {
+  font-size: 1.125rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.meta-card {
+  padding: 1rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.meta-card strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list li {
+  padding: 1.1rem 1.2rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.card-list a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card-list p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.button.primary {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.cip-box {
+  margin: 2rem 0;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  background: #fafaf8;
+  font-size: 0.92rem;
+  font-family: var(--serif);
+}
+
+.cip-box .cip-header,
+.cip-box .cip-footer {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.cip-box .cip-org {
+  font-weight: 400;
+}
+
+.cip-box .cip-code {
+  font-family: var(--sans);
+  font-weight: 700;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.notice {
+  margin: 1.5rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--blue-deep);
+  background: rgba(52, 66, 88, 0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: rgba(52, 66, 88, 0.06);
+}
+
+.site-footer {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  body.section-institutional .nav-dropdown-menu {
+    position: static;
+    display: none;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.35rem 0 0.35rem 0.65rem;
+    margin-top: 0.15rem;
+    border: none;
+    border-left: 2px solid var(--line);
+    box-shadow: none;
+  }
+
+  body.section-institutional .nav-dropdown.is-open .nav-dropdown-menu,
+  body.section-institutional .nav-dropdown:hover .nav-dropdown-menu,
+  body.section-institutional .nav-dropdown:focus-within .nav-dropdown-menu {
+    display: flex;
+  }
+
+  body.section-institutional .nav-dropdown-menu::before {
+    display: none;
+  }
+}

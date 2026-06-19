@@ -4,8 +4,10 @@ import { RS } from './config.js';
 import { state } from './state.js';
 import { el } from './dom.js';
 import { gateActive } from './gate.js';
+import { isEditingPage } from './page-jump-state.js';
 import { renderPdfPage } from './pdf.js';
 import { renderDemoPage } from './demo.js';
+import { drawHighlightsOnCanvas, getSearchHighlightQuery } from './search-highlight.js';
 
 export function buildSheets() {
   const { Book } = state;
@@ -62,8 +64,10 @@ export async function renderFace(face) {
   if (!face || face.done || !face.canvas) return;
   face.done = true;
   try {
-    if (state.Book.source === 'pdf') await renderPdfPage(face.canvas, face.page, state.Book.pw * RS);
-    else renderDemoPage(face.canvas, face.page, RS);
+    if (state.Book.source === 'pdf') {
+      await renderPdfPage(face.canvas, face.page, state.Book.pw * RS);
+      if (getSearchHighlightQuery()) await drawHighlightsOnCanvas(face.canvas, face.page);
+    } else renderDemoPage(face.canvas, face.page, RS);
   } catch (e) {
     face.done = false;
   }
@@ -144,6 +148,7 @@ export function pageLabel(k) {
 }
 
 export function refreshUI() {
+  if (isEditingPage()) return;
   const { Book } = state;
   const locked = gateActive();
   const base = pageLabel(Book.k).replace(/(\d+(?:–\d+)?)/, '<b>$1</b>');

@@ -1,0 +1,138 @@
+/* Navegação institucional — flipbook e páginas sem revista.css */
+:root {
+  --ink: #283244;
+  --muted: #6f7580;
+  --line: rgba(40, 50, 68, 0.16);
+  --white: #ffffff;
+  --serif: "Libre Baskerville", Georgia, serif;
+  --sans: "DM Sans", system-ui, sans-serif;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  font-family: var(--sans);
+}
+
+.site-header .brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header .brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.site-header .brand-title {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.site-header .nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.site-header .brand-title[aria-current="page"] {
+  color: var(--ink);
+}
+
+.site-header .nav a[aria-current="page"],
+.site-header .nav a:hover {
+  color: var(--ink);
+}
+
+.site-header .nav-institutional,
+.site-header .nav-revista {
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.site-header .nav-institutional {
+  display: flex;
+}
+
+.site-header .nav-revista {
+  display: none;
+}
+
+body.section-revista .site-header .nav-institutional,
+html.section-revista .site-header .nav-institutional {
+  display: none !important;
+}
+
+body.section-revista .site-header .nav-revista,
+html.section-revista .site-header .nav-revista {
+  display: flex;
+}
+
+.site-header .nav-dropdown {
+  position: relative;
+}
+
+.site-header .nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  padding: 0.35rem 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(40, 50, 68, 0.12);
+  z-index: 30;
+}
+
+.site-header .nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -0.65rem;
+  left: 0;
+  right: 0;
+  height: 0.65rem;
+}
+
+.site-header .nav-dropdown:hover .nav-dropdown-menu,
+.site-header .nav-dropdown:focus-within .nav-dropdown-menu,
+.site-header .nav-dropdown.is-open .nav-dropdown-menu {
+  display: block;
+}
+
+.site-header .nav-dropdown-menu a {
+  display: block;
+  padding: 0.55rem 1rem;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-header .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+}

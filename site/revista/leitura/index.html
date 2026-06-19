@@ -22,6 +22,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>REVISTA IRC - Instituto Roy Carlson</title>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 <meta name="description" content="A Revista IRC tem por objetivo contribuir para manter viva a memória técnica da engenharia de barragens, notadamente do concreto massa. Homenagens a eminentes engenheiros, relatos interessantes de obras emblemáticas e artigos técnicos estão disponíveis na revista." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Revista IRC - Instituto Roy Carlson" />
@@ -199,6 +203,97 @@
     padding:0 6px; user-select:none;
   }
   .indicator b{ color:#d7dadf; font-weight:600; }
+  .page-jump-trigger{ cursor:pointer; border-radius:6px; }
+  .page-jump-trigger:hover{ background:rgba(255,255,255,.05); }
+  .page-jump-input{
+    width:4.5rem; text-align:center; font:inherit; font-size:12px;
+    padding:4px 6px; border-radius:6px; border:1px solid var(--petrol-lo);
+    background:#1b2129; color:#e9ebef;
+  }
+
+  .sf-build-progress{
+    position:absolute; left:50%; bottom:12px; transform:translateX(-50%);
+    z-index:20; width:min(320px,90%); padding:8px 10px; border-radius:8px;
+    background:rgba(13,17,22,.88); border:1px solid var(--line);
+    font-size:11px; color:var(--muted);
+  }
+  .sf-build-track{ height:4px; background:rgba(255,255,255,.08); border-radius:99px; margin-top:6px; overflow:hidden; }
+  .sf-build-bar{ height:100%; width:0; background:var(--petrol-lo); transition:width .2s; }
+
+  .thumb-panel,.search-panel{
+    position:fixed; inset:0; z-index:60; display:none;
+    background:rgba(8,10,14,.55); backdrop-filter:blur(2px);
+  }
+  .thumb-panel.open,.search-panel.open{ display:flex; }
+  .thumb-panel{ justify-content:flex-end; }
+  .search-panel{
+    align-items:flex-start; justify-content:center; padding:12px 16px 0;
+    pointer-events:none;
+  }
+  .search-panel.open{ pointer-events:auto; }
+  .search-panel-inner{ pointer-events:auto; }
+  .thumb-panel-inner{
+    width:min(360px,92vw); height:100%; background:#161b22; border-left:1px solid var(--line);
+    display:flex; flex-direction:column; box-shadow:-12px 0 40px rgba(0,0,0,.35);
+  }
+  .thumb-panel-head,.search-panel-head{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px 16px; border-bottom:1px solid var(--line);
+  }
+  .thumb-panel-head h2,.search-panel-head h2{ margin:0; font-family:var(--serif); font-size:18px; }
+  .thumb-scroll{ flex:1; overflow:auto; padding:12px 14px 24px; }
+  .thumb-toc h3{ margin:0 0 8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .thumb-toc ul{ list-style:none; margin:0 0 16px; padding:0; }
+  .toc-link{
+    width:100%; display:flex; justify-content:space-between; gap:8px; text-align:left;
+    background:transparent; border:0; color:#d7dadf; padding:8px 0; border-bottom:1px solid rgba(255,255,255,.06);
+    font:inherit; font-size:13px; cursor:pointer;
+  }
+  .toc-link.locked{ opacity:.55; }
+  .thumb-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px; }
+  .thumb-item{
+    position:relative; display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:6px; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,.03);
+    cursor:pointer; color:var(--muted); font-size:11px;
+  }
+  .thumb-item.current{ border-color:var(--brass); box-shadow:0 0 0 1px var(--brass); }
+  .thumb-item.locked{ opacity:.55; }
+  .thumb-item img,.thumb-item canvas{ width:72px; height:auto; border-radius:4px; background:#fff; }
+  .thumb-lock{ position:absolute; top:8px; right:8px; font-size:12px; }
+  .search-panel-inner{
+    width:min(640px,100%); background:#161b22; border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 16px 48px rgba(0,0,0,.4); max-height:min(70vh,520px); display:flex; flex-direction:column;
+  }
+  .search-field{ padding:12px 16px; border-bottom:1px solid var(--line); }
+  .search-field input{
+    width:100%; font:inherit; font-size:15px; padding:10px 12px; border-radius:8px;
+    border:1px solid var(--line); background:#0f1318; color:#e9ebef;
+  }
+  .search-status{ padding:8px 16px; font-size:12px; color:var(--muted); }
+  .search-results{ overflow:auto; padding:0 8px 12px; }
+  .search-hit{
+    width:100%; display:block; text-align:left; padding:10px 12px; margin:0 0 6px;
+    border:1px solid transparent; border-radius:8px; background:rgba(255,255,255,.03);
+    color:#d7dadf; font:inherit; cursor:pointer;
+  }
+  .search-hit.active{ border-color:var(--petrol-lo); background:rgba(44,106,128,.15); }
+  .search-hit strong{ display:block; font-size:12px; margin-bottom:4px; color:var(--brass); }
+  .search-empty{ padding:12px 16px; color:var(--muted); font-size:13px; margin:0; }
+
+  .search-hl-layer{
+    position:absolute; inset:0; pointer-events:none; z-index:3;
+  }
+  .search-hl-mark{
+    position:absolute; background:rgba(255, 220, 0, 0.58);
+    border-radius:2px; box-shadow:0 0 0 1px rgba(200, 160, 0, 0.45);
+    mix-blend-mode:multiply;
+  }
+
+  .icon-btn{
+    appearance:none; border:0; background:transparent; color:#e9ebef; font-size:22px;
+    line-height:1; cursor:pointer; padding:4px 8px; border-radius:6px;
+  }
+  .icon-btn:hover{ background:rgba(255,255,255,.08); }
 
   .spacer{ width:1px; height:26px; background:var(--line); margin:0 4px; }
 
@@ -321,6 +416,7 @@
 
   /* modo leitura (tela cheia no celular — iOS não suporta Fullscreen API) */
   body.reading-mode .masthead,
+  body.reading-mode .site-header,
   body.reading-mode .controls,
   body.reading-mode .hints{ display:none; }
   body.reading-mode main.stage{
@@ -340,8 +436,61 @@
     .loader .dot{ animation:none; }
   }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/site-nav.css" />
 </head>
 <body>
+
+  <header class="site-header">
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+    </header>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+      var root = document.documentElement;
+      root.classList.toggle('section-revista', isRevista);
+      root.classList.toggle('section-institutional', !isRevista);
+      var instNav = document.querySelector('.nav-institutional');
+      var revNav = document.querySelector('.nav-revista');
+      if (instNav) instNav.hidden = isRevista;
+      if (revNav) revNav.hidden = !isRevista;
+      document.querySelectorAll('[data-brand="revista"]').forEach(function (el) {
+        el.hidden = !isRevista;
+      });
+      document.querySelectorAll('[data-brand="institucional"]').forEach(function (el) {
+        el.hidden = isRevista;
+      });
+    })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
 
   <header class="masthead">
     <div class="mast-left">
@@ -350,7 +499,7 @@
     </div>
     <div class="mast-right">
       <b id="mastTag">leitura em flipbook</b><br/>
-      <a href="/revista/index.html" style="color:#9fb6bf;font-size:12px">← Repositório da Revista</a>
+      <a href="/revista/index.html" style="color:#9fb6bf;font-size:12px">← Revista IRC</a>
     </div>
   </header>
 
@@ -392,9 +541,34 @@
         <button class="gate-skip" id="gateSkip" type="button" style="display:none">Continuar sem informar</button>
       </div>
     </div>
+    <div class="sf-build-progress" id="sfBuildProgress" hidden aria-hidden="true">
+      <div class="sf-build-label">Preparando virada suave…</div>
+      <div class="sf-build-track"><div class="sf-build-bar"></div></div>
+    </div>
   </main>
 
+  <div class="thumb-panel" id="thumbPanel" aria-hidden="true" aria-label="Índice de páginas"></div>
+
+  <div class="search-panel" id="searchPanel" aria-hidden="true">
+    <div class="search-panel-inner">
+      <header class="search-panel-head">
+        <h2>Buscar na revista</h2>
+        <button type="button" class="icon-btn" id="searchClose" aria-label="Fechar busca">×</button>
+      </header>
+      <div class="search-field">
+        <input type="search" id="searchInput" placeholder="Digite um termo…" autocomplete="off" aria-label="Buscar texto na revista" />
+      </div>
+      <div class="search-status" id="searchStatus"></div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
   <div class="controls">
+    <button class="btn nav" id="thumbBtn" aria-label="Índice e miniaturas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Índice
+    </button>
+
     <button class="btn nav" id="prevBtn" aria-label="Página anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       Anterior
@@ -408,6 +582,16 @@
     </button>
 
     <span class="spacer"></span>
+
+    <button class="btn" id="searchBtn" aria-label="Buscar na revista">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      Buscar
+    </button>
+
+    <button class="btn" id="shareBtn" aria-label="Compartilhar esta página">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>
+      Compartilhar
+    </button>
 
     <button class="btn" id="zoomBtn" aria-label="Ampliar (zoom)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
@@ -451,6 +635,6 @@
     <div class="lb-hint">centro: arraste para mover · bordas: virar página · ← → ou botões acima · roda do mouse amplia</div>
   </div>
 
-<script type="module" src="/revista/leitura/js/main.js?v=2026-06-19-v3"></script>
+<script type="module" src="/revista/leitura/js/main.js?v=2026-06-19-v8"></script>
 </body>
 </html>

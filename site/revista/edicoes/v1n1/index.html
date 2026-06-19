@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Revista IRC Vol. 1, No. 1 (jun. 2026) — sumário, artigos e PDF completo."
+    />
+    <title>Vol. 1, No. 1 (2026) | Revista IRC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/revista/revista.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+    </header>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+      var root = document.documentElement;
+      root.classList.toggle('section-revista', isRevista);
+      root.classList.toggle('section-institutional', !isRevista);
+      var instNav = document.querySelector('.nav-institutional');
+      var revNav = document.querySelector('.nav-revista');
+      if (instNav) instNav.hidden = isRevista;
+      if (revNav) revNav.hidden = !isRevista;
+      document.querySelectorAll('[data-brand="revista"]').forEach(function (el) {
+        el.hidden = !isRevista;
+      });
+      document.querySelectorAll('[data-brand="institucional"]').forEach(function (el) {
+        el.hidden = isRevista;
+      });
+    })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
+
+    <main>
+      <p class="eyebrow">Vol. 1 · No. 1 · junho de 2026</p>
+      <h1>De ontem até hoje, do Brasil para o mundo</h1>
+      <p class="lead">
+        Primeiro número da Revista IRC — Instituto Roy Carlson. Publicação da Editora Magnificat,
+        Anápolis, GO.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <strong>DOI</strong>
+          <a href="https://doi.org/10.70271/260611.1350">10.70271/260611.1350</a>
+        </div>
+        <div class="meta-card">
+          <strong>Editor-chefe</strong>
+          Flávio Mamede Pereira Gomes
+        </div>
+        <div class="meta-card">
+          <strong>Páginas</strong>
+          67
+        </div>
+        <div class="meta-card">
+          <strong>Formato</strong>
+          Flipbook interativo (acesso aberto após prévia)
+        </div>
+      </div>
+
+      <div class="notice">
+        A leitura integral do Vol. 1, No. 1 é feita pelo flipbook interativo (com registro de e-mail
+        após a prévia). O PDF não é oferecido para download direto neste repositório.
+      </div>
+
+      <div class="button-row">
+        <a class="button primary" href="/revista/leitura/index.html">Abrir flipbook — Vol. 1, No. 1</a>
+        <a class="button" href="/revista/edicoes/index.html">Todas as edições</a>
+      </div>
+
+      <h2>Sumário</h2>
+      <ul class="card-list">
+        <li>
+          <a href="/revista/leitura/index.html?artigo=china-barragens">Engenharia de barragens na China</a>
+          <p>
+            Panorama do mercado chinês de barragens e nichos em que a experiência brasileira em concreto
+            massa ainda agrega valor.
+            <br />
+            <strong>Mercado internacional</strong> —
+            <a href="./artigos/china-barragens.html">página do artigo</a>
+          </p>
+        </li>
+        <li>
+          <a href="/revista/leitura/index.html?artigo=historico-concreto-massa-brasil"
+            >Histórico da tecnologia do concreto massa no Brasil</a
+          >
+          <p>
+            Republicação do texto clássico de Epaminondas de Melo do Amaral (1981) sobre a evolução do
+            concreto massa nas grandes obras hidrelétricas do país.
+            <br />
+            <strong>Memória técnica</strong> —
+            <a href="./artigos/historico-concreto-massa-brasil.html">página do artigo</a>
+          </p>
+        </li>
+        <li>
+          <a href="/revista/leitura/index.html?artigo=roy-carlson-reminiscencias"
+            >Roy Carlson antes das barragens</a
+          >
+          <p>
+            Primeira parte das reminiscências: infância, formação em física e primeiros problemas de
+            engenharia que antecederam a atuação em barragens.
+            <br />
+            <strong>Reminiscências — Parte 1</strong> —
+            <a href="./artigos/roy-carlson-reminiscencias.html">página do artigo</a>
+          </p>
+        </li>
+        <li>
+          <a href="/revista/leitura/index.html?artigo=homenagem-roy-carlson">Homenagem: Dr. Roy W. Carlson</a>
+          <p>
+            Linha do tempo e contribuições do engenheiro que ajudou o Brasil a dominar instrumentação e
+            controle térmico do concreto massa.
+            <br />
+            <strong>Homenagens</strong> —
+            <a href="./artigos/homenagem-roy-carlson.html">página do artigo</a>
+          </p>
+        </li>
+        <li>
+          <a href="/revista/leitura/index.html?artigo=homenagem-walton-pacelli">Homenagem: Walton Pacelli de Andrade</a>
+          <p>
+            Perfil do engenheiro que consolidou o laboratório de Furnas, coordenou a memória técnica
+            nacional e levou a expertise brasileira ao exterior.
+            <br />
+            <strong>Homenagens</strong> —
+            <a href="./artigos/homenagem-walton-pacelli.html">página do artigo</a>
+          </p>
+        </li>
+        <li>
+          <a href="/revista/leitura/index.html?artigo=damworld-2025"
+            >Contributions to the Analysis of the Exothermic-Mechanical Phenomenon in Mass Concrete</a
+          >
+          <p>
+            Síntese de 15 anos de pesquisa da Eletrobras-Furnas: ensaios, casos de obra, modelagem
+            viscoelástica e soluções analíticas para campos de temperatura.
+            <br />
+            <strong>Artigo técnico</strong> —
+            <a href="./artigos/damworld-2025-exothermic-mechanical.html">página do artigo</a>
+          </p>
+        </li>
+      </ul>
+
+      <div class="cip-box">
+        <p class="cip-header">
+          Dados Internacionais de Catalogação na Publicação (CIP)<br />
+          <span class="cip-org">(eDOC BRASIL, Belo Horizonte/MG)</span>
+        </p>
+        <p class="cip-code">R454</p>
+        <p>
+          Revista IRC [recurso eletrônico] / editor Flávio Mamede Pereira Gomes. – v. 1, n. 1 –
+          Anápolis, GO: Editora Magnificat, 2026.
+        </p>
+        <p>Formato: PDF</p>
+        <p>Requisitos de sistema: Adobe Acrobat Reader</p>
+        <p>Modo de acesso: World Wide Web</p>
+        <p>DOI: 10.70271/260611.1350</p>
+        <p>
+          1. Engenharia de barragens – Brasil.<br />
+          2. Concreto massa – Tecnologia.<br />
+          3. Memória técnica – História da engenharia.<br />
+          I. Gomes, Flávio Mamede Pereira.
+        </p>
+        <p>CDD 624.1</p>
+        <p class="cip-footer">Elaborado por Maurício Amormino Júnior – CRB6/2422</p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="/revista/index.html">← Voltar às edições</a></p>
+    </footer>
+  </body>
+</html>

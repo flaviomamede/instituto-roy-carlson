@@ -3,7 +3,8 @@
 import { CONFIG } from './config.js';
 import { state } from './state.js';
 import { el } from './dom.js';
-import { atGate, openGate } from './gate.js';
+import { atGate, openGate, gateActive, previewCount } from './gate.js';
+import { scheduleSearchHighlights } from './search-highlight.js';
 import {
   buildSheets,
   flipForward,
@@ -17,7 +18,6 @@ import {
   sfVisibleIndices,
   maybeUpgrade
 } from './flip-sf.js';
-import { fit } from './stage-fit.js';
 
 export function isMobileView() {
   return window.innerWidth < (CONFIG.MOBILE_BREAKPOINT || 680);
@@ -49,6 +49,8 @@ export function visibleSpread() {
 export function refreshUI() {
   if (state.FLIP === 'sf' && state.sf) sfRefreshUI();
   else cssRefreshUI();
+  state.uiHooks.onPageChange();
+  scheduleSearchHighlights();
 }
 
 export function flipClickRoot() {
@@ -84,14 +86,21 @@ export function goTo(index) {
   const { Book } = state;
   if (Book.N <= 0) return;
   index = Math.max(0, Math.min(Book.N - 1, index | 0));
+  if (gateActive() && index >= previewCount()) {
+    state.pendingPage = index;
+    openGate();
+    return;
+  }
   state.hasInteracted = true;
   if (state.FLIP === 'sf' && state.sf) {
     try { state.sf.turnToPage(index); } catch (e) {}
     sfRefreshUI();
+    scheduleSearchHighlights();
     return;
   }
   const k = index <= 0 ? 0 : Math.min(Book.maxK, Math.ceil(index / 2));
   setStateImmediate(k);
+  scheduleSearchHighlights();
 }
 
 export function rebuildView(startIndex) {

@@ -1,0 +1,269 @@
+/* Biblioteca IRC — extensões sobre revista.css */
+
+main.wide {
+  max-width: 1060px;
+}
+
+.lib-toolbar {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.lib-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.lib-field {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.lib-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lib-field input,
+.lib-field select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.lib-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.lib-card {
+  display: block;
+  padding: 1rem 1.15rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+
+.lib-card:hover {
+  border-color: var(--blue-deep);
+}
+
+.lib-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.lib-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-family: var(--serif);
+}
+
+.lib-badge {
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.lib-badge.open {
+  border-color: rgba(52, 66, 88, 0.35);
+  color: var(--blue-deep);
+}
+
+.lib-badge.locked {
+  border-color: rgba(40, 50, 68, 0.25);
+}
+
+.lib-test-notice {
+  margin: 0 0 1.25rem;
+  padding: 0.7rem 1rem;
+  border: 2px solid #c0392b;
+  color: #c0392b;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.lib-lock {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -0.12em;
+  margin-right: 0.2em;
+}
+
+.lib-lock-svg {
+  display: block;
+}
+
+.lib-badge .lib-lock-svg {
+  width: 13px;
+  height: 13px;
+}
+
+h1 .lib-lock-svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lib-card-meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.lib-card p {
+  margin: 0.5rem 0 0;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.lib-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.lib-tag {
+  padding: 0.15rem 0.45rem;
+  font-size: 0.75rem;
+  background: rgba(52, 66, 88, 0.06);
+  color: var(--muted);
+}
+
+.auth-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0.85rem 1rem;
+  background: rgba(52, 66, 88, 0.06);
+  border: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+.auth-bar form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.auth-bar input[type="email"] {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  font: inherit;
+  min-width: 220px;
+}
+
+.auth-bar .button {
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.viewer-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  margin: 1rem 0;
+}
+
+.viewer-toggle button {
+  padding: 0.55rem 0.9rem;
+  border: none;
+  background: var(--white);
+  font: inherit;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.viewer-toggle button.active {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.viewer-toggle button + button {
+  border-left: 1px solid var(--line);
+}
+
+.viewer-frame {
+  width: 100%;
+  min-height: 70vh;
+  border: 1px solid var(--line);
+  background: #1a1a1a;
+}
+
+.viewer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.toc-list {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.93rem;
+}
+
+.toc-list li span:last-child {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-state {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .lib-card-head {
+    flex-direction: column;
+  }
+}

@@ -6,6 +6,7 @@ import { el, showLoader, hideLoader } from './dom.js';
 import { atGate, openGate } from './gate.js';
 import { renderPdfPage } from './pdf.js';
 import { renderDemoPage } from './demo.js';
+import { drawHighlightsOnCanvas, getSearchHighlightQuery } from './search-highlight.js';
 import { visibleSpread, next, prev } from './flip-controller.js';
 import { BookViewport } from './viewport.js';
 
@@ -46,8 +47,10 @@ async function renderZoomCanvases(idxs) {
   for (const pageIndex of idxs) {
     const c = document.createElement('canvas');
     el.lbContent.appendChild(c);
-    if (state.Book.source === 'pdf') await renderPdfPage(c, pageIndex, target);
-    else renderDemoPage(c, pageIndex, 4);
+    if (state.Book.source === 'pdf') {
+      await renderPdfPage(c, pageIndex, target);
+      if (getSearchHighlightQuery()) await drawHighlightsOnCanvas(c, pageIndex);
+    } else renderDemoPage(c, pageIndex, 4);
     c.style.width = (c.width / dpr) + 'px';
     c.style.height = (c.height / dpr) + 'px';
   }

@@ -2,6 +2,11 @@
   "buildCommand": "bash build.sh",
   "outputDirectory": ".",
   "cleanUrls": true,
+  "functions": {
+    "api/file/[slug].js": {
+      "includeFiles": "api/_data/library/**"
+    }
+  },
   "redirects": [
     {
       "source": "/revista",
@@ -9,9 +14,24 @@
       "permanent": true
     },
     {
-      "source": "/revista/leitura",
-      "destination": "/revista/leitura/",
+      "source": "/biblioteca",
+      "destination": "/biblioteca/",
       "permanent": true
+    },
+    {
+      "source": "/biblioteca/documento",
+      "destination": "/biblioteca/documento/",
+      "permanent": true
+    },
+    {
+      "source": "/biblioteca/data/allowlist.json",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/biblioteca/files/private/:path*",
+      "destination": "/404.html",
+      "permanent": false
     },
     {
       "source": "/:path*",
@@ -27,6 +47,13 @@
     }
   ],
   "headers": [
+    {
+      "source": "/api/file/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "private, no-store" }
+      ]
+    },
     {
       "source": "/revista/leitura/revista.pdf",
       "headers": [

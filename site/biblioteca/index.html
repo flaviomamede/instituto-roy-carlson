@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Biblioteca IRC — memória técnica e acervo do Instituto Roy Carlson. Catálogo público; leitura integral para assinantes e apoiadores."
+    />
+    <title>Biblioteca IRC — Instituto Roy Carlson</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://institutoroycarlson.org/biblioteca/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/revista/revista.css" />
+    <link rel="stylesheet" href="/biblioteca/biblioteca.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+      </nav>
+    </header>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+      var root = document.documentElement;
+      root.classList.toggle('section-revista', isRevista);
+      root.classList.toggle('section-institutional', !isRevista);
+      var instNav = document.querySelector('.nav-institutional');
+      var revNav = document.querySelector('.nav-revista');
+      if (instNav) instNav.hidden = isRevista;
+      if (revNav) revNav.hidden = !isRevista;
+      document.querySelectorAll('[data-brand="revista"]').forEach(function (el) {
+        el.hidden = !isRevista;
+      });
+      document.querySelectorAll('[data-brand="institucional"]').forEach(function (el) {
+        el.hidden = isRevista;
+      });
+    })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
+
+    <main class="wide">
+      <p class="eyebrow">Instituto Roy Carlson</p>
+      <h1>Biblioteca IRC</h1>
+      <div class="lib-test-notice" role="status">Biblioteca está em fase de teste</div>
+      <p class="lead">
+        Memória técnica, artigos e documentos do acervo do Instituto. O catálogo é público; a leitura
+        integral de parte do acervo é reservada a assinantes, membros fundadores e patrocinadores.
+      </p>
+
+      <div class="notice">
+        A biblioteca está em organização e será ampliada progressivamente. Fichas, resumos e busca
+        permanecem abertos a todos.
+      </div>
+
+      <div id="authBar" class="auth-bar" aria-live="polite"></div>
+
+      <div class="lib-toolbar">
+        <div class="lib-toolbar-row">
+          <div class="lib-field" style="flex: 2 1 260px">
+            <label for="searchInput">Buscar</label>
+            <input type="search" id="searchInput" placeholder="Título, autor, tag, coleção…" autocomplete="off" />
+          </div>
+          <div class="lib-field">
+            <label for="filterCollection">Coleção</label>
+            <select id="filterCollection"><option>Todos</option></select>
+          </div>
+          <div class="lib-field">
+            <label for="filterType">Tipo</label>
+            <select id="filterType"><option>Todos</option></select>
+          </div>
+          <div class="lib-field">
+            <label for="filterAccess">Acesso</label>
+            <select id="filterAccess">
+              <option>Todos</option>
+              <option>Aberto</option>
+              <option>Exclusivo</option>
+            </select>
+          </div>
+        </div>
+        <p id="resultCount" style="margin:0;font-size:0.9rem;color:var(--muted)">—</p>
+      </div>
+
+      <div id="docGrid" class="lib-grid" aria-live="polite"></div>
+    </main>
+
+    <footer class="site-footer">
+      <p>Instituto Roy Carlson · <a href="https://www.linkedin.com/in/flaviomamede/" rel="noopener">LinkedIn</a></p>
+    </footer>
+
+    <script type="module" src="/biblioteca/js/catalog-page.js"></script>
+  </body>
+</html>
