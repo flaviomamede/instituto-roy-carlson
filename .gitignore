@@ -56,4 +56,27 @@ vendor/
 *.vrb
 
 # Arquivos específicos do projeto
-# (adicionar conforme necessário) 
+
+# === Conteúdo sensível / privado (ATENÇÃO: este repositório é PÚBLICO) ===
+# Acervo exclusivo servido somente via API — nunca versionar os PDFs privados
+site/api/_data/library/files/
+# Lista de e-mails autorizados (fallback de dev). Em produção usar IRC_ALLOWLIST_JSON
+biblioteca-adapters/irc/allowlist.json
+# Material-fonte bruto do acervo (PDFs/livros — muitos privados e/ou autorais)
+/biblioteca/
+# Segredos
+.env*
+!.env.example
+!**/.env.example
+
+# === Backups, protótipos e fontes de staging (não versionar) ===
+site-instituto-roy-carlson.zip
+prototipo-site-irc.zip
+/prototipo-site-irc/
+/site-old/
+/_versoes/
+/_arquivo/
+/reunioes/
+# Fontes de staging (os artefatos publicados ficam em site/)
+/revista/
+/imagens/
