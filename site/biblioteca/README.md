@@ -46,3 +46,24 @@ bash build.sh   # revista + biblioteca + favicons
 - `js/core/` — cópia de `biblioteca-core/src/`
 
 Fonte editável: `biblioteca-adapters/irc/catalog.json` e `allowlist.json`.
+
+## Assinaturas — ativação e renovação manual
+
+A página `/assinatura/` capta o pedido (Pix) e avisa o Instituto. A liberação é
+**manual**: adicione/edite o assinante na allowlist (`IRC_ALLOWLIST_JSON` na
+Vercel em produção; `biblioteca-adapters/irc/allowlist.json` em dev) com:
+
+```json
+{ "email": "fulano@dominio.com", "planLevel": "member", "name": "Fulano",
+  "validUntil": "2027-06-19", "since": "2026-06-19", "source": "pix-anual" }
+```
+
+- **`validUntil`** (ISO) define o fim da assinatura. Pago anual → +1 ano; mensal → +1 mês.
+- O acesso **expira sozinho**: `api/_lib/auth.js` recusa o login após `validUntil`
+  e limita a duração do cookie a `min(14 dias, validUntil)` — sessões ativas também
+  se encerram no vencimento.
+- **Fundadores/patrocinadores** omitem `validUntil` (acesso perpétuo).
+- Para renovar, basta atualizar `validUntil`.
+
+> Evolução: ao integrar um gateway (Stripe/Mercado Pago), o webhook passa a
+> gravar/renovar essa mesma entrada automaticamente — o contrato de dados não muda.

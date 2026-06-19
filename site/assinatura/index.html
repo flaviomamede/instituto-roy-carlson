@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Assine o Instituto Roy Carlson: leitura integral do acervo exclusivo da Biblioteca IRC e da Revista IRC completa. R$ 197/ano ou R$ 19/mês via Pix."
+    />
+    <title>Assinatura — Instituto Roy Carlson</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://institutoroycarlson.org/assinatura/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/revista/revista.css" />
+    <link rel="stylesheet" href="/assinatura/assinatura.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+        <a href="/assinatura/" data-nav="assinatura" class="nav-cta">Assinar</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+        <a href="/assinatura/" data-nav="assinatura" class="nav-cta">Assinar</a>
+      </nav>
+    </header>
+    <script>
+      (function () {
+        var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+        var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+        var root = document.documentElement;
+        root.classList.toggle('section-revista', isRevista);
+        root.classList.toggle('section-institutional', !isRevista);
+        var instNav = document.querySelector('.nav-institutional');
+        var revNav = document.querySelector('.nav-revista');
+        if (instNav) instNav.hidden = isRevista;
+        if (revNav) revNav.hidden = !isRevista;
+      })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
+
+    <main class="wide assinatura">
+      <p class="eyebrow">Instituto Roy Carlson</p>
+      <h1>Assine a memória técnica do concreto massa</h1>
+      <p class="lead">
+        Leitura integral do acervo exclusivo da Biblioteca IRC e da Revista IRC completa —
+        homenagens, relatos de obras emblemáticas e artigos técnicos sobre barragens e concreto massa.
+      </p>
+
+      <!-- Alternância de cobrança -->
+      <div class="billing-toggle" role="group" aria-label="Periodicidade do plano Assinante">
+        <button type="button" class="billing-opt is-active" data-billing="anual" aria-pressed="true">
+          Anual <span class="billing-save">−13%</span>
+        </button>
+        <button type="button" class="billing-opt" data-billing="mensal" aria-pressed="false">Mensal</button>
+      </div>
+
+      <!-- Planos -->
+      <section class="plans" aria-label="Planos de assinatura">
+        <!-- Leitor -->
+        <article class="plan">
+          <h2 class="plan-name">Leitor</h2>
+          <p class="plan-price"><strong>Grátis</strong></p>
+          <p class="plan-sub">Para conhecer o acervo</p>
+          <ul class="plan-feats">
+            <li>Catálogo público completo</li>
+            <li>Fichas, resumos e tags</li>
+            <li>Revista IRC em prévia</li>
+            <li>Documentos de acervo aberto</li>
+          </ul>
+          <a class="button plan-cta" href="/biblioteca/">Explorar a Biblioteca</a>
+        </article>
+
+        <!-- Assinante (destaque) -->
+        <article class="plan plan-featured" aria-current="true">
+          <span class="plan-badge">Recomendado</span>
+          <h2 class="plan-name">Assinante</h2>
+          <p class="plan-price">
+            <strong data-price-amount>R$ 197</strong>
+            <span class="plan-period" data-price-period>/ano</span>
+          </p>
+          <p class="plan-sub" data-price-note>Equivale a R$ 16,40/mês · renove uma vez por ano</p>
+          <ul class="plan-feats">
+            <li><strong>Leitura integral</strong> do acervo exclusivo</li>
+            <li><strong>Revista IRC completa</strong>, sem prévia</li>
+            <li>Acesso a homenagens e memória técnica</li>
+            <li>Novos documentos conforme publicados</li>
+          </ul>
+          <button class="button primary plan-cta" type="button" data-assinar>Assinar agora</button>
+          <p class="plan-foot">Pagamento via Pix · liberação após confirmação</p>
+        </article>
+
+        <!-- Fundador / Patrocinador -->
+        <article class="plan">
+          <h2 class="plan-name">Fundador · Patrocinador</h2>
+          <p class="plan-price"><strong>Institucional</strong></p>
+          <p class="plan-sub">Apoio à publicação</p>
+          <ul class="plan-feats">
+            <li>Tudo do plano Assinante</li>
+            <li>Contrapartidas institucionais</li>
+            <li>Reconhecimento no expediente</li>
+            <li>Condições negociadas</li>
+          </ul>
+          <a
+            class="button plan-cta"
+            href="mailto:institutoroycarlson@gmail.com?subject=Fundador%2FPatrocinador%20%E2%80%94%20Instituto%20Roy%20Carlson"
+            >Fale com o Instituto</a
+          >
+        </article>
+      </section>
+
+      <!-- Tabela comparativa -->
+      <h2 class="section-title">Comparativo</h2>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead>
+            <tr><th scope="col">Recurso</th><th scope="col">Leitor</th><th scope="col">Assinante</th><th scope="col">Fundador · Patrocinador</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Catálogo e fichas</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Acervo aberto</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Acervo exclusivo (integral)</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Revista IRC completa</th><td class="no">prévia</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Contrapartidas institucionais</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQ -->
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>Como funciona o pagamento?</summary>
+          <p>Por enquanto a cobrança é por <strong>Pix</strong>: você escolhe o plano, paga pelo QR ou “copia e cola”,
+          informa seu e-mail e liberamos o acesso após a confirmação. Em breve teremos cartão e Pix automático.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo até liberar meu acesso?</summary>
+          <p>A liberação é manual nesta fase: normalmente em até algumas horas úteis após a confirmação do Pix.
+          Você recebe um e-mail quando o acesso estiver ativo.</p>
+        </details>
+        <details>
+          <summary>Como renovo o plano mensal?</summary>
+          <p>No Pix avulso não há cobrança automática: o plano mensal é renovado pagando novamente a cada mês.
+          Por isso recomendamos o <strong>anual</strong>, que vale 12 meses com um único pagamento.</p>
+        </details>
+        <details>
+          <summary>E o cancelamento e reembolso?</summary>
+          <p>Você pode parar quando quiser — o mensal simplesmente não é renovado. Para o anual, fale com o Instituto
+          em caso de dúvida sobre reembolso proporcional.</p>
+        </details>
+        <details>
+          <summary>Meus dados estão seguros?</summary>
+          <p>O acesso ao acervo exclusivo é verificado no servidor; usamos seu e-mail apenas para liberar e renovar a
+          assinatura. A lista de assinantes não é exposta no site.</p>
+        </details>
+      </div>
+    </main>
+
+    <!-- Painel de pagamento (Pix) -->
+    <div class="pay-overlay" id="payOverlay" aria-hidden="true">
+      <div class="pay-card" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+        <button class="pay-close" id="payClose" type="button" aria-label="Fechar">×</button>
+        <p class="eyebrow">Assinatura · pagamento via Pix</p>
+        <h2 id="payTitle">Plano <span data-pay-plan>Anual</span> — <span data-pay-amount>R$ 197</span></h2>
+        <p class="pay-holder">Pagamento para <strong data-pay-holder>—</strong></p>
+
+        <div class="pay-grid">
+          <div class="pay-qr">
+            <img id="payQr" alt="QR Code Pix do plano selecionado" width="200" height="200" />
+            <p class="pay-hint">Escaneie no app do seu banco</p>
+          </div>
+          <div class="pay-copy">
+            <label for="payCode">Ou use o Pix Copia e Cola</label>
+            <textarea id="payCode" readonly rows="3"></textarea>
+            <button class="button" id="payCopyBtn" type="button">Copiar código Pix</button>
+          </div>
+        </div>
+
+        <form class="pay-form" id="payForm" novalidate>
+          <p class="pay-form-intro">Depois de pagar, informe seus dados para liberarmos o acesso:</p>
+          <div class="pay-fields">
+            <div class="pay-field">
+              <label for="payNome">Nome</label>
+              <input type="text" id="payNome" name="nome" autocomplete="name" required />
+            </div>
+            <div class="pay-field">
+              <label for="payEmail">E-mail (para acessar a Biblioteca)</label>
+              <input type="email" id="payEmail" name="email" autocomplete="email" inputmode="email" required />
+            </div>
+          </div>
+          <!-- honeypot anti-bot -->
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+          <button class="button primary" type="submit" id="paySubmit">Já paguei — avisar o Instituto</button>
+          <p class="pay-status" id="payStatus" aria-live="polite"></p>
+        </form>
+
+        <p class="pay-note">
+          A liberação é manual nesta fase (até algumas horas úteis). Em caso de dúvida, escreva para
+          <a href="mailto:institutoroycarlson@gmail.com">institutoroycarlson@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>Instituto Roy Carlson · <a href="https://www.linkedin.com/in/flaviomamede/" rel="noopener">LinkedIn</a></p>
+    </footer>
+
+    <script type="module" src="/assinatura/js/assinatura.js"></script>
+  </body>
+</html>

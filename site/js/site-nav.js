@@ -13,6 +13,7 @@
 
   function pickNav() {
     if (path === '/') return 'institucional';
+    if (path.startsWith('/assinatura')) return 'assinatura';
     if (path.startsWith('/biblioteca')) return 'biblioteca';
     if (path.startsWith('/revista/leitura')) return 'flipbook';
     if (path.startsWith('/revista/apresentacao')) return 'apresentacao';

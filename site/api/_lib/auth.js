@@ -29,10 +29,19 @@ function loadAllowlistUsers() {
   return [];
 }
 
+/** Assinatura vencida? (founders/sponsors normalmente não têm validUntil). */
+function isExpired(user) {
+  if (!user || !user.validUntil) return false;
+  const t = Date.parse(user.validUntil);
+  return !Number.isNaN(t) && Date.now() > t;
+}
+
 function findUser(email) {
   const normalized = normalizeEmail(email);
   if (!normalized) return null;
-  return loadAllowlistUsers().find((u) => normalizeEmail(u.email) === normalized) || null;
+  const user = loadAllowlistUsers().find((u) => normalizeEmail(u.email) === normalized) || null;
+  if (!user || isExpired(user)) return null; // expirado = sem acesso (trata como público)
+  return user;
 }
 
 function getSecret() {
@@ -90,14 +99,20 @@ function getSessionFromRequest(req) {
 }
 
 function setSessionCookie(res, user) {
-  const exp = Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000;
+  // A sessão não pode durar além do fim da assinatura (validUntil), para o
+  // acesso se auto-revogar mesmo dentro de uma sessão ativa.
+  let exp = Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000;
+  if (user.validUntil) {
+    const vu = Date.parse(user.validUntil);
+    if (!Number.isNaN(vu)) exp = Math.min(exp, vu);
+  }
   const token = signToken({
     email: user.email,
     planLevel: user.planLevel,
     name: user.name || user.email,
     exp
   });
-  const maxAge = SESSION_DAYS * 24 * 60 * 60;
+  const maxAge = Math.max(0, Math.floor((exp - Date.now()) / 1000));
   res.setHeader(
     'Set-Cookie',
     `${COOKIE_NAME}=${encodeURIComponent(token)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`

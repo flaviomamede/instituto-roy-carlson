@@ -1,0 +1,283 @@
+/* Assinatura — Instituto Roy Carlson
+   Reusa os tokens de /revista/revista.css (--ink, --paper, --muted, --line…). */
+:root {
+  --accent: #c79a4b; /* latão: destaque "Recomendado" */
+  --accent-dark: #a87f33;
+  --ok: #2f7d52;
+}
+
+main.wide.assinatura {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.assinatura h1 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+.assinatura .section-title {
+  margin: 3rem 0 1rem;
+  font-size: 1.4rem;
+}
+
+/* ---------- Alternância de cobrança ---------- */
+.billing-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin: 1.75rem 0 0.5rem;
+  padding: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+}
+.billing-opt {
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.billing-opt.is-active {
+  background: var(--ink);
+  color: var(--white);
+}
+.billing-save {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1c1c1c;
+}
+.billing-opt.is-active .billing-save {
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* ---------- Planos ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  margin: 1rem 0 1.5rem;
+  align-items: stretch;
+}
+@media (max-width: 820px) {
+  .plans { grid-template-columns: 1fr; }
+}
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem 1.35rem;
+}
+.plan-featured {
+  border: 2px solid var(--accent);
+  box-shadow: 0 14px 34px rgba(40, 50, 68, 0.12);
+}
+.plan-badge {
+  position: absolute;
+  top: -0.7rem;
+  left: 1.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #1c1c1c;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+.plan-name {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.15rem;
+}
+.plan-price {
+  margin: 0.2rem 0 0.1rem;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.plan-price strong { font-size: 2rem; font-weight: 700; }
+.plan-period { color: var(--muted); font-size: 1rem; }
+.plan-sub {
+  margin: 0 0 1rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+.plan-feats {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  flex: 1 1 auto;
+}
+.plan-feats li {
+  padding-left: 1.4rem;
+  position: relative;
+}
+.plan-feats li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+.plan-cta {
+  width: 100%;
+  justify-content: center;
+  border-radius: 8px;
+}
+.plan-foot {
+  margin: 0.7rem 0 0;
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Tabela comparativa ---------- */
+.table-wrap { overflow-x: auto; }
+table.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+table.compare th,
+table.compare td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+table.compare thead th { background: #fafaf8; font-size: 0.85rem; }
+table.compare tbody th[scope="row"] { text-align: left; font-weight: 600; }
+table.compare td.yes { color: var(--ok); font-weight: 700; }
+table.compare td.no { color: var(--muted); }
+table.compare tbody tr:last-child th,
+table.compare tbody tr:last-child td { border-bottom: 0; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 760px; }
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 0.4rem 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.6rem 0;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; float: right; color: var(--muted); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 0 0 0.8rem; color: var(--muted); font-size: 0.94rem; }
+
+/* ---------- Painel de pagamento (Pix) ---------- */
+.pay-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 1rem;
+  background: rgba(20, 24, 31, 0.55);
+  overflow-y: auto;
+}
+.pay-overlay.open { display: flex; }
+.pay-card {
+  position: relative;
+  width: min(620px, 100%);
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.75rem 1.6rem 1.5rem;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+}
+.pay-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  border: 0;
+  background: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--muted);
+}
+.pay-card h2 { margin: 0.2rem 0 0.3rem; font-size: 1.3rem; }
+.pay-holder { margin: 0 0 1.1rem; font-size: 0.9rem; color: var(--muted); }
+.pay-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 520px) {
+  .pay-grid { grid-template-columns: 1fr; justify-items: center; }
+}
+.pay-qr { text-align: center; }
+.pay-qr img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.pay-hint { margin: 0.4rem 0 0; font-size: 0.78rem; color: var(--muted); }
+.pay-copy { display: flex; flex-direction: column; gap: 0.5rem; }
+.pay-copy label { font-size: 0.85rem; font-weight: 600; }
+#payCode {
+  width: 100%;
+  font-family: ui-monospace, "DM Sans", monospace;
+  font-size: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.6rem;
+  resize: none;
+  color: var(--ink);
+  background: #fafaf8;
+  word-break: break-all;
+}
+.pay-form { margin-top: 1.1rem; }
+.pay-form-intro { margin: 0 0 0.7rem; font-size: 0.92rem; }
+.pay-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 520px) { .pay-fields { grid-template-columns: 1fr; } }
+.pay-field { display: flex; flex-direction: column; gap: 0.3rem; }
+.pay-field label { font-size: 0.82rem; font-weight: 600; }
+.pay-field input {
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.pay-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+#paySubmit { margin-top: 1rem; width: 100%; justify-content: center; }
+.pay-status { margin: 0.7rem 0 0; font-size: 0.88rem; min-height: 1.1em; }
+.pay-status.ok { color: var(--ok); }
+.pay-status.err { color: #b4453d; }
+.pay-note { margin: 1rem 0 0; font-size: 0.78rem; color: var(--muted); }
+/* (o estilo de .nav-cta é global, em /site-nav.css) */

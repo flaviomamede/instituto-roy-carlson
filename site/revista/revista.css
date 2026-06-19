@@ -43,6 +43,19 @@ a:hover {
   backdrop-filter: blur(8px);
 }
 
+/* CTA "Assinar" na navegação */
+.site-header .nav a.nav-cta {
+  border: 1px solid #c79a4b;
+  color: #a87f33;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-weight: 600;
+}
+.site-header .nav a.nav-cta:hover {
+  background: #c79a4b;
+  color: #1c1c1c;
+}
+
 .brand-group {
   display: flex;
   align-items: center;

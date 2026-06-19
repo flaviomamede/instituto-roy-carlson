@@ -1,0 +1,15 @@
+{
+  "_nota": "Fonte única da configuração de assinatura. Consumida pelo gerador (scripts/gen-assinatura.py → pix.json + QR) e pela página (js/assinatura.js). Trocar a chave/holder aqui e rodar build-assinatura.sh para regenerar.",
+  "pix": {
+    "key": "337e5967-9bcd-40cd-b9c9-3de086f1baf4",
+    "holder": "Flávio Mamede Pereira Gomes",
+    "city": "Anápolis-GO"
+  },
+  "plans": {
+    "anual": { "label": "Anual", "price": 197.0, "periodo": "ano", "months": 12, "destaque": true },
+    "mensal": { "label": "Mensal", "price": 19.0, "periodo": "mês", "months": 1, "destaque": false }
+  },
+  "grantsLevel": "member",
+  "notifyEmail": "institutoroycarlson@gmail.com",
+  "intakeEndpoint": "https://script.google.com/macros/s/AKfycbxNl-alO6cSr3wGn0r1EgTnP7Cx7035YRIrVv5ZeCM4kYXFgOxh4hd1fV1JqzUbfH5S/exec"
+}
