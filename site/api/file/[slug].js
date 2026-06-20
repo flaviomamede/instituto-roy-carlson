@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { Readable } = require('node:stream');
 const { getSessionFromRequest } = require('../_lib/auth.js');
-const { getDocumentBySlug, privateFilePath } = require('../_lib/catalog.js');
+const { getDocumentBySlug } = require('../_lib/catalog.js');
 const { getMinLevel, canAccessDocument } = require('../_lib/access.js');
 
 module.exports = async function handler(req, res) {
@@ -22,6 +23,7 @@ module.exports = async function handler(req, res) {
   const minLevel = getMinLevel(doc);
   const session = getSessionFromRequest(req);
 
+  // Acesso ABERTO: servido do estático (CDN), sem autenticação.
   if (minLevel === 'public') {
     const publicPath = path.join(process.cwd(), 'biblioteca', 'files', 'public', doc.assets.pdf);
     if (fs.existsSync(publicPath)) {
@@ -37,26 +39,35 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  // Acesso EXCLUSIVO: exige sessão com nível suficiente.
   if (!canAccessDocument(doc, session)) {
     res.status(403).json({ error: 'forbidden' });
     return;
   }
 
-  const filePath = privateFilePath(doc.assets.pdf);
-  if (!filePath || !fs.existsSync(filePath)) {
-    res.status(404).json({ error: 'not_found' });
-    return;
-  }
-
-  res.setHeader('Content-Type', 'application/pdf');
+  // PDFs exclusivos vivem no Vercel Blob privado (nunca no deploy). A função
+  // os transmite após validar o acesso. Auth do Blob: OIDC automático na Vercel.
   res.setHeader('Content-Disposition', 'inline; filename="' + doc.assets.pdf + '"');
   res.setHeader('Cache-Control', 'private, no-store');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow');
 
   if (req.method === 'HEAD') {
+    res.setHeader('Content-Type', 'application/pdf');
     res.status(200).end();
     return;
   }
 
-  fs.createReadStream(filePath).pipe(res);
+  try {
+    const { get } = await import('@vercel/blob');
+    const result = await get('biblioteca/' + doc.assets.pdf, { access: 'private' });
+    if (!result || result.statusCode !== 200 || !result.stream) {
+      res.status(404).json({ error: 'not_found' });
+      return;
+    }
+    res.setHeader('Content-Type', (result.blob && result.blob.contentType) || 'application/pdf');
+    Readable.fromWeb(result.stream).pipe(res);
+  } catch (err) {
+    console.error('[api/file] blob', err && err.message);
+    res.status(502).json({ error: 'blob_unavailable' });
+  }
 };

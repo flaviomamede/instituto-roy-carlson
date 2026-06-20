@@ -4,7 +4,7 @@
   "cleanUrls": true,
   "functions": {
     "api/file/[slug].js": {
-      "includeFiles": "api/_data/library/**"
+      "includeFiles": "api/_data/library/*.json"
     }
   },
   "redirects": [
@@ -30,6 +30,11 @@
     },
     {
       "source": "/biblioteca/files/private/:path*",
+      "destination": "/404.html",
+      "permanent": false
+    },
+    {
+      "source": "/api/_data/:path*",
       "destination": "/404.html",
       "permanent": false
     },
