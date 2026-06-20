@@ -2,6 +2,7 @@
   "buildCommand": "bash build.sh",
   "outputDirectory": ".",
   "cleanUrls": true,
+  "git": { "deploymentEnabled": { "main": false } },
   "functions": {
     "api/file/[slug].js": {
       "includeFiles": "api/_data/library/*.json"
