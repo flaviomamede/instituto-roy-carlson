@@ -1,0 +1,54 @@
+{
+  "groups": [
+    {
+      "dam": "Furnas",
+      "slides": [
+        { "file": "furnas-1.jpg", "alt": "Usina Hidrelétrica de Furnas", "width": 1024, "height": 776 },
+        { "file": "furnas-2.jpg", "alt": "Usina Hidrelétrica de Furnas", "width": 1024, "height": 842 },
+        { "file": "furnas-3.jpg", "alt": "Usina Hidrelétrica de Furnas", "width": 1024, "height": 792 },
+        { "file": "furnas-4.jpg", "alt": "Usina Hidrelétrica de Furnas", "width": 1024, "height": 380 },
+        { "file": "furnas-5.jpg", "alt": "Usina Hidrelétrica de Furnas", "width": 1024, "height": 777 }
+      ]
+    },
+    {
+      "dam": "Jupiá",
+      "slides": [
+        { "file": "jupia1.jpeg", "alt": "Usina Hidrelétrica Jupiá", "width": 1024, "height": 413 },
+        { "file": "jupia2.jpeg", "alt": "Usina Hidrelétrica Jupiá", "width": 1024, "height": 518 },
+        { "file": "jupia3.jpeg", "alt": "Usina Hidrelétrica Jupiá", "width": 1024, "height": 752 },
+        { "file": "jupia4.jpeg", "alt": "Usina Hidrelétrica Jupiá", "width": 1024, "height": 747 },
+        { "file": "jupia5.jpeg", "alt": "Usina Hidrelétrica Jupiá", "width": 1024, "height": 747 }
+      ]
+    },
+    {
+      "dam": "Ilha Solteira",
+      "slides": [
+        { "file": "ilhasolteira1.jpeg", "alt": "Usina Hidrelétrica Ilha Solteira", "width": 1024, "height": 708 },
+        { "file": "ilhasolteira2.jpeg", "alt": "Usina Hidrelétrica Ilha Solteira", "width": 2048, "height": 1150 },
+        { "file": "ilhasolteira3.jpeg", "alt": "Usina Hidrelétrica Ilha Solteira", "width": 1024, "height": 708 },
+        { "file": "ilhasolteira4.jpeg", "alt": "Usina Hidrelétrica Ilha Solteira", "width": 953, "height": 1024 },
+        { "file": "ilhasolteira5.jpeg", "alt": "Usina Hidrelétrica Ilha Solteira", "width": 1024, "height": 816 }
+      ]
+    },
+    {
+      "dam": "Tucuruí",
+      "slides": [
+        { "file": "tucurui1.jpeg", "alt": "Usina Hidrelétrica Tucuruí", "width": 909, "height": 512 },
+        { "file": "tucurui2.jpeg", "alt": "Usina Hidrelétrica Tucuruí", "width": 1920, "height": 1384 },
+        { "file": "tucurui3.jpeg", "alt": "Usina Hidrelétrica Tucuruí", "width": 1920, "height": 1440 },
+        { "file": "tucurui4.jpeg", "alt": "Usina Hidrelétrica Tucuruí", "width": 1920, "height": 1309 },
+        { "file": "tucurui5.jpeg", "alt": "Usina Hidrelétrica Tucuruí", "width": 1920, "height": 1389 }
+      ]
+    },
+    {
+      "dam": "Itaipu",
+      "slides": [
+        { "file": "itaipu1.jpeg", "alt": "Usina Hidrelétrica Itaipu", "width": 1024, "height": 683 },
+        { "file": "itaipu2.jpeg", "alt": "Usina Hidrelétrica Itaipu", "width": 1024, "height": 727 },
+        { "file": "itaipu3.jpeg", "alt": "Usina Hidrelétrica Itaipu", "width": 1024, "height": 719 },
+        { "file": "itaipu4.jpeg", "alt": "Usina Hidrelétrica Itaipu", "width": 1024, "height": 733 },
+        { "file": "itaipu5.jpeg", "alt": "Usina Hidrelétrica Itaipu", "width": 1200, "height": 761 }
+      ]
+    }
+  ]
+}
