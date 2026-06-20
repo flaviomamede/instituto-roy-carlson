@@ -60,7 +60,7 @@ main.wide.sobre {
 .ba {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1313 / 1086;
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--line);
