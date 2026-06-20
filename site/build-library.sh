@@ -55,6 +55,17 @@ copy_private "$SRC/P191 2025 DisponibilidadesCrescentesInspeçãoMonitoramento&C
 copy_private "$SRC/P192 2025 InspeçõesManutençõesReabilitações&ReparosBarramentos&Estruturas.pdf" "p192-andriolo.pdf"
 copy_private "$SRC/reminiscences/Dr. Roy W. Carlson's 85th Birthday - REMINISCENCES.pdf" "reminiscencias-roy-carlson.pdf"
 
+# Lotes extras (livros Marcelo Protz + papers do Dr. Carlson) via manifesto
+# gerado por scripts/import-biblioteca-batch.py (folder<TAB>origem<TAB>destino).
+EXTRA="$ADAPTER/extra-files.tsv"
+if [ -f "$EXTRA" ]; then
+  while IFS=$'\t' read -r folder src dest; do
+    case "$folder" in ''|'#'*) continue;; esac
+    if [ "$folder" = "public" ]; then copy_public "$SRC/$src" "$dest"
+    else copy_private "$SRC/$src" "$dest"; fi
+  done < "$EXTRA"
+fi
+
 PUBLIC_N=$(find "$DST/files/public" -name '*.pdf' 2>/dev/null | wc -l)
 PRIVATE_N=$(find "$PRIVATE_DST" -name '*.pdf' 2>/dev/null | wc -l)
 echo "→ Biblioteca: ${PUBLIC_N} PDFs públicos, ${PRIVATE_N} PDFs protegidos (api/_data)"

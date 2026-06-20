@@ -8,259 +8,1621 @@
       "id": "estudos-hgen",
       "slug": "estudos-hgen",
       "title": "Estudos HGen",
-      "authors": ["Flávio Mamede Pereira Gomes"],
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
       "year": 2024,
       "language": "pt",
       "type": "relatorio",
       "collection": "Pesquisa IRC",
-      "tags": ["geração hidrelétrica", "concreto massa", "barragens"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "geração hidrelétrica",
+        "concreto massa",
+        "barragens"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Estudos técnicos sobre geração hidrelétrica e concreto massa. Acesso exclusivo a assinantes e planos superiores."
       },
-      "assets": { "pdf": "estudos-hgen.pdf" }
+      "assets": {
+        "pdf": "estudos-hgen.pdf"
+      }
     },
     {
       "id": "concreto-massa-brasil",
       "slug": "concreto-massa-brasil",
       "title": "Concreto de massa no Brasil",
-      "authors": ["Epaminondas Amaral"],
+      "authors": [
+        "Epaminondas Amaral"
+      ],
       "year": 1981,
       "language": "pt",
       "type": "artigo",
       "collection": "Memória técnica",
-      "tags": ["concreto massa", "Brasil", "história"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "concreto massa",
+        "Brasil",
+        "história"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Histórico da tecnologia do concreto de massa no Brasil. Acesso exclusivo a assinantes e planos superiores. Também disponível na Revista IRC Vol. 1, No. 1."
       },
-      "assets": { "pdf": "concreto-massa-brasil.pdf" },
-      "related": { "revistaArticle": "historico-concreto-massa-brasil" }
+      "assets": {
+        "pdf": "concreto-massa-brasil.pdf"
+      },
+      "related": {
+        "revistaArticle": "historico-concreto-massa-brasil"
+      }
     },
     {
       "id": "iwhr-2014",
       "slug": "iwhr-2014",
       "title": "IWHR 2014",
-      "authors": ["Flávio Mamede Pereira Gomes"],
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
       "year": 2014,
       "language": "en",
       "type": "congresso",
       "collection": "Congressos",
-      "tags": ["IWHR", "barragens", "concreto massa"],
-      "access": { "minLevel": "public" },
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
       "public": {
         "summary": "Trabalho apresentado no IWHR 2014 — acervo aberto."
       },
-      "assets": { "pdf": "iwhr-2014.pdf" }
+      "assets": {
+        "pdf": "iwhr-2014.pdf"
+      }
     },
     {
       "id": "iwhr-2024",
       "slug": "iwhr-2024",
       "title": "IWHR 2024",
-      "authors": ["Flávio Mamede Pereira Gomes"],
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
       "year": 2024,
       "language": "en",
       "type": "congresso",
       "collection": "Congressos",
-      "tags": ["IWHR", "barragens", "concreto massa"],
-      "access": { "minLevel": "public" },
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
       "public": {
         "summary": "Trabalho apresentado no IWHR 2024 — acervo aberto."
       },
-      "assets": { "pdf": "iwhr-2024.pdf" }
+      "assets": {
+        "pdf": "iwhr-2024.pdf"
+      }
     },
     {
       "id": "iwhr-2025",
       "slug": "iwhr-2025",
       "title": "IWHR 2025",
-      "authors": ["Flávio Mamede Pereira Gomes"],
+      "authors": [
+        "Flávio Mamede Pereira Gomes"
+      ],
       "year": 2025,
       "language": "en",
       "type": "congresso",
       "collection": "Congressos",
-      "tags": ["IWHR", "barragens", "concreto massa"],
-      "access": { "minLevel": "public" },
+      "tags": [
+        "IWHR",
+        "barragens",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
       "public": {
         "summary": "Trabalho apresentado no IWHR 2025 — acervo aberto."
       },
-      "assets": { "pdf": "iwhr-2025.pdf" }
+      "assets": {
+        "pdf": "iwhr-2025.pdf"
+      }
     },
     {
       "id": "p183-andriolo",
       "slug": "p183-conhecimento-estatisticas-gestao-riscos",
       "title": "Conhecimento, estatísticas e gestão de riscos — previsibilidade e segurança de barragens",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["gestão de riscos", "barragens", "estatísticas", "segurança"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "gestão de riscos",
+        "barragens",
+        "estatísticas",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P183 (2025) — aspectos de conhecimento, estatísticas e gestão de riscos para previsibilidade e segurança de barragens. Acesso exclusivo a assinantes e planos superiores."
       },
-      "assets": { "pdf": "p183-andriolo.pdf" }
+      "assets": {
+        "pdf": "p183-andriolo.pdf"
+      }
     },
     {
       "id": "p184-andriolo",
       "slug": "p184-aspectos-gestao-qualidade-construcao",
       "title": "Aspectos de gestão da qualidade na construção — retrospectiva e potenciais causas de riscos",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["qualidade", "construção", "barragens", "riscos"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "qualidade",
+        "construção",
+        "barragens",
+        "riscos"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P184 (2025) — gestão da qualidade na construção de barragens. Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p184-andriolo.pdf" }
+      "assets": {
+        "pdf": "p184-andriolo.pdf"
+      }
     },
     {
       "id": "p185-andriolo",
       "slug": "p185-barragens-contemporaneas-conhecimento-falhas",
       "title": "Barragens contemporâneas — conhecimento, falhas e riscos",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["barragens", "falhas", "riscos"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "barragens",
+        "falhas",
+        "riscos"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P185 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p185-andriolo.pdf" }
+      "assets": {
+        "pdf": "p185-andriolo.pdf"
+      }
     },
     {
       "id": "p186-andriolo",
       "slug": "p186-comportamento-juntas-fundacao-concreto",
       "title": "Comportamento de juntas de fundação e concreto e juntas de construção em concreto",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["juntas", "concreto massa", "barragens"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "juntas",
+        "concreto massa",
+        "barragens"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P186 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p186-andriolo.pdf" }
+      "assets": {
+        "pdf": "p186-andriolo.pdf"
+      }
     },
     {
       "id": "p187-andriolo",
       "slug": "p187-habitos-pratica-projeto-construcao",
       "title": "Hábitos e prática recentes em projeto e construção de barragens — redução de qualidade e segurança",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["projeto", "construção", "qualidade", "segurança"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "projeto",
+        "construção",
+        "qualidade",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P187 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p187-andriolo.pdf" }
+      "assets": {
+        "pdf": "p187-andriolo.pdf"
+      }
     },
     {
       "id": "p188-andriolo",
       "slug": "p188-treinamento-qualidade-construcoes",
       "title": "Necessário treinamento para qualidade das construções e sustentabilidade de barragens",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["treinamento", "qualidade", "sustentabilidade"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "treinamento",
+        "qualidade",
+        "sustentabilidade"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P188 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p188-andriolo.pdf" }
+      "assets": {
+        "pdf": "p188-andriolo.pdf"
+      }
     },
     {
       "id": "p189-andriolo",
       "slug": "p189-operacao-manutencao-inspecao",
       "title": "Operação, manutenção e inspeção — necessidade de atenções à segurança de barragens",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["operação", "manutenção", "inspeção", "segurança"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "operação",
+        "manutenção",
+        "inspeção",
+        "segurança"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P189 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p189-andriolo.pdf" }
+      "assets": {
+        "pdf": "p189-andriolo.pdf"
+      }
     },
     {
       "id": "p190-andriolo",
       "slug": "p190-ocupacoes-entorno-barragens",
       "title": "Ocupações no entorno de barragens — responsabilidades e cuidados",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["entorno", "barragens", "responsabilidade"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "entorno",
+        "barragens",
+        "responsabilidade"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P190 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p190-andriolo.pdf" }
+      "assets": {
+        "pdf": "p190-andriolo.pdf"
+      }
     },
     {
       "id": "p191-andriolo",
       "slug": "p191-disponibilidades-inspecao-monitoramento",
       "title": "Disponibilidades crescentes de inspeção, monitoramento e controle de barragens",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["inspeção", "monitoramento", "controle"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "inspeção",
+        "monitoramento",
+        "controle"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P191 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p191-andriolo.pdf" }
+      "assets": {
+        "pdf": "p191-andriolo.pdf"
+      }
     },
     {
       "id": "p192-andriolo",
       "slug": "p192-inspecoes-manutencoes-reabilitacoes",
       "title": "Inspeções, manutenções, reabilitações e reparos de barramentos e estruturas",
-      "authors": ["Francisco Andriolo"],
+      "authors": [
+        "Francisco Andriolo"
+      ],
       "year": 2025,
       "language": "pt",
       "type": "congresso",
       "collection": "Francisco Andriolo — P183–P192",
-      "tags": ["inspeção", "manutenção", "reabilitação"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "inspeção",
+        "manutenção",
+        "reabilitação"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Paper P192 (2025). Acesso exclusivo a assinantes."
       },
-      "assets": { "pdf": "p192-andriolo.pdf" }
+      "assets": {
+        "pdf": "p192-andriolo.pdf"
+      }
     },
     {
       "id": "reminiscencias-roy-carlson",
       "slug": "reminiscencias-roy-carlson",
       "title": "Reminiscências — Dr. Roy W. Carlson (85th Birthday)",
-      "authors": ["Roy W. Carlson"],
+      "authors": [
+        "Roy W. Carlson"
+      ],
       "year": 1996,
       "language": "en",
       "type": "livro",
       "collection": "Memória técnica",
-      "tags": ["Roy Carlson", "Furnas", "concreto massa", "memória"],
-      "access": { "minLevel": "member" },
+      "tags": [
+        "Roy Carlson",
+        "Furnas",
+        "concreto massa",
+        "memória"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
       "public": {
         "summary": "Relatos pessoais e técnicos do pioneiro do concreto massa. Leitura integral disponível na Revista IRC; acervo completo para assinantes."
       },
-      "assets": { "pdf": "reminiscencias-roy-carlson.pdf" },
-      "related": { "revistaArticle": "roy-carlson-reminiscencias" }
+      "assets": {
+        "pdf": "reminiscencias-roy-carlson.pdf"
+      },
+      "related": {
+        "revistaArticle": "roy-carlson-reminiscencias"
+      }
+    },
+    {
+      "id": "ai-based-optimized-design-of-structural-frames-with-application-to-practical-building-designs",
+      "slug": "ai-based-optimized-design-of-structural-frames-with-application-to-practical-building-designs",
+      "title": "AI Based Optimized Design of Structural Frames With Application to Practical Building Designs",
+      "authors": [
+        "Won Kee Hong"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "ai-based-optimized-design-of-structural-frames-with-application-to-practical-building-designs.pdf"
+      }
+    },
+    {
+      "id": "damage-to-concrete-structures",
+      "slug": "damage-to-concrete-structures",
+      "title": "Damage to Concrete Structures",
+      "authors": [],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "damage-to-concrete-structures.pdf"
+      }
+    },
+    {
+      "id": "dictionary-of-cement-and-concrete-equations",
+      "slug": "dictionary-of-cement-and-concrete-equations",
+      "title": "Dictionary of Cement and Concrete Equations",
+      "authors": [
+        "Natt Makul"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "dictionary-of-cement-and-concrete-equations.pdf"
+      }
+    },
+    {
+      "id": "dictionary-of-concrete-technology-2025",
+      "slug": "dictionary-of-concrete-technology-2025",
+      "title": "Dictionary of Concrete Technology 2025",
+      "authors": [
+        "Makul N"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "dictionary-of-concrete-technology-2025.pdf"
+      },
+      "year": 2025
+    },
+    {
+      "id": "dynamic-mechanical-behaviors-and-constitutive-model-of-roller-compacted-concrete",
+      "slug": "dynamic-mechanical-behaviors-and-constitutive-model-of-roller-compacted-concrete",
+      "title": "Dynamic Mechanical Behaviors and Constitutive Model of Roller Compacted Concrete",
+      "authors": [
+        "Sherong Zhang, Xiaohua Wang, Chao Wang"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "dynamic-mechanical-behaviors-and-constitutive-model-of-roller-compacted-concrete.pdf"
+      }
+    },
+    {
+      "id": "hydratation-of-slag-cement-theory-modeling-and-application-wei-chen",
+      "slug": "hydratation-of-slag-cement-theory-modeling-and-application-wei-chen",
+      "title": "Hydratation of Slag Cement - Theory Modeling and Application Wei Chen",
+      "authors": [],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "hydratation-of-slag-cement-theory-modeling-and-application-wei-chen.pdf"
+      }
+    },
+    {
+      "id": "integral-waterproofing-of-concrete-structures-advanced-protection-technologies-of-concrete-by-pore-blocking-and-lining",
+      "slug": "integral-waterproofing-of-concrete-structures-advanced-protection-technologies-of-concrete-by-pore-blocking-and-lining",
+      "title": "Integral Waterproofing of Concrete Structures Advanced Protection Technologies of Concrete by Pore Blocking and Lining",
+      "authors": [
+        "Maher Al-Jabari"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "integral-waterproofing-of-concrete-structures-advanced-protection-technologies-of-concrete-by-pore-blocking-and-lining.pdf"
+      }
+    },
+    {
+      "id": "microbiologically-influenced-corrosion-of-concrete-sewers-mechanisms-measurements-modelling-and-control-strategies-guangming-jiang",
+      "slug": "microbiologically-influenced-corrosion-of-concrete-sewers-mechanisms-measurements-modelling-and-control-strategies-guangming-jiang",
+      "title": "Microbiologically Influenced Corrosion of Concrete Sewers Mechanisms, Measurements, Modelling and Control Strategies (Guangming Jiang",
+      "authors": [],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "microbiologically-influenced-corrosion-of-concrete-sewers-mechanisms-measurements-modelling-and-control-strategies-guangming-jiang.pdf"
+      }
+    },
+    {
+      "id": "prediction-and-evaluation-of-hardened-concrete-strength-based-on-machine-learning-and-mixture-composition",
+      "slug": "prediction-and-evaluation-of-hardened-concrete-strength-based-on-machine-learning-and-mixture-composition",
+      "title": "Prediction and Evaluation of Hardened Concrete Strength Based on Machine Learning and Mixture Composition",
+      "authors": [
+        "Yidong Xu, Jianghong Mao, Weijie Zhuge"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "prediction-and-evaluation-of-hardened-concrete-strength-based-on-machine-learning-and-mixture-composition.pdf"
+      }
+    },
+    {
+      "id": "reinforced-cement-concrete-structures-practical-design-and-standard-details",
+      "slug": "reinforced-cement-concrete-structures-practical-design-and-standard-details",
+      "title": "Reinforced Cement Concrete Structures Practical Design and Standard Details",
+      "authors": [
+        "Ashoke Kumar Dasgupta"
+      ],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "reinforced-cement-concrete-structures-practical-design-and-standard-details.pdf"
+      }
+    },
+    {
+      "id": "waste-materials-in-advanced-sustainable-concrete-reuse-recovery-and-recycle-md-rezaur-rahman-chin-mei-yun",
+      "slug": "waste-materials-in-advanced-sustainable-concrete-reuse-recovery-and-recycle-md-rezaur-rahman-chin-mei-yun",
+      "title": "Waste Materials in Advanced Sustainable Concrete Reuse, Recovery and Recycle (Md Rezaur Rahman, Chin Mei Yun",
+      "authors": [],
+      "language": "en",
+      "type": "livro",
+      "collection": "Marcelo Protz",
+      "tags": [
+        "livro",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Livro técnico do acervo da Biblioteca IRC."
+      },
+      "assets": {
+        "pdf": "waste-materials-in-advanced-sustainable-concrete-reuse-recovery-and-recycle-md-rezaur-rahman-chin-mei-yun.pdf"
+      }
+    },
+    {
+      "id": "5-years-improv-elastic-wire-strain-meter",
+      "slug": "5-years-improv-elastic-wire-strain-meter",
+      "title": "5 Years Improv Elastic Wire Strain Meter",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "5-years-improv-elastic-wire-strain-meter.pdf"
+      }
+    },
+    {
+      "id": "accelerated-tests-conc-expansion",
+      "slug": "accelerated-tests-conc-expansion",
+      "title": "Accelerated tests conc expansion",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "accelerated-tests-conc-expansion.pdf"
+      }
+    },
+    {
+      "id": "attempts-meas-crack-tend-conc",
+      "slug": "attempts-meas-crack-tend-conc",
+      "title": "Attempts meas crack tend conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "attempts-meas-crack-tend-conc.pdf"
+      }
+    },
+    {
+      "id": "attempts-measure-crack-tendency",
+      "slug": "attempts-measure-crack-tendency",
+      "title": "Attempts measure crack tendency",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "attempts-measure-crack-tendency.pdf"
+      }
+    },
+    {
+      "id": "boulder-dam-cement-investigations",
+      "slug": "boulder-dam-cement-investigations",
+      "title": "Boulder Dam - Cement Investigations",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "boulder-dam-cement-investigations.pdf"
+      }
+    },
+    {
+      "id": "carlson-concr-noble-material",
+      "slug": "carlson-concr-noble-material",
+      "title": "Carlson - Concr Noble Material",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "carlson-concr-noble-material.pdf"
+      }
+    },
+    {
+      "id": "carlson-lista-publicacoes",
+      "slug": "carlson-lista-publicacoes",
+      "title": "Carlson - Lista Publicações",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "pt",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "carlson-lista-publicacoes.pdf"
+      }
+    },
+    {
+      "id": "carlson-publishers-papers",
+      "slug": "carlson-publishers-papers",
+      "title": "Carlson - Publishers Papers",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "carlson-publishers-papers.pdf"
+      }
+    },
+    {
+      "id": "causes-control-cracking",
+      "slug": "causes-control-cracking",
+      "title": "Causes control cracking",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "causes-control-cracking.pdf"
+      }
+    },
+    {
+      "id": "conc-technology-brazil",
+      "slug": "conc-technology-brazil",
+      "title": "Conc Technology Brazil",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "conc-technology-brazil.pdf"
+      }
+    },
+    {
+      "id": "concr-dam-in-earthquakes",
+      "slug": "concr-dam-in-earthquakes",
+      "title": "Concr Dam in Earthquakes",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "concr-dam-in-earthquakes.pdf"
+      }
+    },
+    {
+      "id": "concrete-technology-itaipu",
+      "slug": "concrete-technology-itaipu",
+      "title": "Concrete Technology - Itaipu",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "concrete-technology-itaipu.pdf"
+      }
+    },
+    {
+      "id": "consid-optimum-cem-mass-conc",
+      "slug": "consid-optimum-cem-mass-conc",
+      "title": "Consid Optimum Cem Mass Conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "consid-optimum-cem-mass-conc.pdf"
+      }
+    },
+    {
+      "id": "control-cracking-sobradinho-dam",
+      "slug": "control-cracking-sobradinho-dam",
+      "title": "Control Cracking Sobradinho Dam",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "control-cracking-sobradinho-dam.pdf"
+      }
+    },
+    {
+      "id": "desenvolv-aditivo-expan-conc",
+      "slug": "desenvolv-aditivo-expan-conc",
+      "title": "Desenvolv aditivo expan conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "desenvolv-aditivo-expan-conc.pdf"
+      }
+    },
+    {
+      "id": "diagnosis-treatment-of-dams",
+      "slug": "diagnosis-treatment-of-dams",
+      "title": "Diagnosis treatment of dams",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "diagnosis-treatment-of-dams.pdf"
+      }
+    },
+    {
+      "id": "drying-shrinkage",
+      "slug": "drying-shrinkage",
+      "title": "Drying Shrinkage",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "drying-shrinkage.pdf"
+      }
+    },
+    {
+      "id": "drying-shruink-large-conc",
+      "slug": "drying-shruink-large-conc",
+      "title": "Drying Shruink large conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "drying-shruink-large-conc.pdf"
+      }
+    },
+    {
+      "id": "drying-shr-conc-afeected-many-factors",
+      "slug": "drying-shr-conc-afeected-many-factors",
+      "title": "Drying shr conc afeected many factors",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "drying-shr-conc-afeected-many-factors.pdf"
+      }
+    },
+    {
+      "id": "effect-add-siliceous-material",
+      "slug": "effect-add-siliceous-material",
+      "title": "Effect Add Siliceous Material",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "effect-add-siliceous-material.pdf"
+      }
+    },
+    {
+      "id": "electric-prest-reinf-steel",
+      "slug": "electric-prest-reinf-steel",
+      "title": "Electric Prest Reinf Steel",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "electric-prest-reinf-steel.pdf"
+      }
+    },
+    {
+      "id": "electric-prest-reinfor-steel",
+      "slug": "electric-prest-reinfor-steel",
+      "title": "Electric Prest Reinfor Steel",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "electric-prest-reinfor-steel.pdf"
+      }
+    },
+    {
+      "id": "general-structural",
+      "slug": "general-structural",
+      "title": "General Structural",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "general-structural.pdf"
+      }
+    },
+    {
+      "id": "mc-nary-reacao-alcalina-em-agregados",
+      "slug": "mc-nary-reacao-alcalina-em-agregados",
+      "title": "Mc Nary - Reação alcalina em agregados",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "pt",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "mc-nary-reacao-alcalina-em-agregados.pdf"
+      }
+    },
+    {
+      "id": "measurement-structural-action-in-dams",
+      "slug": "measurement-structural-action-in-dams",
+      "title": "Measurement Structural Action in dams",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "measurement-structural-action-in-dams.pdf"
+      }
+    },
+    {
+      "id": "memorandum-salto-osorio",
+      "slug": "memorandum-salto-osorio",
+      "title": "Memorandum - Salto Osorio",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "memorandum-salto-osorio.pdf"
+      }
+    },
+    {
+      "id": "prop-mortars-concr-const",
+      "slug": "prop-mortars-concr-const",
+      "title": "Prop Mortars Concr Const",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "prop-mortars-concr-const.pdf"
+      }
+    },
+    {
+      "id": "properties-cem-conc-cont-fly-ash",
+      "slug": "properties-cem-conc-cont-fly-ash",
+      "title": "Properties Cem Conc Cont fly ash",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "properties-cem-conc-cont-fly-ash.pdf"
+      }
+    },
+    {
+      "id": "simple-method-temp-conc",
+      "slug": "simple-method-temp-conc",
+      "title": "Simple Method Temp Conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "simple-method-temp-conc.pdf"
+      }
+    },
+    {
+      "id": "tribute-douglas-mchenry",
+      "slug": "tribute-douglas-mchenry",
+      "title": "Tribute Douglas McHenry",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "tribute-douglas-mchenry.pdf"
+      }
+    },
+    {
+      "id": "carlson-medicao-de-tensoes-em-concreto",
+      "slug": "carlson-medicao-de-tensoes-em-concreto",
+      "title": "Carlson - Medição de tensões em concreto",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "pt",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "carlson-medicao-de-tensoes-em-concreto.pdf"
+      }
+    },
+    {
+      "id": "concrete-stress-meters",
+      "slug": "concrete-stress-meters",
+      "title": "Concrete Stress Meters",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "concrete-stress-meters.pdf"
+      }
+    },
+    {
+      "id": "esclarecim-controle-qualidade-conc",
+      "slug": "esclarecim-controle-qualidade-conc",
+      "title": "Esclarecim controle qualidade conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "esclarecim-controle-qualidade-conc.pdf"
+      }
+    },
+    {
+      "id": "itaipu-concrete-memorandum-flavio-lyra",
+      "slug": "itaipu-concrete-memorandum-flavio-lyra",
+      "title": "Itaipu Concrete - Memorandum - Flavio Lyra",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "itaipu-concrete-memorandum-flavio-lyra.pdf"
+      }
+    },
+    {
+      "id": "medida-tensoes-compress-conc",
+      "slug": "medida-tensoes-compress-conc",
+      "title": "Medida tensoes compress conc",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "medida-tensoes-compress-conc.pdf"
+      }
+    },
+    {
+      "id": "publicacoes-carlson",
+      "slug": "publicacoes-carlson",
+      "title": "Publicações Carlson",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "pt",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "publicacoes-carlson.pdf"
+      }
+    },
+    {
+      "id": "remarks-durability-concrete",
+      "slug": "remarks-durability-concrete",
+      "title": "Remarks Durability Concrete",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "remarks-durability-concrete.pdf"
+      }
+    },
+    {
+      "id": "stevensoncreekarchdam1931",
+      "slug": "stevensoncreekarchdam1931",
+      "title": "StevensonCreekArchDam1931",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "stevensoncreekarchdam1931.pdf"
+      }
+    },
+    {
+      "id": "testes-aceler-exp-conc-devido-raa",
+      "slug": "testes-aceler-exp-conc-devido-raa",
+      "title": "Testes aceler exp conc devido RAA",
+      "authors": [
+        "Roy W. Carlson"
+      ],
+      "language": "en",
+      "type": "papers",
+      "collection": "Papers do Dr. Carlson",
+      "tags": [
+        "Roy Carlson",
+        "concreto massa"
+      ],
+      "access": {
+        "minLevel": "member"
+      },
+      "public": {
+        "summary": "Artigo técnico de Roy W. Carlson — acervo do Instituto Roy Carlson."
+      },
+      "assets": {
+        "pdf": "testes-aceler-exp-conc-devido-raa.pdf"
+      }
     }
   ]
 }
