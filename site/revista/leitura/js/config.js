@@ -1,6 +1,6 @@
 'use strict';
 
-export const BUILD = '2026-06-20-v9';
+export const BUILD = '2026-06-20-v10';
 
 export const CONFIG = {
   DEFAULT_PDF_URL: '/revista/leitura/revista.pdf',

@@ -165,9 +165,6 @@ function applyConfigToDom() {
 
   if (el.buildTag) el.buildTag.textContent = BUILD;
 
-  const errLink = document.getElementById('errPdfLink');
-  if (errLink && CONFIG.DEFAULT_PDF_URL) errLink.href = CONFIG.DEFAULT_PDF_URL;
-
   if (CONFIG.SHOW_FILE_UPLOAD === false) {
     const btn = document.querySelector('.file-btn');
     if (btn) btn.style.display = 'none';
@@ -214,6 +211,14 @@ function applyBibliotecaModeFromUrl() {
 
 function bootstrap() {
   applyBibliotecaModeFromUrl();
+
+  // Celular/tablet (LOW_MEM): a Revista usa a versão leve do PDF — o original de
+  // ~28 MB estoura a memória do Safari no iOS. Não afeta o modo biblioteca.
+  if (LOW_MEM && CONFIG.READER_CONTEXT === 'revista' &&
+      CONFIG.DEFAULT_PDF_URL === '/revista/leitura/revista.pdf') {
+    CONFIG.DEFAULT_PDF_URL = '/revista/leitura/revista-mobile.pdf';
+  }
+
   applyConfigToDom();
 
   setupGateFromUrl(ARTICLE_SLUGS);
