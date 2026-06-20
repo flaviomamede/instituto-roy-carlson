@@ -33,6 +33,7 @@ import { initPageJump } from './page-jump.js';
 import { initSearch, clearSearchIndex } from './search.js';
 import { initShare } from './share.js';
 import { clearPageCache, loadPdfJs } from './pdf.js';
+import { initImageReader } from './image-reader.js';
 import { DEMO } from './demo.js';
 
 async function openMagazineView() {
@@ -211,17 +212,18 @@ function applyBibliotecaModeFromUrl() {
 
 function bootstrap() {
   applyBibliotecaModeFromUrl();
+  applyConfigToDom();
+  setupGateFromUrl(ARTICLE_SLUGS);
 
-  // Celular/tablet (LOW_MEM): a Revista usa a versão leve do PDF — o original de
-  // ~28 MB estoura a memória do Safari no iOS. Não afeta o modo biblioteca.
-  if (LOW_MEM && CONFIG.READER_CONTEXT === 'revista' &&
-      CONFIG.DEFAULT_PDF_URL === '/revista/leitura/revista.pdf') {
-    CONFIG.DEFAULT_PDF_URL = '/revista/leitura/revista-mobile.pdf';
+  // iPhone/iPad e aparelhos de toque: o PDF.js estoura a memória do Safari no
+  // iOS (a capa nem chega a aparecer). Para a Revista, usamos o leitor de
+  // imagens — páginas sob demanda, leve — mantendo o gate de e-mail. Desktop e
+  // o modo biblioteca seguem com o flipbook em PDF.
+  if (LOW_MEM && CONFIG.READER_CONTEXT === 'revista') {
+    initImageReader();
+    return;
   }
 
-  applyConfigToDom();
-
-  setupGateFromUrl(ARTICLE_SLUGS);
   setupGateTexts();
 
   initGate({

@@ -23,6 +23,11 @@ if command -v gs >/dev/null 2>&1; then
     && echo "→ Revista mobile: $(du -h revista/leitura/revista-mobile.pdf | cut -f1)"
 fi
 
+# Páginas em imagem para o leitor leve (iPhone/iPad — sem PDF.js). PyMuPDF local.
+if python3 -c "import fitz" >/dev/null 2>&1; then
+  python3 "$(dirname "$0")/scripts/gen-revista-pages.py" || true
+fi
+
 bash build-library.sh
 bash build-favicons.sh
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
