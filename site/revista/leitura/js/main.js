@@ -1,7 +1,7 @@
 'use strict';
 
 import './polyfill.js';
-import { BUILD, CONFIG, ARTICLE_SLUGS } from './config.js';
+import { BUILD, CONFIG, ARTICLE_SLUGS, LOW_MEM } from './config.js';
 import { state } from './state.js';
 import { el, showLoader, hideLoader, showError, hideError } from './dom.js';
 import {
@@ -54,7 +54,7 @@ async function openMagazineView() {
   fit();
   prefetchBackground(3);
   maybeOpenGateForDeepLink();
-  if (CONFIG.FLIP_LIB && state.sfReady) upgradeToStPageFlipInBackground();
+  if (CONFIG.FLIP_LIB && state.sfReady && !LOW_MEM) upgradeToStPageFlipInBackground();
 }
 
 function onFlipLibReady() {
@@ -165,6 +165,9 @@ function applyConfigToDom() {
 
   if (el.buildTag) el.buildTag.textContent = BUILD;
 
+  const errLink = document.getElementById('errPdfLink');
+  if (errLink && CONFIG.DEFAULT_PDF_URL) errLink.href = CONFIG.DEFAULT_PDF_URL;
+
   if (CONFIG.SHOW_FILE_UPLOAD === false) {
     const btn = document.querySelector('.file-btn');
     if (btn) btn.style.display = 'none';
@@ -232,7 +235,7 @@ function bootstrap() {
   initShare();
   state.uiHooks.onPageChange = onPageChange;
 
-  if (CONFIG.FLIP_LIB) {
+  if (CONFIG.FLIP_LIB && !LOW_MEM) {
     loadStPageFlip()
       .then(() => {
         state.sfReady = true;

@@ -1,6 +1,6 @@
 'use strict';
 
-export const BUILD = '2026-06-19-v8';
+export const BUILD = '2026-06-20-v9';
 
 export const CONFIG = {
   DEFAULT_PDF_URL: '/revista/leitura/revista.pdf',
@@ -65,5 +65,14 @@ export const ARTICLE_TITLES = {
   'damworld-2025': 'Dam World 2025'
 };
 
-export const RS = 2.5;
-export const dpr = Math.min(window.devicePixelRatio || 1, 2);
+/* Aparelhos de toque (iPhone/iPad/Android) têm limite de memória por aba bem
+   menor — sobretudo o Safari no iOS. Renderizar muitas páginas em alta resolução
+   estoura esse limite e a aba colapsa ("A problem repeatedly occurred"). Nesses
+   aparelhos reduzimos a resolução, o prefetch, e desligamos o pré-render pesado
+   do StPageFlip (fica a virada em CSS, leve). */
+export const LOW_MEM =
+  (typeof navigator !== 'undefined' && (navigator.maxTouchPoints || 0) > 0) ||
+  (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches);
+
+export const RS = LOW_MEM ? 1.5 : 2.5;
+export const dpr = Math.min(window.devicePixelRatio || 1, LOW_MEM ? 1.5 : 2);

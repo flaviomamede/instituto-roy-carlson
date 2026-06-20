@@ -1,6 +1,6 @@
 'use strict';
 
-import { RS } from './config.js';
+import { RS, LOW_MEM } from './config.js';
 import { state } from './state.js';
 import { el } from './dom.js';
 import { gateActive } from './gate.js';
@@ -93,7 +93,7 @@ export function prefetchBackground(fromPage) {
   if (state.prefetchStarted || Book.source !== 'pdf') return;
   state.prefetchStarted = true;
   const start = Math.max(0, fromPage | 0);
-  const end = Math.min(Book.N - 1, start + 12);
+  const end = Math.min(Book.N - 1, start + (LOW_MEM ? 3 : 12));
   (async () => {
     for (let p = start; p <= end; p++) {
       const sheetIdx = Math.floor(p / 2);
