@@ -160,24 +160,23 @@ main.wide.sobre {
 .ba-tag-l { left: 10px; }
 .ba-tag-r { right: 10px; }
 
-/* ---------- Homenagens ---------- */
-.homenagens-list {
-  list-style: none;
+/* ---------- Homenagens (carrossel contínuo) ---------- */
+.hom-carousel {
+  overflow: hidden;
   margin: 1.5rem 0 0;
-  padding: 0;
+}
+.hom-track {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
-.homenagem {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 1.25rem;
-  align-items: start;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--line);
+.hom-card {
+  flex: 0 0 25%;
+  box-sizing: border-box;
+  padding: 0 0.6rem;
+  margin: 0;
 }
-.homenagem:last-child { border-bottom: 0; }
+.hom-card figcaption { padding-top: 0.6rem; }
 .hom-foto {
   aspect-ratio: 3 / 4;
   border-radius: 8px;
@@ -193,10 +192,16 @@ main.wide.sobre {
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.hom-bio h3 { margin: 0 0 0.3rem; font-size: 1.1rem; }
-.hom-bio p { margin: 0; line-height: 1.6; }
-@media (max-width: 520px) {
-  .homenagem { grid-template-columns: 84px 1fr; gap: 0.9rem; }
+.hom-card h3 { margin: 0 0 0.3rem; font-size: 1.02rem; line-height: 1.25; }
+.hom-card p { margin: 0; line-height: 1.55; font-size: 0.9rem; }
+@media (max-width: 720px) {
+  .hom-card { flex-basis: 50%; }
+}
+@media (max-width: 460px) {
+  .hom-card { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hom-track { transition: none; }
 }
 
 /* ---------- Conselho Editorial ---------- */

@@ -88,51 +88,54 @@
           Eminentes engenheiros considerados “cria” do Dr. Carlson — herdeiros e continuadores de
           sua escola em tecnologia do concreto e segurança de barragens.
         </p>
-        <ul class="homenagens-list">
-          <!-- Para cada pessoa: foto estreita + breve currículo. Trocar a imagem em /sobre/img/. -->
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="walton-pacelli"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Walton Pacelli de Andrade</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="andriolo"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Francisco Rodrigues Andriolo</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="holanda"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Francisco Gladston Holanda</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="paulon"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Vladimir Antônio Paulón</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="monteiro"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Paulo J. M. Monteiro</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-          <li class="homenagem">
-            <div class="hom-foto" data-foto="kuperman"><span>foto</span></div>
-            <div class="hom-bio">
-              <h3>Selmo Kuperman</h3>
-              <p class="placeholder">[Breve currículo — a inserir.]</p>
-            </div>
-          </li>
-        </ul>
+        <!-- Carrossel contínuo: janela de 4, anda 1 a cada 2s, cíclico (sem
+             ordem fixa entre os homenageados). Trocar a foto via data-foto. -->
+        <div class="hom-carousel" id="homCarousel" aria-label="Homenageados">
+          <div class="hom-track" id="homTrack">
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="walton-pacelli"><span>foto</span></div>
+              <figcaption>
+                <h3>Walton Pacelli de Andrade</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="andriolo"><span>foto</span></div>
+              <figcaption>
+                <h3>Francisco Rodrigues Andriolo</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="holanda"><span>foto</span></div>
+              <figcaption>
+                <h3>Francisco Gladston Holanda</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="paulon"><span>foto</span></div>
+              <figcaption>
+                <h3>Vladimir Antônio Paulón</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="monteiro"><span>foto</span></div>
+              <figcaption>
+                <h3>Paulo J. M. Monteiro</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+            <figure class="hom-card">
+              <div class="hom-foto" data-foto="kuperman"><span>foto</span></div>
+              <figcaption>
+                <h3>Selmo Kuperman</h3>
+                <p class="placeholder">[Breve currículo — a inserir.]</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
       </section>
 
       <!-- ============ Conselho Editorial ============ -->
