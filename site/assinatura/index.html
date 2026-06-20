@@ -72,8 +72,9 @@
       <p class="eyebrow">Instituto Roy Carlson</p>
       <h1>Assine a memória técnica do concreto massa</h1>
       <p class="lead">
-        Leitura integral do acervo exclusivo da Biblioteca IRC e da Revista IRC completa —
-        homenagens, relatos de obras emblemáticas e artigos técnicos sobre barragens e concreto massa.
+        A Revista IRC é aberta a todos. A assinatura dá <strong>acesso integral ao acervo
+        exclusivo da Biblioteca IRC</strong> — memória técnica, artigos e documentos sobre
+        barragens e concreto massa.
       </p>
 
       <!-- Alternância de cobrança -->
@@ -92,9 +93,9 @@
           <p class="plan-price"><strong>Grátis</strong></p>
           <p class="plan-sub">Para conhecer o acervo</p>
           <ul class="plan-feats">
-            <li>Catálogo público completo</li>
+            <li>Revista IRC completa</li>
+            <li>Catálogo público da Biblioteca</li>
             <li>Fichas, resumos e tags</li>
-            <li>Revista IRC em prévia</li>
             <li>Documentos de acervo aberto</li>
           </ul>
           <a class="button plan-cta" href="/biblioteca/">Explorar a Biblioteca</a>
@@ -110,13 +111,12 @@
           </p>
           <p class="plan-sub" data-price-note>Equivale a R$ 16,40/mês · renove uma vez por ano</p>
           <ul class="plan-feats">
-            <li><strong>Leitura integral</strong> do acervo exclusivo</li>
-            <li><strong>Revista IRC completa</strong>, sem prévia</li>
-            <li>Acesso a homenagens e memória técnica</li>
+            <li>Tudo do plano Leitor</li>
+            <li><strong>Leitura integral</strong> do acervo exclusivo da Biblioteca</li>
+            <li>Homenagens e memória técnica completas</li>
             <li>Novos documentos conforme publicados</li>
           </ul>
           <button class="button primary plan-cta" type="button" data-assinar>Assinar agora</button>
-          <p class="plan-foot">Pagamento via Pix · liberação após confirmação</p>
         </article>
 
         <!-- Fundador / Patrocinador -->
@@ -130,11 +130,7 @@
             <li>Reconhecimento no expediente</li>
             <li>Condições negociadas</li>
           </ul>
-          <a
-            class="button plan-cta"
-            href="mailto:institutoroycarlson@gmail.com?subject=Fundador%2FPatrocinador%20%E2%80%94%20Instituto%20Roy%20Carlson"
-            >Fale com o Instituto</a
-          >
+          <button class="button plan-cta" type="button" data-contato>Fale com o Instituto</button>
         </article>
       </section>
 
@@ -146,10 +142,10 @@
             <tr><th scope="col">Recurso</th><th scope="col">Leitor</th><th scope="col">Assinante</th><th scope="col">Fundador · Patrocinador</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Catálogo e fichas</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Revista IRC completa</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Catálogo e fichas da Biblioteca</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><th scope="row">Acervo aberto</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">Acervo exclusivo (integral)</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><th scope="row">Revista IRC completa</th><td class="no">prévia</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><th scope="row">Acervo exclusivo da Biblioteca (integral)</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><th scope="row">Contrapartidas institucionais</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
           </tbody>
         </table>
@@ -226,6 +222,41 @@
 
         <p class="pay-note">
           A liberação é manual nesta fase (até algumas horas úteis). Em caso de dúvida, escreva para
+          <a href="mailto:institutoroycarlson@gmail.com">institutoroycarlson@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contato Fundador / Patrocinador -->
+    <div class="pay-overlay" id="contactOverlay" aria-hidden="true">
+      <div class="pay-card" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <button class="pay-close" id="contactClose" type="button" aria-label="Fechar">×</button>
+        <p class="eyebrow">Fundador · Patrocinador</p>
+        <h2 id="contactTitle">Fale com o Instituto</h2>
+        <p class="pay-holder">
+          Conte seu interesse em apoiar o Instituto Roy Carlson — retornamos com as condições.
+        </p>
+        <form class="pay-form" id="contactForm" novalidate>
+          <div class="pay-fields">
+            <div class="pay-field">
+              <label for="contactNome">Nome</label>
+              <input type="text" id="contactNome" name="nome" autocomplete="name" required />
+            </div>
+            <div class="pay-field">
+              <label for="contactEmail">E-mail</label>
+              <input type="email" id="contactEmail" name="email" autocomplete="email" inputmode="email" required />
+            </div>
+          </div>
+          <div class="pay-field" style="margin-top: 0.8rem">
+            <label for="contactMsg">Mensagem (opcional)</label>
+            <textarea id="contactMsg" name="mensagem" rows="3"></textarea>
+          </div>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+          <button class="button primary" type="submit" id="contactSubmit">Enviar</button>
+          <p class="pay-status" id="contactStatus" aria-live="polite"></p>
+        </form>
+        <p class="pay-note">
+          Ou escreva direto para
           <a href="mailto:institutoroycarlson@gmail.com">institutoroycarlson@gmail.com</a>.
         </p>
       </div>

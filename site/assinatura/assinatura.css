@@ -125,7 +125,6 @@ main.wide.assinatura {
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.92rem;
-  flex: 1 1 auto;
 }
 .plan-feats li {
   padding-left: 1.4rem;
@@ -138,16 +137,21 @@ main.wide.assinatura {
   color: var(--accent-dark);
   font-weight: 700;
 }
+/* <button> não herda a fonte do site por padrão — força para igualar aos <a> */
+.assinatura .button,
+.pay-card .button {
+  font-family: inherit;
+}
 .plan-cta {
   width: 100%;
   justify-content: center;
   border-radius: 8px;
-}
-.plan-foot {
-  margin: 0.7rem 0 0;
-  font-size: 0.76rem;
-  color: var(--muted);
-  text-align: center;
+  margin-top: auto; /* todos os botões alinhados na base do card */
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  min-height: 2.85rem;
 }
 
 /* ---------- Tabela comparativa ---------- */
@@ -266,14 +270,17 @@ table.compare tbody tr:last-child td { border-bottom: 0; }
 @media (max-width: 520px) { .pay-fields { grid-template-columns: 1fr; } }
 .pay-field { display: flex; flex-direction: column; gap: 0.3rem; }
 .pay-field label { font-size: 0.82rem; font-weight: 600; }
-.pay-field input {
+.pay-field input,
+.pay-field textarea {
   font: inherit;
   padding: 0.6rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
 }
-.pay-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pay-field textarea { resize: vertical; min-height: 3.4rem; }
+.pay-field input:focus,
+.pay-field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
 #paySubmit { margin-top: 1rem; width: 100%; justify-content: center; }
 .pay-status { margin: 0.7rem 0 0; font-size: 0.88rem; min-height: 1.1em; }

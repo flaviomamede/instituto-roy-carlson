@@ -161,6 +161,86 @@ async function submitIntake(e) {
   }
 }
 
+/* ---------- Contato Fundador / Patrocinador ---------- */
+function openContact() {
+  el('contactStatus').textContent = '';
+  el('contactStatus').className = 'pay-status';
+  el('contactForm').reset();
+  const ov = el('contactOverlay');
+  ov.classList.add('open');
+  ov.setAttribute('aria-hidden', 'false');
+  setTimeout(() => el('contactNome').focus(), 30);
+}
+
+function closeContact() {
+  const ov = el('contactOverlay');
+  ov.classList.remove('open');
+  ov.setAttribute('aria-hidden', 'true');
+}
+
+function contactMailto(nome, email, msg) {
+  const subject = 'Fundador/Patrocinador — Instituto Roy Carlson';
+  const body =
+    'Nome: ' + nome + '\nE-mail: ' + email + '\n\n' +
+    (msg || 'Tenho interesse em apoiar o Instituto Roy Carlson.');
+  return (
+    'mailto:' + CFG.notifyEmail +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body)
+  );
+}
+
+async function submitContact(e) {
+  e.preventDefault();
+  const form = el('contactForm');
+  if (form.website && form.website.value) return; // honeypot
+
+  const nome = el('contactNome').value.trim();
+  const email = el('contactEmail').value.trim();
+  const msg = el('contactMsg').value.trim();
+  const status = el('contactStatus');
+
+  if (!nome || !/.+@.+\..+/.test(email)) {
+    status.textContent = 'Preencha nome e um e-mail válido.';
+    status.className = 'pay-status err';
+    return;
+  }
+
+  status.textContent = 'Enviando…';
+  status.className = 'pay-status';
+  el('contactSubmit').disabled = true;
+
+  const payload = new URLSearchParams({
+    tipo: 'fundador',
+    source: 'assinatura-fundador',
+    nome,
+    email,
+    mensagem: msg,
+    ua: navigator.userAgent
+  });
+
+  try {
+    await fetch(CFG.intakeEndpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: payload.toString()
+    });
+    status.innerHTML =
+      'Recebido! Entraremos em contato. Se preferir, ' +
+      '<a href="' + contactMailto(nome, email, msg) + '">envie também por e-mail</a>.';
+    status.className = 'pay-status ok';
+    form.reset();
+  } catch {
+    status.innerHTML =
+      'Não consegui enviar automaticamente. ' +
+      '<a href="' + contactMailto(nome, email, msg) + '">Clique para avisar por e-mail</a>.';
+    status.className = 'pay-status err';
+  } finally {
+    el('contactSubmit').disabled = false;
+  }
+}
+
 function bind() {
   document.querySelectorAll('.billing-opt').forEach((b) =>
     b.addEventListener('click', () => applyBilling(b.dataset.billing))
@@ -170,11 +250,21 @@ function bind() {
   el('payOverlay').addEventListener('click', (e) => {
     if (e.target === el('payOverlay')) closePay();
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && el('payOverlay').classList.contains('open')) closePay();
-  });
   el('payCopyBtn').addEventListener('click', copyCode);
   el('payForm').addEventListener('submit', submitIntake);
+
+  q('[data-contato]').addEventListener('click', openContact);
+  el('contactClose').addEventListener('click', closeContact);
+  el('contactOverlay').addEventListener('click', (e) => {
+    if (e.target === el('contactOverlay')) closeContact();
+  });
+  el('contactForm').addEventListener('submit', submitContact);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (el('payOverlay').classList.contains('open')) closePay();
+    if (el('contactOverlay').classList.contains('open')) closeContact();
+  });
 }
 
 (async function init() {
