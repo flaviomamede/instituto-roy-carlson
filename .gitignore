@@ -80,3 +80,6 @@ prototipo-site-irc.zip
 # Fontes de staging (os artefatos publicados ficam em site/)
 /revista/
 /imagens/
+# Livros do Protz retidos para revisão de direitos (não publicar)
+biblioteca-adapters/irc/catalog.protz-held.json
+biblioteca-adapters/irc/extra-files.protz-held.tsv
