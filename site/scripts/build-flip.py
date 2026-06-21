@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Gera o leitor flipbook do magazine (site/revista/leitura/flip/index.html) a
-partir do template reader.template.html do Claude — imagens externas lazy (sem
-PDF.js), texto do PDF para busca, e o gate ligado ao Apps Script.
+"""Gera o leitor flipbook do magazine (site/revista/leitura/index.html — a rota
+principal do leitor) a partir do template reader.template.html — imagens externas
+lazy (sem PDF.js), texto do PDF para busca, e o gate ligado ao Apps Script.
+A lib StPageFlip (flipbook/page-flip.browser.min.js, ES5) é embutida no HTML.
 
 Reusa as imagens já geradas em site/revista/leitura/pages/ (pNNN.jpg).
 """
@@ -15,7 +16,7 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(SITE, "..", "flipbook", "reader.template.html")
 PDF = os.path.join(SITE, "revista", "leitura", "revista.pdf")
 PAGES_DIR = os.path.join(SITE, "revista", "leitura", "pages")
-OUT = os.path.join(SITE, "revista", "leitura", "flip", "index.html")
+OUT = os.path.join(SITE, "revista", "leitura", "index.html")
 
 PREVIEW_PAGES = 4
 LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbxNl-alO6cSr3wGn0r1EgTnP7Cx7035YRIrVv5ZeCM4kYXFgOxh4hd1fV1JqzUbfH5S/exec"
@@ -39,7 +40,7 @@ html = open(TEMPLATE, encoding="utf-8").read()
 # Um arquivo .js separado pode ser bloqueado por content-blocker/Private Relay/
 # filtro de rede no aparelho (foi o que derrubou no iPhone real: a tag carregava
 # erro). Embutida, ela vem junto com o HTML que já carregou — nada a bloquear.
-LIB = os.path.join(PAGES_DIR, "..", "flip", "page-flip.browser.min.js")
+LIB = os.path.join(SITE, "..", "flipbook", "page-flip.browser.min.js")
 lib_js = open(LIB, encoding="utf-8").read().replace("</script", "<\\/script")
 html = html.replace('<script>/*__STF__*/</script>',
                     '<script>\n' + lib_js + '\n</script>')
@@ -66,6 +67,6 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT, "w", encoding="utf-8").write(html)
 
 txt_chars = sum(len(t) for t in text)
-print(f"→ flip/index.html gerado: {n} páginas, texto p/ busca: {txt_chars} chars "
+print(f"→ revista/leitura/index.html gerado: {n} páginas, texto p/ busca: {txt_chars} chars "
       f"({'há texto' if txt_chars > 200 else 'PDF é só imagem — busca vazia'})")
 print(f"  HTML: {os.path.getsize(OUT)/1024:.0f} KB")
