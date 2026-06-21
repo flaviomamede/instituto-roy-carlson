@@ -138,6 +138,31 @@ Ele disse que não consegue especificar 100%, mas o essencial é:
 - `site/scripts/gen-revista-pages.py` — gera as imagens das páginas.
 - `site/js/site-nav.js` — hambúrguer mobile.
 
+### Rodada 2 — fazendo funcionar no iPhone real (causas reais, sem chute)
+Testando no iPhone do editor (iOS 18.7, Safari 26.5 — aparelho **novo**, não velho),
+caíram várias hipóteses minhas. O que era de fato:
+1. **"Só carregando" eterno.** O diagnóstico na tela mostrou `lib carregou erro = SIM`:
+   o **arquivo .js externo do StPageFlip era bloqueado no aparelho** (content-blocker/
+   Private Relay/filtro), mesmo carregando em todo lugar que eu testava. **Solução: embutir
+   a lib no HTML** (sem request separado pra bloquear). De brinde, transpilei a lib para
+   **ES5** (cobre também navegadores antigos). *iframe não ajudaria — as barras são do
+   navegador, não da página.*
+2. **Voltar página "semi-duro".** Era **bug do `flipPrev` na 2.0.7**: monta o ponto do
+   canto com `x:10` fixo, sem somar `render.getRect().left`; com `disableFlipByClick` o
+   `flip()` aborta. **Solução: chamar o `flip()` nativo com `left + 10`** (fluido, igual ao
+   avançar). Reportado ao autor por e-mail.
+3. **Campo de e-mail não editável no toque.** A lib só repassa toque a `<a>`/`<button>`,
+   nunca a `<input>` dentro de uma página. **Solução: gate como OVERLAY fora do livro** —
+   `<input>` DOM normal, o teclado abre ao tocar.
+4. **Paisagem cortando o rodapé + "Tela cheia" inerte.** O iPhone **não tem Fullscreen
+   API** (só iPad), e `position:fixed;inset:0` usava a altura de layout (maior que a
+   visível). **Solução: altura por `innerHeight`/`100dvh`, mínimos do livro menores** (cabe
+   em paisagem), **botão Tela cheia escondido** sem suporte, e **metatags PWA** — "Adicionar
+   à Tela de Início" abre como app **sem as barras do Safari** (único jeito no iOS).
+
+Pendente: **realce da busca** (pular pra página acha; pintar em cima exige extrair as
+caixas das palavras do PDF via PyMuPDF — feature adiada a pedido do editor).
+
 ---
 
 ## Apêndice — linha do tempo do projeto (contexto amplo)
