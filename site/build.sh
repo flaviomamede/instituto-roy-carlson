@@ -26,6 +26,9 @@ fi
 # Páginas em imagem para o leitor leve (iPhone/iPad — sem PDF.js). PyMuPDF local.
 if python3 -c "import fitz" >/dev/null 2>&1; then
   python3 "$(dirname "$0")/scripts/gen-revista-pages.py" || true
+  # Leitor flipbook (StPageFlip + imagens lazy, sem PDF.js): zoom de verdade,
+  # flip dentro do zoom, gate de e-mail. Regenera flip/index.html do template.
+  python3 "$(dirname "$0")/scripts/build-flip.py" || true
 fi
 
 bash build-library.sh
