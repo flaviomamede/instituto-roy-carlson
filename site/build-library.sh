@@ -39,9 +39,6 @@ copy_private() {
 
 copy_private "$SRC/EstudosHGen.pdf" "estudos-hgen.pdf"
 copy_private "$SRC/concreto_massa_no_brasil.pdf" "concreto-massa-brasil.pdf"
-copy_public "$SRC/IWHR2014.pdf" "iwhr-2014.pdf"
-copy_public "$SRC/IWHR2024.pdf" "iwhr-2024.pdf"
-copy_public "$SRC/IWHR2025.pdf" "iwhr-2025.pdf"
 
 copy_private "$SRC/P183 2025 ConhecimentoEstatísticas&GestãoRiscosPrevisibilidadeSegurançaBaragens.pdf" "p183-andriolo.pdf"
 copy_private "$SRC/P184 2025 AspectosGestãoQualidadeConstruçãoRetrospectivaPotenciaisCausasDeRiscos.pdf" "p184-andriolo.pdf"

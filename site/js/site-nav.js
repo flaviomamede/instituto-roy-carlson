@@ -38,6 +38,18 @@
   if (instNav) instNav.hidden = isRevista;
   if (revNav) revNav.hidden = !isRevista;
 
+  /* Link discreto "Planejamento" (área exclusiva). Aparece para todos; quem não
+     estiver logado como assinante/fundador cai no gate da própria página. */
+  if (instNav && !instNav.querySelector('[data-nav="planejamento"]')) {
+    const pl = document.createElement('a');
+    pl.href = '/planejamento/';
+    pl.setAttribute('data-nav', 'planejamento');
+    pl.textContent = 'Planejamento';
+    const anchor = instNav.querySelector('.nav-cta') || instNav.querySelector('.nav-login');
+    if (anchor) instNav.insertBefore(pl, anchor);
+    else instNav.appendChild(pl);
+  }
+
   document.querySelectorAll('[data-brand="revista"]').forEach((el) => {
     el.hidden = !isRevista;
   });
