@@ -190,13 +190,13 @@
 
       <div class="pilot-banner" id="pilotBanner">
         <p>
-          <strong>Envio pelo formulário (em fase de testes).</strong>
-          A equipe editorial está validando o fluxo de submissão. Por enquanto, entre em contato com o
-          editor para enviar seu manuscrito.
+          <strong>Envie seu artigo abaixo.</strong>
+          O material vai direto para a redação da Revista IRC. A diagramação e o PDF final são feitos
+          por nós — você não precisa gerar PDF. Arquivo acima de ~4&nbsp;MB? Fale com o editor.
         </p>
         <div class="button-row">
           <a
-            class="button primary"
+            class="button"
             href="mailto:flaviomamede.gomes@gmail.com?subject=Submiss%C3%A3o%20%E2%80%94%20Revista%20IRC"
           >Falar com o editor</a>
           <a class="button" href="/revista/normas-publicacao.html">Ver normas</a>
@@ -218,6 +218,10 @@
         <label for="autores">Autores</label>
         <textarea id="autores" name="autores" rows="4" placeholder="Roy W. Carlson&#10;tradução: Vladimir Antonio Paulón&#10;revisão: Flávio M. P. Gomes" required></textarea>
         <p class="hint">Um autor por linha. Use <code>tradução:</code>, <code>revisão:</code> etc. para papéis.</p>
+
+        <label for="email_autor">E-mail para contato</label>
+        <input type="email" id="email_autor" name="email_autor" placeholder="seu@email.com" required />
+        <p class="hint">Usaremos para responder sobre a sua submissão.</p>
 
         <label for="sumario">Sumário (resumo)</label>
         <textarea id="sumario" name="sumario" rows="5" required></textarea>
@@ -261,10 +265,13 @@
         <label for="markdown">Corpo do artigo (.md)</label>
         <input type="file" id="markdown" name="markdown" accept=".md,text/markdown" required />
         <p class="hint">
-          Seções: <code>##</code>. Figuras: <code>![legenda](figuras/nome.png)</code>.
-          Tabelas: <code>![legenda](tabelas/nome.csv)</code>.
-          Gráficos: <code>![legenda](graficos/nome.png)</code> (envie também o CSV dos dados no zip de gráficos).
-          Equações: LaTeX no texto, ex. <code>$E = mc^2$</code> ou <code>$$ ... $$</code>.
+          Seções: <code>##</code>.
+          Figuras: <code>![Figura 1 — legenda](figuras/nome.png){#figura-1}</code>.
+          Tabelas no texto: <code>**Tabela 1 — legenda.** {#tabela-1}</code> antes da tabela <code>|</code>.
+          Tabelas CSV: <code>![Tabela 1 — legenda](tabelas/nome.csv){#tabela-1}</code>.
+          Citar: <code>[Figura 1](#figura-1)</code>, <code>[Tabela 1](#tabela-1)</code>.
+          Equações: <code>$E = mc^2$</code> ou <code>$$ … $$ {#eq-1}</code> + <code>[Eq. 1](#eq-1)</code>.
+          Não repita a legenda da figura na linha seguinte.
         </p>
 
         <label for="figuras_zip">Figuras fotográficas (.zip)</label>
@@ -317,8 +324,10 @@
         devNote.hidden = false;
       } else {
         pilotBanner.hidden = false;
-        form.hidden = true;
+        form.hidden = false;
         devNote.hidden = true;
+        submitBtn.textContent = 'Enviar para a redação';
+        submitBtn.disabled = false;
       }
 
       function setServerNote(online) {
@@ -341,39 +350,73 @@
           .catch(function () { setServerNote(false); });
       }
 
-      form.addEventListener('submit', function (ev) {
-        ev.preventDefault();
-        if (!local || !base) return;
+      /* ---------- PRODUÇÃO: Blob privado + aviso à redação (sem gerar PDF) ---------- */
+      var MAX = 4.3 * 1024 * 1024;
+      var FILE_FIELDS = ['markdown', 'figuras_zip', 'tabelas_zip', 'graficos_zip'];
+      var META_FIELDS = ['titulo','slug','autores','email_autor','sumario','palavras_chave','recebido','aprovado','publicado','volume','numero','mes_ano','ano'];
 
-        submitBtn.disabled = true;
-        status.className = 'status busy';
-        status.textContent = 'Enviando arquivos e metadados…';
+      function uploadFile(sid, file) {
+        var url = '/api/submissao/upload?sid=' + sid + '&name=' + encodeURIComponent(file.name);
+        return fetch(url, { method: 'POST', headers: { 'Content-Type': file.type || 'application/octet-stream' }, body: file })
+          .then(function (r) { return r.json().then(function (j) {
+            if (!r.ok || !j.ok) throw new Error('Falha ao enviar "' + file.name + '"' + (j && j.error ? ' (' + j.error + ')' : ''));
+            return j;
+          }); });
+      }
 
+      function submitProducao() {
+        var sid = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        var meta = {};
+        META_FIELDS.forEach(function (k) { var el = form.querySelector('[name="' + k + '"]'); if (el) meta[k] = (el.value || '').trim(); });
+        var files = [];
+        for (var i = 0; i < FILE_FIELDS.length; i++) {
+          var input = form.querySelector('[name="' + FILE_FIELDS[i] + '"]');
+          var f = input && input.files && input.files[0];
+          if (f) {
+            if (f.size > MAX) { status.className = 'status err'; status.textContent = 'O arquivo "' + f.name + '" passa de 4 MB. Reduza-o ou envie por e-mail (botão acima).'; return; }
+            files.push(f);
+          }
+        }
+        if (!files.length) { status.className = 'status err'; status.textContent = 'Anexe pelo menos o arquivo do artigo (.md).'; return; }
+        submitBtn.disabled = true; status.className = 'status busy'; status.textContent = 'Enviando…';
+        var enviados = [];
+        var chain = Promise.resolve();
+        files.forEach(function (f) {
+          chain = chain.then(function () { status.textContent = 'Enviando ' + f.name + '…'; return uploadFile(sid, f); })
+            .then(function (j) { enviados.push({ name: f.name, pathname: j.pathname }); });
+        });
+        chain.then(function () {
+          status.textContent = 'Registrando…';
+          return fetch('/api/submissao/registrar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sid: sid, meta: meta, arquivos: enviados }) })
+            .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error((j && j.error) || 'Falha ao registrar'); return j; }); });
+        }).then(function () {
+          status.className = 'status ok';
+          status.innerHTML = '<strong>Submissão recebida!</strong> A redação foi avisada e responderá pelo e-mail informado. Protocolo: <code>' + sid + '</code>.';
+          form.reset();
+        }).catch(function (err) {
+          status.className = 'status err'; status.textContent = err.message || String(err);
+        }).finally(function () { submitBtn.disabled = false; });
+      }
+
+      /* ---------- LOCAL: serve-submissao.py (gera o PDF na redação) ---------- */
+      function submitLocal() {
+        if (!base) return;
+        submitBtn.disabled = true; status.className = 'status busy'; status.textContent = 'Enviando arquivos e metadados…';
         fetch(base + '/api/revista/submeter-artigo', { method: 'POST', body: new FormData(form) })
           .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
           .then(function (res) {
-            if (!res.ok || !res.j.ok) {
-              throw new Error((res.j && res.j.error) || 'Falha no envio');
-            }
+            if (!res.ok || !res.j.ok) throw new Error((res.j && res.j.error) || 'Falha no envio');
             status.className = 'status ok';
-            status.innerHTML =
-              '<strong>Artigo #' + res.j.id + ' gerado com sucesso.</strong>' +
-              '<p class="paths">Pasta: <code>' + res.j.pasta + '</code><br>' +
-              'PDF: <code>' + res.j.pdf + '</code><br>' +
-              'HTML: <code>' + (res.j.html || '') + '</code></p>' +
-              (res.j.abs_pdf ? '<p class="hint">Abra no sistema: <code>' + res.j.abs_pdf + '</code></p>' : '');
+            status.innerHTML = '<strong>Artigo #' + res.j.id + ' gerado.</strong> Pasta: <code>' + res.j.pasta + '</code> · PDF: <code>' + res.j.pdf + '</code>';
             form.reset();
-            document.getElementById('volume').value = '1';
-            document.getElementById('numero').value = '2';
-            document.getElementById('mes_ano').value = 'out/2026';
           })
-          .catch(function (err) {
-            status.className = 'status err';
-            status.textContent = err.message || String(err);
-          })
-          .finally(function () {
-            if (local) submitBtn.disabled = false;
-          });
+          .catch(function (err) { status.className = 'status err'; status.textContent = err.message || String(err); })
+          .finally(function () { submitBtn.disabled = false; });
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        if (local) submitLocal(); else submitProducao();
       });
     })();
     </script>
