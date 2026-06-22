@@ -36,6 +36,11 @@
   header.top{background:linear-gradient(100deg,var(--teal-deep),var(--teal));color:#fff;padding:22px 24px}
   header.top .wrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   header.top h1{font-size:22px;margin:0}
+  header.top .brand-square{flex:0 0 auto;width:46px;height:46px;border-radius:10px;display:grid;place-items:center;
+    background:#fff;color:var(--teal-deep);font-weight:900;font-size:15px;letter-spacing:.02em;text-decoration:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);transition:transform .12s}
+  header.top .brand-square:hover{transform:translateY(-1px)}
+  header.top .brand-square span{font-size:8.5px;font-weight:700;display:block;text-align:center;line-height:1;margin-top:1px;color:var(--gold-deep)}
   header.top .tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
     background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
   header.top .who{margin-left:auto;font-size:13px;color:#d7e7e3}
@@ -70,6 +75,8 @@
     border-left:11px solid var(--teal-deep)}                               /* seta de continuidade */
   .milestone{position:absolute;top:6px;width:14px;height:14px;margin-left:-7px;background:var(--gold);
     transform:rotate(45deg);box-shadow:0 1px 3px rgba(0,0,0,.25);border:1px solid var(--gold-deep)}  /* marco/evento */
+  .bar-criada{position:absolute;top:3px;width:20px;height:20px;margin-left:-3px;border-radius:50%;background:var(--ok);
+    color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900;box-shadow:0 1px 3px rgba(0,0,0,.3);z-index:2}
   /* ---------- checklists ---------- */
   .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   @media (max-width:720px){.cols2{grid-template-columns:1fr}}
@@ -88,6 +95,8 @@
   .galtitle{font-size:14px;font-weight:700;color:var(--teal-deep);margin:18px 0 8px}
   .galtitle:first-child{margin-top:0}
   .note{background:#fbf3df;border:1px solid #ecd9a6;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6b5418;margin-top:16px}
+  .pdf-frame{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;margin-top:6px}
+  .pdf-frame iframe{width:100%;height:580px;border:0;display:block}
   /* ---------- aside / sugestões ---------- */
   .aside h2{font-size:15px;color:var(--teal-deep);margin:0 0 4px}
   .aside .sub{font-size:12px;color:var(--ink-dim);margin:0 0 14px}
@@ -123,6 +132,7 @@
 <div id="app">
   <header class="top">
     <div class="wrap">
+      <a href="/" class="brand-square" title="Voltar ao site do Instituto Roy Carlson">IRC<span>voltar</span></a>
       <h1>Planejamento do Instituto Roy Carlson</h1>
       <span class="tag">Exclusivo · assinantes e fundadores</span>
       <span class="who" id="who"></span>
@@ -157,6 +167,14 @@
         <h2>Posicionamento estratégico</h2>
         <p class="sub">Como o IRC se coloca frente a entidades como o IBRACON e o CBDB. (Texto-base para discussão.)</p>
         <div id="posicionamento" style="font-size:14.5px;line-height:1.6"></div>
+      </section>
+
+      <section class="block">
+        <h2>O que faremos com as publicações do Dr. Carlson</h2>
+        <p class="sub">Este é o trabalho que queremos fazer com cada publicação do Mr. Carlson: revisar, formatar num <b>template editorial</b> próprio e disponibilizar com qualidade. O artigo abaixo — <i>“Medição de tensões em concreto”</i> — está sendo lapidado e servirá de <b>modelo de template</b> para os demais.</p>
+        <div class="pdf-frame">
+          <iframe src="/api/file/carlson-medicao-de-tensoes-em-concreto" title="Carlson — Medição de tensões em concreto" loading="lazy"></iframe>
+        </div>
       </section>
 
       <section class="block">
@@ -204,7 +222,7 @@ var GRUPOS = {
 var TAREFAS = [
   { grupo:1, id:"1-A", nome:"Explicação e aprovação do logotipo",           ini:0.0, fim:1.0 },
   { grupo:1, id:"1-B", nome:"Descrição / aprovação / divulgação do objetivo", ini:0.0, fim:1.5 },
-  { grupo:1, id:"1-C", nome:"Sistema e valores de contribuição",            ini:1.0, fim:1.4 },
+  { grupo:1, id:"1-C", nome:"Sistema e valores de contribuição",            ini:1.0, fim:1.5 },
   { grupo:1, id:"1-D", nome:"Reunião de reavaliação e replanejamento",      marco:1.5 },
   { grupo:1, id:"1-E", nome:"Eventual estatuto",                            ini:1.5, fim:2.0 },
 
@@ -214,7 +232,7 @@ var TAREFAS = [
   { grupo:2, id:"2-D", nome:"Acordos com entidades técnicas",               ini:6.0, fim:8.0, seta:true },
 
   { grupo:3, id:"3-A", nome:"Formatação de templates de textos",            ini:0.0, fim:1.0 },
-  { grupo:3, id:"3-B", nome:"Criação da biblioteca",                        ini:0.0, fim:2.0, feito:true, obs:"Criada. A cada reunião, propõem-se novas obras e melhorias." },
+  { grupo:3, id:"3-B", nome:"Criação da biblioteca",                        ini:0.0, fim:2.0, criada:true, obs:"Marco no início = biblioteca já criada; a barra representa as melhorias e novos acréscimos (propostos a cada reunião)." },
   { grupo:3, id:"3-C", nome:"Solicitação e arquivo — controle de uso",      ini:0.0, fim:1.0, obs:"Definir as métricas de uso da Biblioteca a acompanhar." }
 ];
 
@@ -294,7 +312,8 @@ function renderGantt(){
       var bar = '<div class="bar'+(t.feito?' done':'')+(t.seta?' cont':'')+
         '" style="left:'+pos(t.ini).toFixed(3)+'%;width:'+pos(fim - t.ini).toFixed(3)+'%" title="'+(t.obs||'')+'"></div>';
       var arrow = t.seta ? '<div class="arrow" style="left:'+pos(fim).toFixed(3)+'%"></div>' : '';
-      track = bar + arrow;
+      var criada = t.criada ? '<div class="bar-criada" style="left:'+pos(t.ini).toFixed(3)+'%" title="Já criada">✓</div>' : '';
+      track = bar + arrow + criada;
     }
     html += '<div class="gantt-row"><div class="name"><b>'+t.id+'</b> '+t.nome+
       (t.obs ? '<span class="obs">'+t.obs+'</span>' : '')+'</div>'+
