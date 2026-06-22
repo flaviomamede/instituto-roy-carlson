@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Planejamento — Instituto Roy Carlson</title>
+<style>
+  :root{
+    --ink:#1f2630; --ink-dim:#5c6470; --line:#e4ddcd; --bg:#f6f2e9; --card:#fff;
+    --teal:#1f6b6b; --teal-deep:#16504f; --gold:#c79a3e; --gold-deep:#a9802c;
+    --ok:#2f8f5b; --shadow:0 10px 28px rgba(31,38,48,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+  a{color:var(--teal)}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.01em}
+  /* ---------- gate ---------- */
+  #gate{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+    padding:24px;background:radial-gradient(120% 90% at 50% 0%,#1e3a3a 0%,#13201f 60%,#0e1716 100%);color:#eef3f1}
+  #gate.show{display:flex}
+  .gate-card{max-width:440px;text-align:center}
+  .gate-card .lock{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);font-size:26px}
+  .gate-card h1{font-size:24px;margin:0 0 8px}
+  .gate-card p{color:#c8d6d2;margin:0 0 20px}
+  .gate-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:11px 18px;border-radius:10px;font-weight:700;text-decoration:none;cursor:pointer;border:0}
+  .btn-gold{background:var(--gold);color:#3a2c08}
+  .btn-ghost{background:transparent;color:#eef3f1;border:1px solid rgba(255,255,255,.35)}
+  /* ---------- layout ---------- */
+  #app{display:none}
+  #app.show{display:block}
+  header.top{background:linear-gradient(100deg,var(--teal-deep),var(--teal));color:#fff;padding:22px 24px}
+  header.top .wrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  header.top h1{font-size:22px;margin:0}
+  header.top .tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
+  header.top .who{margin-left:auto;font-size:13px;color:#d7e7e3}
+  .layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 22%;gap:0}
+  .main{padding:26px 24px;min-width:0}
+  .aside{border-left:1px solid var(--line);background:#fbf8f1;padding:22px 18px}
+  section.block{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+    padding:20px 22px;margin:0 0 22px}
+  section.block > h2{font-size:18px;margin:0 0 4px;color:var(--teal-deep)}
+  section.block > .sub{color:var(--ink-dim);font-size:13px;margin:0 0 16px}
+  /* ---------- gantt ---------- */
+  .gantt{overflow-x:auto}
+  .gantt-grid{min-width:680px}
+  .gantt-head,.gantt-row{display:grid;grid-template-columns:210px 1fr;align-items:center}
+  .gantt-head .months{display:grid;grid-template-columns:repeat(13,1fr);font-size:10.5px;color:var(--ink-dim);text-transform:uppercase}
+  .gantt-head .months span{text-align:center;border-left:1px solid var(--line);padding:2px 0}
+  .gantt-row{border-top:1px solid #f0ead9;min-height:34px}
+  .gantt-row .name{font-size:13px;padding-right:12px}
+  .gantt-row .name b{color:var(--teal-deep);font-weight:700}
+  .gantt-track{position:relative;height:22px;background:
+    repeating-linear-gradient(90deg,transparent,transparent calc(100%/13 - 1px),#f0ead9 calc(100%/13 - 1px),#f0ead9 calc(100%/13))}
+  .bar{position:absolute;top:3px;height:16px;border-radius:8px;background:linear-gradient(180deg,var(--teal),var(--teal-deep));
+    box-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .bar.done{background:linear-gradient(180deg,#4bb37e,var(--ok))}
+  /* ---------- checklists ---------- */
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:720px){.cols2{grid-template-columns:1fr}}
+  .chk{list-style:none;margin:0;padding:0}
+  .chk li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:14px}
+  .chk input{margin-top:2px;width:17px;height:17px;accent-color:var(--ok);pointer-events:none}
+  .chk.todo input{accent-color:var(--gold)}
+  .chk .done-txt{color:var(--ink-dim)}
+  h3.mini{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-dim);margin:0 0 6px}
+  /* ---------- galerias ---------- */
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .gal figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .gal img{width:100%;height:120px;object-fit:cover;display:block;background:#eee}
+  .gal figcaption{font-size:11.5px;color:var(--ink-dim);padding:7px 9px;line-height:1.35}
+  .gal figcaption b{color:var(--ink);display:block}
+  .galtitle{font-size:14px;font-weight:700;color:var(--teal-deep);margin:18px 0 8px}
+  .galtitle:first-child{margin-top:0}
+  .note{background:#fbf3df;border:1px solid #ecd9a6;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6b5418;margin-top:16px}
+  /* ---------- aside / sugestões ---------- */
+  .aside h2{font-size:15px;color:var(--teal-deep);margin:0 0 4px}
+  .aside .sub{font-size:12px;color:var(--ink-dim);margin:0 0 14px}
+  .aside textarea{width:100%;min-height:140px;border:1px solid var(--line);border-radius:10px;padding:10px;
+    font:inherit;font-size:13px;resize:vertical;background:#fff;color:var(--ink)}
+  .aside textarea:focus{outline:none;border-color:var(--teal)}
+  .aside .send{width:100%;margin-top:10px;background:var(--teal);color:#fff;padding:11px;border:0;border-radius:10px;font-weight:700;cursor:pointer}
+  .aside .send:disabled{opacity:.6;cursor:default}
+  .aside .msg{font-size:12.5px;margin-top:8px;min-height:16px;color:var(--ok)}
+  .aside .hint{font-size:11.5px;color:var(--ink-dim);margin-top:14px;line-height:1.4}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr}
+    .aside{border-left:0;border-top:1px solid var(--line)}
+  }
+  footer.foot{max-width:1180px;margin:0 auto;padding:18px 24px 40px;color:var(--ink-dim);font-size:12.5px}
+</style>
+</head>
+<body>
+
+<!-- Gate: aparece se o visitante não for assinante/fundador -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="lock">🔒</div>
+    <h1>Planejamento — área exclusiva</h1>
+    <p>Esta página é reservada aos <b>assinantes</b> e <b>fundadores</b> do Instituto Roy Carlson. Entre com sua conta ou torne-se assinante para acompanhar o planejamento e enviar sugestões.</p>
+    <div class="gate-actions">
+      <a class="btn btn-gold" href="/assinatura/">Quero assinar</a>
+      <a class="btn btn-ghost" href="/biblioteca/">Entrar</a>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="top">
+    <div class="wrap">
+      <h1>Planejamento do Instituto Roy Carlson</h1>
+      <span class="tag">Exclusivo · assinantes e fundadores</span>
+      <span class="who" id="who"></span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="main">
+
+      <section class="block">
+        <h2>Cronograma</h2>
+        <p class="sub">Ações do IRC ao longo do ano-base (julho/2026 a julho/2027). Barras indicam início, duração e fim de cada atividade. <span style="color:var(--ok)">Verde</span> = concluído.</p>
+        <div class="gantt"><div class="gantt-grid" id="gantt"></div></div>
+      </section>
+
+      <section class="block">
+        <h2>Status das ações</h2>
+        <p class="sub">O que já entregamos e o que falta. (Lista de partida — ajuste conforme avançarmos.)</p>
+        <div class="cols2">
+          <div>
+            <h3 class="mini">✅ Já feito</h3>
+            <ul class="chk done" id="feito"></ul>
+          </div>
+          <div>
+            <h3 class="mini">☐ A fazer</h3>
+            <ul class="chk todo" id="afazer"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Posicionamento estratégico</h2>
+        <p class="sub">Como o IRC se coloca frente a entidades como o IBRACON e o CBDB. (Texto-base para discussão.)</p>
+        <div id="posicionamento" style="font-size:14.5px;line-height:1.6"></div>
+      </section>
+
+      <section class="block">
+        <h2>Galeria histórica</h2>
+        <p class="sub">Acervo contribuído pelo Eng. Francisco Andriolo. Imagens em qualidade de origem — candidatas a melhoria.</p>
+        <div id="galerias"></div>
+        <div class="note">📷 Tem fotos do Dr. Roy Carlson ou da história do concreto-massa no Brasil? Envie para <b>institutoroycarlson@gmail.com</b> — vamos catalogar e creditar.</div>
+      </section>
+
+    </main>
+
+    <aside class="aside">
+      <h2>Sugestões do conselho</h2>
+      <p class="sub">Viu algo a melhorar? Escreva aqui. Sua sugestão chega direto à editoria e vira melhoria.</p>
+      <textarea id="sug" placeholder="Sua sugestão sobre o planejamento, o posicionamento, as fotos…"></textarea>
+      <button class="send" id="sugBtn">Enviar sugestão</button>
+      <div class="msg" id="sugMsg"></div>
+      <div class="hint">Identificada com seu nome e e-mail de assinante. Histórico de melhorias implementadas aparecerá aqui em breve.</div>
+    </aside>
+  </div>
+
+  <footer class="foot">Instituto Roy Carlson · documento de trabalho interno. Solicitado por José Marques na reunião de 18/06/2026.</footer>
+</div>
+
+<script>
+/* =====================================================================
+   DADOS EDITÁVEIS — ajuste livremente (datas no formato "AAAA-MM").
+   O eixo do cronograma vai de julho/2026 (índice 0) a julho/2027 (índice 12).
+   ===================================================================== */
+var BASE = ["2026-07","2026-08","2026-09","2026-10","2026-11","2026-12",
+            "2027-01","2027-02","2027-03","2027-04","2027-05","2027-06","2027-07"];
+var MES_LABEL = ["JUL/26","AGO","SET","OUT","NOV","DEZ","JAN/27","FEV","MAR","ABR","MAI","JUN","JUL/27"];
+
+var TAREFAS = [
+  { id:"1-A", nome:"Criação do logotipo",                 inicio:"2026-07", fim:"2026-07", feito:true  },
+  { id:"1-B", nome:"Descrição / aprovação / divulgação",  inicio:"2026-07", fim:"2026-09", feito:false },
+  { id:"1-C", nome:"Eventual estatuto",                   inicio:"2026-09", fim:"2026-12", feito:false },
+  { id:"2-A", nome:"Captação de integrantes",             inicio:"2026-08", fim:"2027-03", feito:false },
+  { id:"2-B", nome:"Mantenedores / patrocinadores",       inicio:"2026-10", fim:"2027-05", feito:false },
+  { id:"3-A", nome:"Formatação de templates de textos",   inicio:"2026-07", fim:"2026-09", feito:false },
+  { id:"4-A", nome:"Contatos com outras entidades",       inicio:"2026-09", fim:"2027-01", feito:false },
+  { id:"4-B", nome:"Acordos com entidades técnicas",      inicio:"2027-01", fim:"2027-04", feito:false },
+  { id:"5-A", nome:"Criação da biblioteca",               inicio:"2026-07", fim:"2026-09", feito:true  },
+  { id:"5-B", nome:"Solicitação / arquivo / controle",    inicio:"2026-08", fim:"2026-10", feito:true  },
+  { id:"6",   nome:"Sistema e valores de contribuição",   inicio:"2026-09", fim:"2026-11", feito:true  }
+];
+
+var FEITO = [
+  "Logotipo do IRC criado",
+  "Site institucional no ar",
+  "Revista IRC nº 1 + leitor flipbook (acesso por assinatura)",
+  "Página Sobre (Dr. Carlson, homenageados, conselho editorial)",
+  "Biblioteca com login e acervo protegido por nível",
+  "Sistema de assinatura (planos + Pix)",
+  "Migração do acervo para armazenamento privado"
+];
+var AFAZER = [
+  "Eventual estatuto",
+  "Captação de integrantes",
+  "Busca de mantenedores / patrocinadores",
+  "Contatos e acordos com outras entidades técnicas",
+  "Padronização final dos templates de textos",
+  "Revisão deste planejamento pelo conselho"
+];
+
+var POSICIONAMENTO =
+  "<p>O Instituto Roy Carlson nasce para <b>preservar e difundir a memória técnica</b> da tecnologia do " +
+  "concreto-massa e das barragens — um papel <b>complementar</b>, e não concorrente, ao de entidades " +
+  "consagradas como o <b>IBRACON</b> e o <b>CBDB</b>.</p>" +
+  "<p>Buscamos o <b>apoio</b> dessas instituições, com quem compartilhamos público e propósito, e não o " +
+  "fechamento de portas por eventual receio de concorrência. Onde houver alguma sobreposição de papéis, " +
+  "nosso compromisso é <b>somar</b>: o IRC não pretende, de forma alguma, canibalizar o público, a receita " +
+  "ou as publicações (incluindo as revistas) dessas entidades.</p>" +
+  "<p>O Instituto se posiciona como um <b>acervo histórico e ponto de encontro</b> em torno do legado do " +
+  "Dr. Roy Carlson e dos engenheiros brasileiros que com ele conviveram — gerando valor que retorna a todo " +
+  "o ecossistema técnico nacional.</p>";
+
+/* Galerias: cada foto é servida pelo endpoint protegido /api/planejamento/foto */
+var GALERIAS = [
+  { titulo:"Fotos do Andriolo", fotos:[
+    { n:"1979-itaipu.png",               t:"1979 — Itaipu",                 c:"Da esquerda para a direita: Bitencourt; Pacelli; Gustavo Lobo; (a confirmar). Sentados: Souza; Luércio; Andriolo; Prof. Carlson." },
+    { n:"1981-foz-do-iguacu.jpg",        t:"1981 — Foz do Iguaçu",          c:"Janeiro de 1981, Cataratas do Iguaçu. Prof. Carlson e Luércio." },
+    { n:"1981-berkeley-1.jpg",           t:"1981 — Berkeley, CA",           c:"Prof. Polivka; Dr. Epaminondas; Andriolo; Prof. Pirtz; Bento Sgarboza; Miguel Saad; Prof. Carlson." },
+    { n:"1981-berkeley-2.jpg",           t:"1981 — Berkeley, CA",           c:"Prof. Pirtz; (esposas do Miguel e do Bento); Miguel Saad; Prof. Carlson; Prof. Polivka; Dr. Paulo Monteiro; Dr. Epaminondas; Andriolo." },
+    { n:"1981-berkeley-3.jpg",           t:"1981 — Berkeley, CA",           c:"Dr. Epaminondas; Andriolo; Miguel Saad e esposa; Prof. Carlson; Bento Sgarbosa e esposa." },
+    { n:"1988-san-francisco-icold.jpg",  t:"1988 — San Francisco, ICOLD",   c:"ICOLD Congress. Prof. Dr. Carlson e Dr. Epaminondas do Amaral." }
+  ]},
+  { titulo:"Comenda do Governo Brasileiro (1983)", fotos:
+    (function(){var a=[];for(var i=1;i<=12;i++){var s=(i<10?"0"+i:""+i);
+      a.push({n:"comenda-"+s+".png",t:"Comenda — "+i+"/12",c:"Comenda do Governo Brasileiro ao Prof. Roy Carlson. Foto a identificar (Andriolo sugere obter junto ao CBDB)."});}return a;})()
+  },
+  { titulo:"Bureau of Reclamation (referência)", fotos:[
+    { n:"burec/burec-1.png", t:"BuRec", c:"Acervo Bureau of Reclamation (ref.: Pacoima Dam)." },
+    { n:"burec/burec-2.png", t:"BuRec", c:"Acervo Bureau of Reclamation." },
+    { n:"burec/burec-3.png", t:"BuRec", c:"Acervo Bureau of Reclamation." }
+  ]}
+];
+
+/* Notificação de sugestões — reusa o endpoint de leads (Apps Script). */
+var SUG_ENDPOINT = "https://script.google.com/macros/s/AKfycbxNl-alO6cSr3wGn0r1EgTnP7Cx7035YRIrVv5ZeCM4kYXFgOxh4hd1fV1JqzUbfH5S/exec";
+
+/* ===================== render ===================== */
+var $ = function(id){ return document.getElementById(id); };
+function idx(ym){ var i = BASE.indexOf(ym); return i < 0 ? 0 : i; }
+
+function renderGantt(){
+  var N = BASE.length;
+  var head = '<div class="gantt-head"><div></div><div class="months">' +
+    MES_LABEL.map(function(m){ return '<span>'+m+'</span>'; }).join('') + '</div></div>';
+  var rows = TAREFAS.map(function(t){
+    var a = idx(t.inicio), b = idx(t.fim);
+    if (b < a) b = a;
+    var left = (a / N * 100).toFixed(3);
+    var width = ((b - a + 1) / N * 100).toFixed(3);
+    return '<div class="gantt-row"><div class="name"><b>'+t.id+'</b> '+t.nome+'</div>'+
+      '<div class="gantt-track"><div class="bar'+(t.feito?' done':'')+'" style="left:'+left+'%;width:'+width+'%" '+
+      'title="'+t.inicio+' → '+t.fim+'"></div></div></div>';
+  }).join('');
+  $("gantt").innerHTML = head + rows;
+}
+function renderList(el, arr, checked){
+  $(el).innerHTML = arr.map(function(s){
+    return '<li><input type="checkbox" '+(checked?'checked':'')+' disabled>'+
+      '<span'+(checked?' class="done-txt"':'')+'>'+s+'</span></li>';
+  }).join('');
+}
+function renderGalerias(){
+  $("galerias").innerHTML = GALERIAS.map(function(g){
+    var figs = g.fotos.map(function(f){
+      var src = "/api/planejamento/foto?name=" + encodeURIComponent(f.n);
+      return '<figure><img loading="lazy" src="'+src+'" alt="'+f.t+'">'+
+        '<figcaption><b>'+f.t+'</b>'+f.c+'</figcaption></figure>';
+    }).join('');
+    return '<div class="galtitle">'+g.titulo+'</div><div class="gal">'+figs+'</div>';
+  }).join('');
+}
+
+/* ===================== sugestões ===================== */
+var SESSION = null;
+function sendSuggestion(){
+  var ta = $("sug"), btn = $("sugBtn"), msg = $("sugMsg");
+  var texto = (ta.value || "").trim();
+  if (texto.length < 4){ msg.style.color = "#b04a2f"; msg.textContent = "Escreva sua sugestão."; return; }
+  btn.disabled = true; msg.style.color = "var(--ink-dim)"; msg.textContent = "Enviando…";
+  var body = {
+    tipo: "sugestao-planejamento",
+    nome: SESSION ? (SESSION.name || "") : "",
+    email: SESSION ? (SESSION.email || "") : "",
+    mensagem: texto,
+    pagina: "planejamento",
+    ts: Date.now()
+  };
+  var done = function(ok){
+    msg.style.color = "var(--ok)"; msg.textContent = "Obrigado! Sua sugestão foi enviada.";
+    ta.value = ""; btn.disabled = false;
+  };
+  try{
+    fetch(SUG_ENDPOINT, { method:"POST", mode:"no-cors",
+      headers:{ "Content-Type":"application/json" }, body: JSON.stringify(body) })
+      .then(done, done);
+  }catch(e){ done(); }
+}
+
+/* ===================== boot / gate ===================== */
+var RANK = { public:0, member:1, founder:2, sponsor:3 };
+function boot(){
+  fetch("/api/session", { credentials:"same-origin" })
+    .then(function(r){ return r.ok ? r.json() : { logged:false }; })
+    .then(function(s){
+      SESSION = s;
+      var rank = s && s.logged ? (RANK[s.planLevel] || 0) : 0;
+      if (rank >= RANK.member){
+        $("gate").classList.remove("show");
+        $("app").classList.add("show");
+        $("who").textContent = "Olá, " + (s.name || s.email || "assinante");
+        renderGantt();
+        renderList("feito", FEITO, true);
+        renderList("afazer", AFAZER, false);
+        $("posicionamento").innerHTML = POSICIONAMENTO;
+        renderGalerias();
+        $("sugBtn").addEventListener("click", sendSuggestion);
+      } else {
+        $("gate").classList.add("show");
+      }
+    })
+    .catch(function(){ $("gate").classList.add("show"); });
+}
+boot();
+</script>
+</body>
+</html>

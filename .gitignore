@@ -83,3 +83,6 @@ prototipo-site-irc.zip
 # Livros do Protz retidos para revisão de direitos (não publicar)
 biblioteca-adapters/irc/catalog.protz-held.json
 biblioteca-adapters/irc/extra-files.protz-held.tsv
+
+# Fotos exclusivas do Planejamento (servidas só via endpoint gateado)
+site/api/_data/planejamento/

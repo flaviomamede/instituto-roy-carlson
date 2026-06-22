@@ -6,6 +6,9 @@
   "functions": {
     "api/file/[slug].js": {
       "includeFiles": "api/_data/library/*.json"
+    },
+    "api/planejamento/foto.js": {
+      "includeFiles": "api/_data/planejamento/fotos/**"
     }
   },
   "redirects": [
