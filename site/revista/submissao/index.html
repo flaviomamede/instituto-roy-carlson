@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Formulário de submissão de artigos — Revista IRC." />
+    <title>Submissão de artigo | Revista IRC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/revista/revista.css" />
+    <style>
+      .submission-form {
+        max-width: 42rem;
+      }
+      .submission-form label {
+        display: block;
+        font-weight: 600;
+        margin: 1.25rem 0 0.35rem;
+      }
+      .submission-form input[type="text"],
+      .submission-form input[type="number"],
+      .submission-form input[type="file"],
+      .submission-form textarea {
+        width: 100%;
+        font: inherit;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--white);
+      }
+      .submission-form textarea {
+        min-height: 5rem;
+        resize: vertical;
+      }
+      .submission-form .hint {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin: 0.25rem 0 0;
+      }
+      .submission-form .row-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+      @media (max-width: 640px) {
+        .submission-form .row-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .submission-form .status {
+        margin-top: 1.25rem;
+        padding: 0.85rem 1rem;
+        border-radius: 8px;
+        display: none;
+      }
+      .submission-form .status.ok {
+        display: block;
+        background: #e8f5ec;
+        border: 1px solid #b8dfc4;
+      }
+      .submission-form .status.err {
+        display: block;
+        background: #fdecea;
+        border: 1px solid #f5c2c0;
+      }
+      .submission-form button[type="submit"] {
+        margin-top: 1.5rem;
+      }
+      .dev-note {
+        margin: 1.5rem 0;
+        padding: 1rem 1.1rem;
+        background: #f8f4ea;
+        border: 1px solid #e5d7b8;
+        border-radius: 8px;
+        font-size: 0.92rem;
+      }
+      .dev-note code {
+        font-size: 0.88em;
+      }
+      .dev-note.online {
+        background: #e8f5ec;
+        border-color: #b8dfc4;
+      }
+      .dev-note.offline {
+        background: #fdecea;
+        border-color: #f5c2c0;
+      }
+      .pilot-banner {
+        margin: 1.25rem 0 1.5rem;
+        padding: 1.1rem 1.2rem;
+        background: #f8f4ea;
+        border: 1px solid #e5d7b8;
+        border-radius: 8px;
+        font-size: 0.98rem;
+        line-height: 1.55;
+      }
+      .pilot-banner .button-row {
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+      .submission-form[hidden] {
+        display: none !important;
+      }
+      .local-only[hidden] {
+        display: none !important;
+      }
+      .submission-form button[type="submit"]:disabled {
+        opacity: 0.65;
+        cursor: wait;
+      }
+      .status.busy {
+        display: block;
+        background: #eef4fb;
+        border: 1px solid #c5d9ef;
+      }
+      .status .paths {
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-group">
+        <a href="/" class="brand-mark" aria-label="Instituto Roy Carlson — início">IRC</a>
+        <a href="/revista/index.html" class="brand-title brand-title-revista" data-brand="revista" data-nav="revista" hidden>Revista IRC</a>
+        <a href="/" class="brand-title brand-title-inst" data-brand="institucional" data-nav="institucional">Instituto Roy Carlson</a>
+      </div>
+      <nav class="nav nav-institutional" aria-label="Navegação institucional">
+        <div class="nav-dropdown" id="revistaDropdown">
+          <a href="/revista/index.html" class="nav-dropdown-trigger" data-nav="revista">Revista IRC</a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/revista/apresentacao.html" data-nav="apresentacao" role="menuitem">Apresentação</a>
+            <a href="/revista/expediente.html" data-nav="expediente" role="menuitem">Expediente</a>
+            <a href="/revista/normas-publicacao.html" data-nav="normas" role="menuitem">Normas</a>
+            <a href="/revista/submissao/" data-nav="submissao" role="menuitem">Submissão</a>
+            <a href="/revista/edicoes/index.html" data-nav="edicoes" role="menuitem">Edições</a>
+            <a href="/revista/leitura/index.html" data-nav="flipbook" role="menuitem">Flipbook</a>
+          </div>
+        </div>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+        <a href="/sobre/" data-nav="sobre">Sobre</a>
+        <a href="/assinatura/" data-nav="assinatura" class="nav-cta">Assinar</a>
+        <a href="/biblioteca/" data-nav="login" class="nav-login">Login</a>
+      </nav>
+      <nav class="nav nav-revista" aria-label="Revista IRC" hidden>
+        <a href="/revista/apresentacao.html" data-nav="apresentacao">Apresentação</a>
+        <a href="/revista/expediente.html" data-nav="expediente">Expediente</a>
+        <a href="/revista/normas-publicacao.html" data-nav="normas">Normas</a>
+        <a href="/revista/edicoes/index.html" data-nav="edicoes">Edições</a>
+        <a href="/revista/leitura/index.html" data-nav="flipbook">Flipbook</a>
+        <a href="/biblioteca/" data-nav="biblioteca">Biblioteca</a>
+        <a href="/sobre/" data-nav="sobre">Sobre</a>
+        <a href="/assinatura/" data-nav="assinatura" class="nav-cta">Assinar</a>
+        <a href="/biblioteca/" data-nav="login" class="nav-login">Login</a>
+      </nav>
+    </header>
+    <script>
+    (function () {
+      var p = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      var isRevista = p === '/revista' || p.indexOf('/revista/') === 0;
+      var root = document.documentElement;
+      root.classList.toggle('section-revista', isRevista);
+      root.classList.toggle('section-institutional', !isRevista);
+      var instNav = document.querySelector('.nav-institutional');
+      var revNav = document.querySelector('.nav-revista');
+      if (instNav) instNav.hidden = isRevista;
+      if (revNav) revNav.hidden = !isRevista;
+      document.querySelectorAll('[data-brand="revista"]').forEach(function (el) {
+        el.hidden = !isRevista;
+      });
+      document.querySelectorAll('[data-brand="institucional"]').forEach(function (el) {
+        el.hidden = isRevista;
+      });
+    })();
+    </script>
+    <script src="/js/site-nav.js" defer></script>
+
+    <main>
+      <p class="eyebrow">Autores · Revista IRC</p>
+      <h1>Submissão de artigo</h1>
+      <p class="lead">
+        Canal para autores enviarem metadados, texto em Markdown e figuras. A redação aplica o template
+        editorial e gera o PDF do artigo.
+      </p>
+
+      <div class="pilot-banner" id="pilotBanner">
+        <p>
+          <strong>Envio pelo formulário (em fase de testes).</strong>
+          A equipe editorial está validando o fluxo de submissão. Por enquanto, entre em contato com o
+          editor para enviar seu manuscrito.
+        </p>
+        <div class="button-row">
+          <a
+            class="button primary"
+            href="mailto:flaviomamede.gomes@gmail.com?subject=Submiss%C3%A3o%20%E2%80%94%20Revista%20IRC"
+          >Falar com o editor</a>
+          <a class="button" href="/revista/normas-publicacao.html">Ver normas</a>
+        </div>
+      </div>
+
+      <div class="dev-note local-only" id="devNote" hidden>
+        Verificando servidor de submissão…
+      </div>
+
+      <form class="submission-form local-only" id="submissionForm" enctype="multipart/form-data" hidden>
+        <label for="titulo">Título do artigo</label>
+        <input type="text" id="titulo" name="titulo" required />
+
+        <label for="slug">Slug (opcional)</label>
+        <input type="text" id="slug" name="slug" placeholder="ex.: carlson-medicao-tensoes" />
+        <p class="hint">Usado no nome da pasta. Se vazio, é derivado do título.</p>
+
+        <label for="autores">Autores</label>
+        <textarea id="autores" name="autores" rows="4" placeholder="Roy W. Carlson&#10;tradução: Vladimir Antonio Paulón&#10;revisão: Flávio M. P. Gomes" required></textarea>
+        <p class="hint">Um autor por linha. Use <code>tradução:</code>, <code>revisão:</code> etc. para papéis.</p>
+
+        <label for="sumario">Sumário (resumo)</label>
+        <textarea id="sumario" name="sumario" rows="5" required></textarea>
+
+        <label for="palavras_chave">Palavras-chave</label>
+        <textarea id="palavras_chave" name="palavras_chave" rows="3" placeholder="Uma por linha ou separadas por vírgula" required></textarea>
+
+        <div class="row-3">
+          <div>
+            <label for="recebido">Recebido em</label>
+            <input type="text" id="recebido" name="recebido" placeholder="mar-2026" />
+          </div>
+          <div>
+            <label for="aprovado">Aprovado em</label>
+            <input type="text" id="aprovado" name="aprovado" placeholder="abr-2026" />
+          </div>
+          <div>
+            <label for="publicado">Publicado em</label>
+            <input type="text" id="publicado" name="publicado" placeholder="mai-2026" />
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div>
+            <label for="volume">Volume</label>
+            <input type="number" id="volume" name="volume" value="1" min="1" />
+          </div>
+          <div>
+            <label for="numero">Número</label>
+            <input type="number" id="numero" name="numero" value="2" min="1" />
+          </div>
+          <div>
+            <label for="mes_ano">Mês/ano (cabeçalho)</label>
+            <input type="text" id="mes_ano" name="mes_ano" value="out/2026" placeholder="out/2026" />
+          </div>
+        </div>
+
+        <input type="hidden" id="ano" name="ano" value="2026" />
+        <input type="hidden" name="site_url" value="www.institutoroycarlson.org/revista" />
+
+        <label for="markdown">Corpo do artigo (.md)</label>
+        <input type="file" id="markdown" name="markdown" accept=".md,text/markdown" required />
+        <p class="hint">Use <code>##</code> para seções. Imagens: <code>![legenda](figuras/nome.png)</code></p>
+
+        <label for="figuras_zip">Figuras (.zip)</label>
+        <input type="file" id="figuras_zip" name="figuras_zip" accept=".zip,application/zip" />
+        <p class="hint">Arquivos de imagem na raiz do zip (PNG, JPG, etc.).</p>
+
+        <button type="submit" class="button primary" id="submitBtn">Enviar e gerar PDF</button>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="/revista/normas-publicacao.html">← Normas para publicação</a></p>
+    </footer>
+
+    <script>
+    (function () {
+      var form = document.getElementById('submissionForm');
+      var status = document.getElementById('status');
+      var devNote = document.getElementById('devNote');
+      var pilotBanner = document.getElementById('pilotBanner');
+      var submitBtn = document.getElementById('submitBtn');
+
+      function isLocal() {
+        var host = location.hostname;
+        return host === 'localhost' || host === '127.0.0.1';
+      }
+
+      function apiBase() {
+        return isLocal() ? 'http://127.0.0.1:8791' : '';
+      }
+
+      var local = isLocal();
+      var base = apiBase();
+
+      if (local) {
+        pilotBanner.hidden = true;
+        form.hidden = false;
+        devNote.hidden = false;
+      } else {
+        pilotBanner.hidden = false;
+        form.hidden = true;
+        devNote.hidden = true;
+      }
+
+      function setServerNote(online) {
+        if (!local) return;
+        devNote.classList.toggle('online', online);
+        devNote.classList.toggle('offline', !online);
+        if (online) {
+          devNote.innerHTML = '<strong>Ambiente local.</strong> Servidor pronto — o artigo será salvo em <code>template/artigos/</code> e o PDF gerado automaticamente.';
+          submitBtn.disabled = false;
+        } else {
+          devNote.innerHTML = '<strong>Servidor offline.</strong> Execute <code>cd template &amp;&amp; python3 serve-submissao.py</code> (porta 8791).';
+          submitBtn.disabled = true;
+        }
+      }
+
+      if (local && base) {
+        fetch(base + '/api/revista/status', { method: 'GET' })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function () { setServerNote(true); })
+          .catch(function () { setServerNote(false); });
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        if (!local || !base) return;
+
+        submitBtn.disabled = true;
+        status.className = 'status busy';
+        status.textContent = 'Enviando arquivos e metadados…';
+
+        fetch(base + '/api/revista/submeter-artigo', { method: 'POST', body: new FormData(form) })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (res) {
+            if (!res.ok || !res.j.ok) {
+              throw new Error((res.j && res.j.error) || 'Falha no envio');
+            }
+            status.className = 'status ok';
+            status.innerHTML =
+              '<strong>Artigo #' + res.j.id + ' gerado com sucesso.</strong>' +
+              '<p class="paths">Pasta: <code>' + res.j.pasta + '</code><br>' +
+              'PDF: <code>' + res.j.pdf + '</code><br>' +
+              'HTML: <code>' + (res.j.html || '') + '</code></p>' +
+              (res.j.abs_pdf ? '<p class="hint">Abra no sistema: <code>' + res.j.abs_pdf + '</code></p>' : '');
+            form.reset();
+            document.getElementById('volume').value = '1';
+            document.getElementById('numero').value = '2';
+            document.getElementById('mes_ano').value = 'out/2026';
+          })
+          .catch(function (err) {
+            status.className = 'status err';
+            status.textContent = err.message || String(err);
+          })
+          .finally(function () {
+            if (local) submitBtn.disabled = false;
+          });
+      });
+    })();
+    </script>
+  </body>
+</html>

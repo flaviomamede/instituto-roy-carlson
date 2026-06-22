@@ -20,6 +20,7 @@
     if (path.startsWith('/revista/apresentacao')) return 'apresentacao';
     if (path.startsWith('/revista/expediente')) return 'expediente';
     if (path.startsWith('/revista/normas-publicacao')) return 'normas';
+    if (path.startsWith('/revista/submissao')) return 'submissao';
     if (path.startsWith('/revista/edicoes')) return 'edicoes';
     if (path === '/revista') return 'revista';
     if (path.startsWith('/revista')) return 'revista';
