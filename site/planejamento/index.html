@@ -48,18 +48,28 @@
   section.block > .sub{color:var(--ink-dim);font-size:13px;margin:0 0 16px}
   /* ---------- gantt ---------- */
   .gantt{overflow-x:auto}
-  .gantt-grid{min-width:680px}
-  .gantt-head,.gantt-row{display:grid;grid-template-columns:210px 1fr;align-items:center}
+  .gantt-grid{min-width:740px}
+  .gantt-head,.gantt-row{display:grid;grid-template-columns:240px 1fr;align-items:center}
   .gantt-head .months{display:grid;grid-template-columns:repeat(13,1fr);font-size:10.5px;color:var(--ink-dim);text-transform:uppercase}
   .gantt-head .months span{text-align:center;border-left:1px solid var(--line);padding:2px 0}
-  .gantt-row{border-top:1px solid #f0ead9;min-height:34px}
+  .gantt-group{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;
+    background:linear-gradient(90deg,var(--teal-deep),var(--teal));padding:6px 11px;border-radius:7px;margin:16px 0 2px}
+  .gantt-group:first-child{margin-top:0}
+  .gantt-group .gdesc{display:block;font-weight:500;text-transform:none;letter-spacing:0;font-size:11px;color:#dcebe7;margin-top:3px}
+  .gantt-row{border-top:1px solid #f0ead9;min-height:36px}
   .gantt-row .name{font-size:13px;padding-right:12px}
   .gantt-row .name b{color:var(--teal-deep);font-weight:700}
-  .gantt-track{position:relative;height:22px;background:
+  .gantt-row .obs{display:block;font-size:11px;color:var(--ink-dim);margin-top:1px}
+  .gantt-track{position:relative;height:26px;background:
     repeating-linear-gradient(90deg,transparent,transparent calc(100%/13 - 1px),#f0ead9 calc(100%/13 - 1px),#f0ead9 calc(100%/13))}
-  .bar{position:absolute;top:3px;height:16px;border-radius:8px;background:linear-gradient(180deg,var(--teal),var(--teal-deep));
+  .bar{position:absolute;top:5px;height:16px;border-radius:8px;background:linear-gradient(180deg,var(--teal),var(--teal-deep));
     box-shadow:0 1px 3px rgba(0,0,0,.18)}
   .bar.done{background:linear-gradient(180deg,#4bb37e,var(--ok))}
+  .bar.cont{border-top-right-radius:0;border-bottom-right-radius:0}        /* barra que segue numa seta */
+  .arrow{position:absolute;top:5px;width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;
+    border-left:11px solid var(--teal-deep)}                               /* seta de continuidade */
+  .milestone{position:absolute;top:6px;width:14px;height:14px;margin-left:-7px;background:var(--gold);
+    transform:rotate(45deg);box-shadow:0 1px 3px rgba(0,0,0,.25);border:1px solid var(--gold-deep)}  /* marco/evento */
   /* ---------- checklists ---------- */
   .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   @media (max-width:720px){.cols2{grid-template-columns:1fr}}
@@ -180,18 +190,32 @@ var BASE = ["2026-07","2026-08","2026-09","2026-10","2026-11","2026-12",
             "2027-01","2027-02","2027-03","2027-04","2027-05","2027-06","2027-07"];
 var MES_LABEL = ["JUL/26","AGO","SET","OUT","NOV","DEZ","JAN/27","FEV","MAR","ABR","MAI","JUN","JUL/27"];
 
+/* Posições no eixo de meses (0 = início de jul/2026 … 12 = início de jul/2027,
+   13 = fim de jul/2027). Frações = meio do mês (ex.: 1.5 = metade de agosto).
+   marco = evento (losango). seta = atividade que continua além do fim (seta). */
+var GRUPOS = {
+  1: { titulo:"Interno — entre os fundadores",
+       desc:"Definições internas que precedem o trabalho institucional." },
+  2: { titulo:"Institucional — articulação e apoio",
+       desc:"Conduzido por quem tem acesso e influência nas entidades potencialmente apoiadoras (IBRACON e CBDB, via Selmo Kuperman e José Marques) e em grandes empresas (Andriolo / Votorantim; Holanda / CR Almeida e CNO)." },
+  3: { titulo:"Técnico — site, biblioteca e textos",
+       desc:"Trabalho técnico ligado ao site. Responsável: Flávio Mamede." }
+};
 var TAREFAS = [
-  { id:"1-A", nome:"Criação do logotipo",                 inicio:"2026-07", fim:"2026-07", feito:true  },
-  { id:"1-B", nome:"Descrição / aprovação / divulgação",  inicio:"2026-07", fim:"2026-09", feito:false },
-  { id:"1-C", nome:"Eventual estatuto",                   inicio:"2026-09", fim:"2026-12", feito:false },
-  { id:"2-A", nome:"Captação de integrantes",             inicio:"2026-08", fim:"2027-03", feito:false },
-  { id:"2-B", nome:"Mantenedores / patrocinadores",       inicio:"2026-10", fim:"2027-05", feito:false },
-  { id:"3-A", nome:"Formatação de templates de textos",   inicio:"2026-07", fim:"2026-09", feito:false },
-  { id:"4-A", nome:"Contatos com outras entidades",       inicio:"2026-09", fim:"2027-01", feito:false },
-  { id:"4-B", nome:"Acordos com entidades técnicas",      inicio:"2027-01", fim:"2027-04", feito:false },
-  { id:"5-A", nome:"Criação da biblioteca",               inicio:"2026-07", fim:"2026-09", feito:true  },
-  { id:"5-B", nome:"Solicitação / arquivo / controle",    inicio:"2026-08", fim:"2026-10", feito:true  },
-  { id:"6",   nome:"Sistema e valores de contribuição",   inicio:"2026-09", fim:"2026-11", feito:true  }
+  { grupo:1, id:"1-A", nome:"Explicação e aprovação do logotipo",           ini:0.0, fim:1.0 },
+  { grupo:1, id:"1-B", nome:"Descrição / aprovação / divulgação do objetivo", ini:0.0, fim:1.5 },
+  { grupo:1, id:"1-C", nome:"Sistema e valores de contribuição",            ini:1.0, fim:1.4 },
+  { grupo:1, id:"1-D", nome:"Reunião de reavaliação e replanejamento",      marco:1.5 },
+  { grupo:1, id:"1-E", nome:"Eventual estatuto",                            ini:1.5, fim:2.0 },
+
+  { grupo:2, id:"2-A", nome:"Captação de integrantes",                      ini:1.5, fim:6.0, seta:true },
+  { grupo:2, id:"2-B", nome:"Busca de mantenedores / patrocinadores",       ini:1.5, fim:8.0, seta:true },
+  { grupo:2, id:"2-C", nome:"Contatos com outras entidades técnicas",       ini:3.0, fim:8.0, seta:true },
+  { grupo:2, id:"2-D", nome:"Acordos com entidades técnicas",               ini:6.0, fim:8.0, seta:true },
+
+  { grupo:3, id:"3-A", nome:"Formatação de templates de textos",            ini:0.0, fim:1.0 },
+  { grupo:3, id:"3-B", nome:"Criação da biblioteca",                        ini:0.0, fim:2.0, feito:true, obs:"Criada. A cada reunião, propõem-se novas obras e melhorias." },
+  { grupo:3, id:"3-C", nome:"Solicitação e arquivo — controle de uso",      ini:0.0, fim:1.0, obs:"Definir as métricas de uso da Biblioteca a acompanhar." }
 ];
 
 var FEITO = [
@@ -250,22 +274,33 @@ var SUG_ENDPOINT = "https://script.google.com/macros/s/AKfycbxNl-alO6cSr3wGn0r1E
 
 /* ===================== render ===================== */
 var $ = function(id){ return document.getElementById(id); };
-function idx(ym){ var i = BASE.indexOf(ym); return i < 0 ? 0 : i; }
+function pos(v){ return (v / 13 * 100); }   /* eixo de 0 a 13 meses -> % */
 
 function renderGantt(){
-  var N = BASE.length;
   var head = '<div class="gantt-head"><div></div><div class="months">' +
     MES_LABEL.map(function(m){ return '<span>'+m+'</span>'; }).join('') + '</div></div>';
-  var rows = TAREFAS.map(function(t){
-    var a = idx(t.inicio), b = idx(t.fim);
-    if (b < a) b = a;
-    var left = (a / N * 100).toFixed(3);
-    var width = ((b - a + 1) / N * 100).toFixed(3);
-    return '<div class="gantt-row"><div class="name"><b>'+t.id+'</b> '+t.nome+'</div>'+
-      '<div class="gantt-track"><div class="bar'+(t.feito?' done':'')+'" style="left:'+left+'%;width:'+width+'%" '+
-      'title="'+t.inicio+' → '+t.fim+'"></div></div></div>';
-  }).join('');
-  $("gantt").innerHTML = head + rows;
+  var html = '', lastG = null;
+  TAREFAS.forEach(function(t){
+    if (t.grupo !== lastG){
+      lastG = t.grupo;
+      var g = GRUPOS[t.grupo] || { titulo:'', desc:'' };
+      html += '<div class="gantt-group">'+g.titulo+'<span class="gdesc">'+g.desc+'</span></div>';
+    }
+    var track;
+    if (t.marco != null){
+      track = '<div class="milestone" style="left:'+pos(t.marco).toFixed(3)+'%" title="Evento — '+t.nome+'"></div>';
+    } else {
+      var fim = (t.fim < t.ini) ? t.ini : t.fim;
+      var bar = '<div class="bar'+(t.feito?' done':'')+(t.seta?' cont':'')+
+        '" style="left:'+pos(t.ini).toFixed(3)+'%;width:'+pos(fim - t.ini).toFixed(3)+'%" title="'+(t.obs||'')+'"></div>';
+      var arrow = t.seta ? '<div class="arrow" style="left:'+pos(fim).toFixed(3)+'%"></div>' : '';
+      track = bar + arrow;
+    }
+    html += '<div class="gantt-row"><div class="name"><b>'+t.id+'</b> '+t.nome+
+      (t.obs ? '<span class="obs">'+t.obs+'</span>' : '')+'</div>'+
+      '<div class="gantt-track">'+track+'</div></div>';
+  });
+  $("gantt").innerHTML = head + html;
 }
 function renderList(el, arr, checked){
   $(el).innerHTML = arr.map(function(s){
