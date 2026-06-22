@@ -51,6 +51,8 @@ copy_private "$SRC/P190 2025 Ocupações Entorno Barragens Responsabilidades&Cui
 copy_private "$SRC/P191 2025 DisponibilidadesCrescentesInspeçãoMonitoramento&ControleBarragens.pdf" "p191-andriolo.pdf"
 copy_private "$SRC/P192 2025 InspeçõesManutençõesReabilitações&ReparosBarramentos&Estruturas.pdf" "p192-andriolo.pdf"
 copy_private "$SRC/reminiscences/Dr. Roy W. Carlson's 85th Birthday - REMINISCENCES.pdf" "reminiscencias-roy-carlson.pdf"
+copy_public "$SRC/The History of Large Federal Dams-Planning, Design, and Construction.pdf" "history-large-federal-dams.pdf"
+copy_public "$SRC/USING PAST EXPERIENCE IN MODERN ANALYSIS OF ARCH DAMS.pdf" "using-past-experience-arch-dams.pdf"
 
 # Lotes extras (livros Marcelo Protz + papers do Dr. Carlson) via manifesto
 # gerado por scripts/import-biblioteca-batch.py (folder<TAB>origem<TAB>destino).

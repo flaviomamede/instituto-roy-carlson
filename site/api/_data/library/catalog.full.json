@@ -1288,6 +1288,59 @@
       "assets": {
         "pdf": "testes-aceler-exp-conc-devido-raa.pdf"
       }
+    },
+    {
+      "id": "history-large-federal-dams",
+      "slug": "history-large-federal-dams",
+      "title": "The History of Large Federal Dams: Planning, Design, and Construction",
+      "authors": [
+        "U.S. Bureau of Reclamation"
+      ],
+      "year": 2005,
+      "language": "en",
+      "type": "livro",
+      "collection": "Memória técnica",
+      "tags": [
+        "barragens",
+        "história",
+        "engenharia"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Obra de referência do U.S. Bureau of Reclamation sobre o planejamento, projeto e construção das grandes barragens federais norte-americanas. Acesso livre."
+      },
+      "assets": {
+        "pdf": "history-large-federal-dams.pdf"
+      }
+    },
+    {
+      "id": "using-past-experience-arch-dams",
+      "slug": "using-past-experience-arch-dams",
+      "title": "Using Past Experience in Modern Analysis of Arch Dams",
+      "authors": [
+        "Emmanuel Robbe",
+        "Jerzy Salamon"
+      ],
+      "year": 2024,
+      "language": "en",
+      "type": "artigo",
+      "collection": "Congressos",
+      "tags": [
+        "barragens em arco",
+        "análise estrutural",
+        "concreto"
+      ],
+      "access": {
+        "minLevel": "public"
+      },
+      "public": {
+        "summary": "Artigo da USSD 2024 Annual Conference sobre o uso da experiência histórica na análise moderna de barragens em arco. Acesso livre."
+      },
+      "assets": {
+        "pdf": "using-past-experience-arch-dams.pdf"
+      }
     }
   ]
 }
