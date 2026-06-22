@@ -161,4 +161,112 @@
       });
     });
   })();
+
+  /* ---------- Login de qualquer página (modal) ----------
+     Intercepta os links "Login" do menu (institucional e revista) e abre um modal
+     de login por e-mail (POST /api/login + /api/session), em vez de mandar para a
+     Biblioteca. Funciona em qualquer página que carregue este script. */
+  (function setupLogin() {
+    if (!document.querySelector('[data-nav="login"]')) return;
+    if (document.getElementById('lmOverlay')) return;
+    var RANK = { public: 0, member: 1, founder: 2, sponsor: 3 };
+
+    var css = document.createElement('style');
+    css.textContent =
+      '#lmOverlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(18,26,30,.55)}' +
+      '#lmOverlay.open{display:flex}' +
+      '.lm-card{background:#fff;border-radius:14px;max-width:380px;width:100%;padding:24px;position:relative;' +
+      'box-shadow:0 20px 50px rgba(0,0,0,.3);font-family:inherit;color:#1f2630}' +
+      '.lm-close{position:absolute;top:8px;right:12px;border:0;background:none;font-size:24px;color:#999;cursor:pointer;line-height:1}' +
+      '.lm-card h3{margin:0 0 6px;font-size:19px;color:#16504f}' +
+      '.lm-card p{margin:0 0 14px;font-size:13.5px;color:#5c6470}' +
+      '.lm-card form{display:flex;gap:8px;flex-wrap:wrap}' +
+      '.lm-card input{flex:1 1 180px;min-width:0;height:44px;border:1px solid #d8cfbb;border-radius:9px;padding:0 12px;font-size:15px;outline:none}' +
+      '.lm-card input:focus{border-color:#c79a3e}' +
+      '.lm-btn{height:44px;padding:0 18px;border:0;border-radius:9px;background:#1f6b6b;color:#fff;font-weight:700;cursor:pointer}' +
+      '.lm-btn:disabled{opacity:.6;cursor:default}' +
+      '.lm-msg{min-height:16px;font-size:13px;margin-top:8px;color:#9a6a14}' +
+      '.lm-assine{margin-top:14px!important;font-size:13px}' +
+      '.lm-assine a{color:#a9802c;font-weight:600;text-decoration:none}' +
+      '.lm-logout{background:#b04a2f;margin-top:6px}';
+    document.head.appendChild(css);
+
+    var ov = document.createElement('div');
+    ov.id = 'lmOverlay';
+    ov.innerHTML =
+      '<div class="lm-card" role="dialog" aria-modal="true">' +
+      '<button class="lm-close" type="button" aria-label="Fechar">×</button>' +
+      '<div class="lm-anon">' +
+      '<h3>Entrar</h3>' +
+      '<p>Acesse com o e-mail cadastrado como assinante ou fundador do IRC.</p>' +
+      '<form class="lm-form"><input class="lm-email" type="email" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>' +
+      '<button type="submit" class="lm-btn lm-enter">Entrar</button></form>' +
+      '<div class="lm-msg" role="status"></div>' +
+      '<p class="lm-assine">Ainda não é assinante? <a href="/assinatura/">Quero assinar →</a></p>' +
+      '</div>' +
+      '<div class="lm-logged" hidden><h3>Sua conta</h3><p class="lm-who"></p>' +
+      '<button type="button" class="lm-btn lm-logout">Sair</button></div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var anon = ov.querySelector('.lm-anon');
+    var logged = ov.querySelector('.lm-logged');
+    var emailI = ov.querySelector('.lm-email');
+    var msg = ov.querySelector('.lm-msg');
+    var who = ov.querySelector('.lm-who');
+
+    function openModal() { ov.classList.add('open'); refreshState(); }
+    function closeModal() { ov.classList.remove('open'); }
+    ov.querySelector('.lm-close').addEventListener('click', closeModal);
+    ov.addEventListener('click', function (e) { if (e.target === ov) closeModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+    document.querySelectorAll('[data-nav="login"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+
+    function rankOf(s) { return s && s.logged ? (RANK[s.planLevel] || 0) : 0; }
+    function session() {
+      return fetch('/api/session', { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.json() : { logged: false }; })
+        .catch(function () { return { logged: false }; });
+    }
+    function setUI(s) {
+      if (rankOf(s) >= 1) {
+        anon.hidden = true; logged.hidden = false;
+        who.textContent = (s.name || s.email) + ' · ' + (s.planLevel || 'assinante');
+        document.querySelectorAll('[data-nav="login"]').forEach(function (a) {
+          a.textContent = s.name ? s.name.split(' ')[0] : 'Conta';
+        });
+      } else {
+        anon.hidden = false; logged.hidden = true;
+        document.querySelectorAll('[data-nav="login"]').forEach(function (a) { a.textContent = 'Login'; });
+      }
+    }
+    function refreshState() { session().then(setUI); }
+
+    ov.querySelector('.lm-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (emailI.value || '').trim();
+      var btn = ov.querySelector('.lm-enter');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Digite um e-mail válido.'; return; }
+      btn.disabled = true; msg.textContent = 'Entrando…';
+      fetch('/api/login', {
+        method: 'POST', credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email.toLowerCase() })
+      }).then(session).then(function (s) {
+        btn.disabled = false;
+        if (rankOf(s) >= 1) { msg.textContent = 'Bem-vindo! Atualizando…'; setTimeout(function () { location.reload(); }, 600); }
+        else { msg.textContent = 'E-mail não encontrado ou sem acesso. Confira ou torne-se assinante.'; }
+      }).catch(function () { btn.disabled = false; msg.textContent = 'Erro ao entrar. Tente novamente.'; });
+    });
+
+    ov.querySelector('.lm-logout').addEventListener('click', function () {
+      fetch('/api/logout', { method: 'POST', credentials: 'same-origin' })
+        .then(function () { location.reload(); })
+        .catch(function () { location.reload(); });
+    });
+
+    refreshState();   /* atualiza o rótulo do link se já estiver logado */
+  })();
 })();
