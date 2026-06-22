@@ -87,3 +87,9 @@ biblioteca-adapters/irc/extra-files.protz-held.tsv
 # Fotos exclusivas do Planejamento (servidas só via endpoint gateado)
 site/api/_data/planejamento/
 biblioteca-adapters/irc/catalog.iwhr-held.json
+
+# Pipeline editorial de artigos (template/): versiona a ferramenta, não o conteúdo
+template/artigos/
+template/_docx-media/
+template/*.docx
+template/os

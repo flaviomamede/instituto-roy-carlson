@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{TITULO}} | Revista IRC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{CSS_HREF}}" />
+</head>
+<body>
+  <div class="running-header">{{HEADER_TEXTO}}</div>
+  <div class="running-footer"><span class="page-number"></span></div>
+
+  <article class="page-sheet">
+    <section class="first-page">
+      <div class="masthead-block">
+        <div class="rule-double" aria-hidden="true"></div>
+        <header class="masthead">
+          <div class="masthead-portrait">
+            <img src="{{RC_IMAGE}}" alt="Roy W. Carlson" />
+          </div>
+          <div class="masthead-center">
+            <p class="masthead-site">{{SITE_URL}}</p>
+            <p class="masthead-revista">REVISTA IRC - Revista do Instituto Roy Carlson</p>
+            <p class="masthead-inst">
+              <span class="tm" aria-label="marca registrada">™</span>
+              <strong>Instituto Roy Carlson</strong> é uma instituição sem fins lucrativos dedicada a manter
+              a memória técnica do concreto massa no Brasil e à difusão do conhecimento científico nos assuntos
+              relacionados a barragens, com ênfase em concreto.
+            </p>
+          </div>
+          <div class="masthead-logo">
+            <img src="{{LOGO_IMAGE}}" alt="Instituto Roy Carlson" />
+          </div>
+        </header>
+        <div class="rule-double" aria-hidden="true"></div>
+      </div>
+
+      <h1 class="article-title">{{TITULO}}</h1>
+      <p class="article-authors">{{AUTORES_HTML}}</p>
+
+      <div class="rule-double rule-after-authors" aria-hidden="true"></div>
+
+      <div class="meta-block">
+        <div class="meta-grid">
+          <div class="meta-left">
+            <p class="meta-label">Informações</p>
+            <div class="meta-dates">
+              <p>Recebido em {{RECEBIDO}}</p>
+              <p>Aprovado em {{APROVADO}}</p>
+              <p>Publicado em {{PUBLICADO}}</p>
+            </div>
+            <div class="meta-keywords">
+              <p class="meta-label">Palavras-chave</p>
+              <div class="meta-keywords-list">
+                {{PALAVRAS_CHAVE_HTML}}
+              </div>
+            </div>
+          </div>
+          <div class="meta-right">
+            <p class="meta-label">Sumário</p>
+            <p class="meta-abstract">{{SUMARIO}}</p>
+          </div>
+        </div>
+        <div class="rule-single" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <div class="article-body">
+      {{CORPO_HTML}}
+    </div>
+  </article>
+</body>
+</html>

@@ -1,0 +1,469 @@
+/* Revista IRC — folha de artigo (especificação do template) */
+
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+}
+
+@page :first {
+  margin-top: 14mm;
+}
+
+:root {
+  --accent: #4f81bd;
+  --ink: #000;
+  --muted: #1a1a1a;
+  --rule-fill: #d9dde3;
+  --pretext-size: 9pt;
+  --title-size: 11pt;
+  --body-size: 11pt;
+  --lead: 1.08;
+  --respiro-pretext: calc(var(--pretext-size) * var(--lead));
+  --respiro-body: calc(var(--body-size) * var(--lead));
+  --sans-revista: "Roboto", system-ui, sans-serif;
+  --sans-heading: Corbel, Candara, "Segoe UI", sans-serif;
+  --serif: Cambria, "Calisto MT", "Liberation Serif", Georgia, serif;
+  --masthead-side: 28mm;
+  --cell-inset: 0.4mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--body-size);
+}
+
+body {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.running-header {
+  position: running(articleHeader);
+  text-align: center;
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  font-weight: 400;
+  line-height: var(--lead);
+  padding-bottom: 3mm;
+}
+
+@page {
+  @top-center {
+    content: element(articleHeader);
+  }
+}
+
+@page :first {
+  @top-center {
+    content: none;
+  }
+}
+
+.running-footer {
+  position: running(articleFooter);
+  text-align: center;
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  padding-top: 3mm;
+}
+
+@page {
+  @bottom-center {
+    content: element(articleFooter);
+  }
+}
+
+.rule-double {
+  height: 3.5pt;
+  margin: 0;
+  width: 100%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 0 / 100% 0.5pt no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 0 100% / 100% 0.5pt no-repeat;
+  background-color: var(--rule-fill);
+}
+
+.rule-single {
+  height: 0;
+  margin: 0;
+  width: 100%;
+  border: none;
+  border-bottom: 0.5pt solid var(--ink);
+}
+
+.masthead-block .rule-double {
+  margin: 0;
+}
+
+.rule-after-authors {
+  margin: 0;
+}
+
+.title-authors-block {
+  margin: 0;
+  padding: 0;
+}
+
+.first-page {
+  text-align: center;
+}
+
+/* Bloco editorial — altura definida pela célula quadrada do retrato */
+.masthead-block {
+  margin: 0 0 2.5mm;
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: var(--masthead-side) 1fr var(--masthead-side);
+  align-items: stretch;
+  height: var(--masthead-side);
+  margin: 0;
+  padding: 0;
+}
+
+.masthead-portrait,
+.masthead-logo {
+  width: var(--masthead-side);
+  height: var(--masthead-side);
+  padding: var(--cell-inset);
+  overflow: hidden;
+  background: #fff;
+}
+
+.masthead-portrait {
+  border-right: 0.5pt solid var(--ink);
+}
+
+.masthead-logo {
+  border-left: none;
+}
+
+.masthead-center {
+  height: var(--masthead-side);
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  border-right: 0.5pt solid var(--ink);
+  padding: var(--respiro-pretext) 2mm var(--respiro-pretext);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.masthead-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.masthead-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.masthead-site {
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  margin: 0;
+  padding: 0;
+}
+
+.masthead-revista {
+  margin: 0;
+  padding: 0 0.5mm;
+  font-family: var(--sans-revista);
+  font-size: 8.5pt;
+  font-weight: 700;
+  line-height: var(--lead);
+  color: var(--accent);
+  text-align: center;
+  letter-spacing: 0.07em;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.masthead-inst {
+  margin: 0;
+  padding: 0;
+  font-family: var(--serif);
+  font-size: 6pt;
+  line-height: var(--lead);
+  text-align: center;
+}
+
+.masthead-inst .tm {
+  font-size: 0.85em;
+  vertical-align: super;
+  line-height: 0;
+  margin-right: 0.1em;
+}
+
+.article-title {
+  margin: calc(2 * var(--respiro-pretext)) auto calc(2 * var(--respiro-pretext));
+  font-family: var(--serif);
+  font-size: var(--title-size);
+  font-weight: 700;
+  line-height: var(--lead);
+  color: var(--muted);
+  text-align: center;
+}
+
+.article-authors {
+  margin: 0 auto calc(2 * var(--respiro-pretext));
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  text-align: center;
+}
+
+.meta-block {
+  margin: 0 0 calc(3 * var(--respiro-body));
+  text-align: left;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 34% 1fr;
+  gap: 0 5mm;
+  padding: 2mm 0 2mm;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+}
+
+.meta-left {
+  border-right: 0.5pt solid #bbb;
+  padding-right: 4mm;
+}
+
+.meta-label {
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  font-weight: 600;
+  letter-spacing: 1pt;
+  line-height: var(--lead);
+  margin: 0;
+  padding: 0;
+}
+
+.meta-dates,
+.meta-keywords-list {
+  margin: 0;
+  padding: 0;
+}
+
+.meta-dates p,
+.meta-keywords-list p {
+  margin: 0;
+  padding: 0;
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+}
+
+.meta-keywords {
+  margin-top: calc(var(--pretext-size) * var(--lead));
+}
+
+.meta-keywords .meta-label {
+  margin: 0;
+}
+
+.meta-keywords-list {
+  margin-top: 0;
+}
+
+.meta-right .meta-label {
+  margin: 0 0 0;
+}
+
+.meta-abstract {
+  margin: 0;
+  padding: 0;
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Corpo — começa logo após a linha do sumário */
+.article-body {
+  counter-reset: section;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.article-body h2,
+.article-body h3,
+.article-body h4 {
+  font-family: var(--sans-heading);
+  font-weight: 700;
+  color: var(--accent);
+  page-break-after: avoid;
+}
+
+.article-body > h2:first-child {
+  margin-top: 0;
+}
+
+.article-body h2 {
+  counter-reset: subsection;
+  counter-increment: section;
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  margin: 4mm 0 2mm;
+}
+
+.article-body h2::before {
+  content: counter(section) ". ";
+}
+
+.article-body h3 {
+  counter-reset: subsubsection;
+  counter-increment: subsection;
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  margin: 3mm 0 1.5mm;
+}
+
+.article-body h3::before {
+  content: counter(section) "." counter(subsection) " ";
+}
+
+.article-body h4 {
+  counter-increment: subsubsection;
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  margin: 2.5mm 0 1.2mm;
+}
+
+.article-body h4::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) " ";
+}
+
+.article-body p {
+  margin: 0 0 2mm;
+  font-size: var(--body-size);
+  line-height: var(--lead);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.article-body em {
+  font-style: italic;
+}
+
+.article-body strong {
+  font-weight: 700;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 2mm 5mm;
+  padding: 0;
+  font-size: var(--body-size);
+  line-height: var(--lead);
+}
+
+.article-body li {
+  margin-bottom: 0.8mm;
+}
+
+.article-body figure,
+.figure-block {
+  margin: 3.5mm 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.article-body figure img,
+.figure-block img {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-body figcaption,
+.figure-caption {
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  margin-top: 1.2mm;
+  text-align: center;
+}
+
+@media screen {
+  body {
+    max-width: 180mm;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: #f5f5f5;
+  }
+
+  .running-header,
+  .running-footer {
+    display: none;
+  }
+
+  .page-sheet {
+    background: #fff;
+    padding: 14mm 16mm;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media print {
+  .page-sheet {
+    padding: 0;
+  }
+
+  .first-page {
+    page-break-after: auto;
+  }
+
+  .article-body > h2:first-child {
+    margin-top: 0;
+    break-before: avoid;
+  }
+
+  .article-body h2,
+  .article-body h3,
+  .article-body h4 {
+    break-after: avoid;
+  }
+
+  .article-body figure,
+  .figure-block {
+    break-inside: avoid;
+  }
+}
