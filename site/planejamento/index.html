@@ -26,10 +26,17 @@
     background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);font-size:26px}
   .gate-card h1{font-size:24px;margin:0 0 8px}
   .gate-card p{color:#c8d6d2;margin:0 0 20px}
-  .gate-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-block;padding:11px 18px;border-radius:10px;font-weight:700;text-decoration:none;cursor:pointer;border:0}
+  .btn{display:inline-block;padding:11px 18px;border-radius:10px;font-weight:700;text-decoration:none;cursor:pointer;border:0;font-size:15px}
   .btn-gold{background:var(--gold);color:#3a2c08}
-  .btn-ghost{background:transparent;color:#eef3f1;border:1px solid rgba(255,255,255,.35)}
+  .btn-gold:disabled{opacity:.6;cursor:default}
+  .gate-login{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:2px}
+  .gate-login input{flex:1 1 220px;min-width:0;max-width:280px;height:46px;border-radius:10px;border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.1);color:#fff;padding:0 14px;font-size:15px;outline:none}
+  .gate-login input::placeholder{color:#9fb6b1}
+  .gate-login input:focus{border-color:var(--gold);background:rgba(255,255,255,.16)}
+  .login-msg{min-height:18px;font-size:13px;color:#ffd9a8;margin-top:8px}
+  .gate-or{font-size:13px;color:#c8d6d2;margin-top:16px}
+  .gate-or a{color:var(--gold);font-weight:600;text-decoration:none}
   /* ---------- layout ---------- */
   #app{display:none}
   #app.show{display:block}
@@ -121,11 +128,13 @@
   <div class="gate-card">
     <div class="lock">🔒</div>
     <h1>Planejamento — área exclusiva</h1>
-    <p>Esta página é reservada aos <b>assinantes</b> e <b>fundadores</b> do Instituto Roy Carlson. Entre com sua conta ou torne-se assinante para acompanhar o planejamento e enviar sugestões.</p>
-    <div class="gate-actions">
-      <a class="btn btn-gold" href="/assinatura/">Quero assinar</a>
-      <a class="btn btn-ghost" href="/biblioteca/">Entrar</a>
-    </div>
+    <p>Esta página é reservada aos <b>assinantes</b> e <b>fundadores</b> do Instituto Roy Carlson. Entre com o seu e-mail para acompanhar o planejamento e enviar sugestões.</p>
+    <form id="loginForm" class="gate-login">
+      <input id="loginEmail" type="email" placeholder="seu@email.com" autocomplete="email" inputmode="email" required>
+      <button type="submit" class="btn btn-gold" id="loginBtn">Entrar</button>
+    </form>
+    <div class="login-msg" id="loginMsg" role="status"></div>
+    <p class="gate-or">Ainda não é assinante? <a href="/assinatura/">Quero assinar →</a></p>
   </div>
 </div>
 
@@ -368,29 +377,54 @@ function sendSuggestion(){
   }catch(e){ done(); }
 }
 
-/* ===================== boot / gate ===================== */
+/* ===================== boot / gate / login ===================== */
 var RANK = { public:0, member:1, founder:2, sponsor:3 };
-function boot(){
-  fetch("/api/session", { credentials:"same-origin" })
+var rendered = false;
+function rankOf(s){ return s && s.logged ? (RANK[s.planLevel] || 0) : 0; }
+
+function showContent(s){
+  SESSION = s;
+  $("gate").classList.remove("show");
+  $("app").classList.add("show");
+  $("who").textContent = "Olá, " + (s.name || s.email || "assinante");
+  if (rendered) return;
+  rendered = true;
+  renderGantt();
+  renderList("feito", FEITO, true);
+  renderList("afazer", AFAZER, false);
+  $("posicionamento").innerHTML = POSICIONAMENTO;
+  renderGalerias();
+  $("sugBtn").addEventListener("click", sendSuggestion);
+}
+function checkSession(){
+  return fetch("/api/session", { credentials:"same-origin" })
     .then(function(r){ return r.ok ? r.json() : { logged:false }; })
+    .catch(function(){ return { logged:false }; });
+}
+/* Login independente, na própria página (não precisa ir à Biblioteca).
+   POST /api/login {email} cria a sessão se o e-mail estiver na allowlist. */
+function doLogin(ev){
+  ev.preventDefault();
+  var email = ($("loginEmail").value || "").trim();
+  var msg = $("loginMsg"), btn = $("loginBtn");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent = "Digite um e-mail válido."; return; }
+  btn.disabled = true; msg.textContent = "Entrando…";
+  fetch("/api/login", { method:"POST", credentials:"same-origin",
+      headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ email: email.toLowerCase() }) })
+    .then(function(){ return checkSession(); })
     .then(function(s){
-      SESSION = s;
-      var rank = s && s.logged ? (RANK[s.planLevel] || 0) : 0;
-      if (rank >= RANK.member){
-        $("gate").classList.remove("show");
-        $("app").classList.add("show");
-        $("who").textContent = "Olá, " + (s.name || s.email || "assinante");
-        renderGantt();
-        renderList("feito", FEITO, true);
-        renderList("afazer", AFAZER, false);
-        $("posicionamento").innerHTML = POSICIONAMENTO;
-        renderGalerias();
-        $("sugBtn").addEventListener("click", sendSuggestion);
-      } else {
-        $("gate").classList.add("show");
-      }
+      btn.disabled = false;
+      if (rankOf(s) >= RANK.member){ msg.textContent = ""; showContent(s); }
+      else { msg.textContent = "E-mail não encontrado ou sem acesso de assinante. Confira o endereço ou torne-se assinante."; }
     })
-    .catch(function(){ $("gate").classList.add("show"); });
+    .catch(function(){ btn.disabled = false; msg.textContent = "Erro ao entrar. Tente novamente."; });
+}
+function boot(){
+  var f = $("loginForm"); if (f) f.addEventListener("submit", doLogin);
+  checkSession().then(function(s){
+    if (rankOf(s) >= RANK.member) showContent(s);
+    else $("gate").classList.add("show");
+  });
 }
 boot();
 </script>
