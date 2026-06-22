@@ -104,6 +104,9 @@
   .note{background:#fbf3df;border:1px solid #ecd9a6;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6b5418;margin-top:16px}
   .pdf-frame{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;margin-top:6px}
   .pdf-frame iframe{width:100%;height:580px;border:0;display:block}
+  .video-frame{position:relative;width:100%;max-width:760px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;margin:6px 0 16px}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .reuniao-h3{font-size:15px;font-weight:700;color:var(--teal-deep);margin:0 0 6px}
   /* ---------- aside / sugestões ---------- */
   .aside h2{font-size:15px;color:var(--teal-deep);margin:0 0 4px}
   .aside .sub{font-size:12px;color:var(--ink-dim);margin:0 0 14px}
@@ -169,6 +172,21 @@
             <h3 class="mini">☐ A fazer</h3>
             <ul class="chk todo" id="afazer"></ul>
           </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Reuniões</h2>
+        <p class="sub">Registro das reuniões do Instituto Roy Carlson.</p>
+        <div class="reuniao-h3">Reunião de 18 de junho de 2026 — Lançamento da Revista IRC</div>
+        <p style="font-size:14px;margin:0 0 14px">Apresentação do projeto do IRC e da Revista, com a definição dos próximos passos — incluindo o planejamento solicitado por José Marques (base deste documento). Abaixo, a gravação e a ata/transcrição da reunião.</p>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/qCpekMyo3TU" title="Reunião IRC — 18/06/2026" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="sub" style="margin:0 0 4px"><b>Ata / transcrição</b> da reunião de 18/06/2026:</p>
+        <div class="pdf-frame">
+          <iframe src="/api/planejamento/foto?name=ata-2026-06-18.pdf" title="Ata da reunião de 18/06/2026" loading="lazy"></iframe>
         </div>
       </section>
 
