@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Redação — Submissões | Instituto Roy Carlson</title>
+<style>
+  :root{--ink:#1f2630;--dim:#5c6470;--line:#e4ddcd;--bg:#f6f2e9;--card:#fff;--teal:#1f6b6b;--teal-deep:#16504f;--gold:#c79a3e;--gold-deep:#a9802c}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  a{color:var(--teal)}
+  header.top{background:linear-gradient(100deg,var(--teal-deep),var(--teal));color:#fff;padding:18px 22px}
+  header.top .wrap{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:14px}
+  header.top h1{font-size:20px;margin:0}
+  .brand-square{flex:0 0 auto;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--teal-deep);font-weight:900;font-size:14px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .brand-square span{font-size:8px;font-weight:700;color:var(--gold-deep);display:block;text-align:center;margin-top:1px}
+  main{max-width:1000px;margin:0 auto;padding:24px 22px}
+  /* gate */
+  #gate{display:none;max-width:420px;margin:8vh auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.1)}
+  #gate.show{display:block}
+  #gate h2{margin:0 0 8px;color:var(--teal-deep)}
+  #gate p{color:var(--dim);font-size:14px;margin:0 0 18px}
+  #gate form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  #gate input{flex:1 1 200px;max-width:260px;height:44px;border:1px solid #d8cfbb;border-radius:9px;padding:0 12px;font-size:15px;outline:none}
+  .btn{height:44px;padding:0 18px;border:0;border-radius:9px;background:var(--teal);color:#fff;font-weight:700;cursor:pointer}
+  .gmsg{min-height:16px;font-size:13px;margin-top:8px;color:#9a6a14}
+  /* lista */
+  #app{display:none}
+  #app.show{display:block}
+  .sub{color:var(--dim);font-size:13.5px;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px;box-shadow:0 6px 18px rgba(31,38,48,.06)}
+  .card h3{margin:0 0 4px;font-size:16px;color:var(--teal-deep)}
+  .meta{font-size:13px;color:var(--dim);margin:0 0 10px;line-height:1.5}
+  .meta b{color:var(--ink)}
+  .files{display:flex;gap:8px;flex-wrap:wrap}
+  .files a{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;text-decoration:none;color:#fff;background:var(--gold-deep);padding:7px 12px;border-radius:8px}
+  .empty{color:var(--dim);font-style:italic}
+  .proto{font-size:11.5px;color:#9aa0a6;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a href="/" class="brand-square" title="Voltar ao site">IRC<span>voltar</span></a>
+  <h1>Redação — Submissões</h1>
+</div></header>
+
+<main>
+  <div id="gate">
+    <h2>Área da redação</h2>
+    <p>Restrita aos <b>fundadores</b> do Instituto Roy Carlson. Entre com o seu e-mail.</p>
+    <form id="gform">
+      <input id="gemail" type="email" placeholder="seu@email.com" autocomplete="email" required>
+      <button class="btn" id="gbtn" type="submit">Entrar</button>
+    </form>
+    <div class="gmsg" id="gmsg"></div>
+  </div>
+
+  <div id="app">
+    <p class="sub" id="resumo"></p>
+    <div id="lista"></div>
+  </div>
+</main>
+
+<script>
+var $ = function(id){ return document.getElementById(id); };
+var RANK = { public:0, member:1, founder:2, sponsor:3 };
+function rankOf(s){ return s && s.logged ? (RANK[s.planLevel]||0) : 0; }
+function session(){ return fetch('/api/session',{credentials:'same-origin'}).then(function(r){return r.ok?r.json():{logged:false};}).catch(function(){return {logged:false};}); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+
+function render(subs){
+  $("resumo").textContent = subs.length ? (subs.length + ' submissão(ões). Baixe os arquivos abaixo (você está na redação).') : '';
+  if (!subs.length){ $("lista").innerHTML = '<div class="card empty">Nenhuma submissão recebida ainda.</div>'; return; }
+  $("lista").innerHTML = subs.map(function(s){
+    var m = s.meta || {};
+    var data = (s.recebidoEm||'').replace('T',' ').slice(0,16);
+    var files = (s.arquivos||[]).map(function(a){
+      return '<a href="/api/submissao/baixar?p='+encodeURIComponent(a.pathname)+'">⬇ '+esc(a.nome||a.pathname)+'</a>';
+    }).join('');
+    return '<div class="card"><h3>'+esc(m.titulo||'(sem título)')+'</h3>'+
+      '<p class="meta"><b>Autores:</b> '+esc((m.autores||'').replace(/\n/g,'; '))+'<br>'+
+      '<b>Contato:</b> '+esc(m.email_autor||'—')+' · <b>Recebido:</b> '+esc(data)+'</p>'+
+      (m.sumario?'<p class="meta">'+esc(m.sumario).slice(0,400)+'</p>':'')+
+      '<div class="files">'+(files||'<span class="empty">sem arquivos</span>')+'</div>'+
+      '<p class="proto">protocolo '+esc(s.sid)+'</p></div>';
+  }).join('');
+}
+
+function carregar(){
+  fetch('/api/submissao/listar',{credentials:'same-origin'})
+    .then(function(r){ return r.ok ? r.json() : {submissoes:[]}; })
+    .then(function(j){ render(j.submissoes||[]); })
+    .catch(function(){ $("lista").innerHTML='<div class="card empty">Erro ao carregar.</div>'; });
+}
+function showApp(){ $("gate").classList.remove('show'); $("app").classList.add('show'); carregar(); }
+function showGate(){ $("gate").classList.add('show'); $("app").classList.remove('show'); }
+
+$("gform").addEventListener('submit', function(e){
+  e.preventDefault();
+  var email=($("gemail").value||'').trim(), msg=$("gmsg"), btn=$("gbtn");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent='Digite um e-mail válido.'; return; }
+  btn.disabled=true; msg.textContent='Entrando…';
+  fetch('/api/login',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.toLowerCase()})})
+    .then(session).then(function(s){
+      btn.disabled=false;
+      if(rankOf(s)>=RANK.founder){ msg.textContent=''; showApp(); }
+      else { msg.textContent='Sem acesso de fundador para este e-mail.'; }
+    }).catch(function(){ btn.disabled=false; msg.textContent='Erro ao entrar.'; });
+});
+
+session().then(function(s){ if(rankOf(s)>=RANK.founder) showApp(); else showGate(); });
+</script>
+</body>
+</html>

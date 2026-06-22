@@ -41,7 +41,7 @@ function doPost(e) {
       data = e.parameter;
     }
 
-    var email = String(data.email || '').trim();
+    var email = String(data.email || data.email_autor || '').trim();
     var sheet = getSheet_();
 
     if (DEDUP && email) {
@@ -83,6 +83,28 @@ function doPost(e) {
             '\nE-mail: ' + email +
             '\nOrigem: ' + (data.source || '')) +
           '\nQuando: ' + when
+      });
+    }
+
+    // Nova submissão de artigo (Revista IRC): avisa a redação nos dois e-mails,
+    // com os dados e os links de download (acessíveis logado como fundador).
+    if (data.tipo === 'submissao-revista') {
+      var dest = (data.destinatarios && data.destinatarios.length)
+        ? data.destinatarios.join(',')
+        : NOTIFY_TO;
+      var arqs = (data.arquivos || []).map(function (a) {
+        return '• ' + (a.nome || a.name || '') + '  ->  ' + (a.baixar || a.pathname || '');
+      }).join('\n');
+      MailApp.sendEmail({
+        to: dest,
+        subject: 'Nova submissao - Revista IRC: ' + (data.titulo || '(sem titulo)'),
+        body:
+          'Protocolo: ' + (data.sid || '') +
+          '\nTitulo: ' + (data.titulo || '') +
+          '\nAutores: ' + (data.autores || '') +
+          '\nE-mail do autor: ' + (data.email_autor || '') +
+          '\n\nArquivos (baixe logado como fundador, ou veja em /redacao/):\n' + (arqs || '(nenhum)') +
+          '\n\nQuando: ' + when
       });
     }
 
