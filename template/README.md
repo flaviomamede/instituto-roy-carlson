@@ -1,79 +1,89 @@
-# Template de artigos — Revista Concreto
+# Template de artigos — Revista IRC
 
-Pipeline para reproduzir o layout do Word piloto (*Carlson — Medição de tensões em concreto*) e gerar PDF a partir de Markdown + figuras.
+Pipeline editorial: reproduz o layout do Word piloto e gera **HTML + PDF** a partir de
+Markdown e anexos (figuras, tabelas, gráficos).
 
-## Estrutura
+## Pipeline (não usa LaTeX)
 
 ```
-template/
-├── assets/              # RC.png, Logo6.jpeg (cabeçalho)
-├── article.template.html
-├── article.css
-├── build-article.py     # meta.json + artigo.md → HTML + PDF
-├── serve-submissao.py   # recebe o formulário do site (local)
-└── artigos/
-    └── 001-carlson-medicao-tensoes/
-        ├── meta.json
-        ├── artigo.md
-        ├── figuras/
-        └── saida/
-            ├── artigo.html
-            └── artigo.pdf
+artigo.md  →  pré-processamento (tabelas CSV → HTML)
+          →  Pandoc (Markdown + equações TeX → HTML, MathJax)
+          →  article.template.html + article.css
+          →  Chrome headless → artigo.pdf
 ```
 
-## Protótipo
+**Não há** geração de `.tex` intermediário. O autor escreve em **Markdown**; equações em
+**LaTeX inline** no próprio `.md` (`$...$` ou `$$...$$`). No PDF, fórmulas complexas podem
+precisar de ajuste manual — ou o autor envia a equação como **figura** em `figuras/`.
 
-O artigo **001** é a palestra de Roy W. Carlson traduzida por Vladimir Antonio Paulón e revisada por Flávio M. P. Gomes — mesmo conteúdo do `.docx` na pasta.
+## Estrutura de um artigo
+
+```
+artigos/NNN-slug/
+├── meta.json
+├── artigo.md
+├── figuras/      ← fotos e ilustrações (zip opcional)
+├── tabelas/      ← um .csv por tabela (zip opcional)
+├── graficos/     ← imagem do gráfico + .csv dos dados (zip opcional)
+└── saida/
+    ├── artigo.html
+    └── artigo.pdf
+```
+
+## Formato do Markdown
+
+| Tipo | Sintaxe no `.md` | Anexo |
+|------|------------------|--------|
+| Seção | `## Título` | — |
+| Figura | `![legenda](figuras/foto.png)` | `figuras.zip` |
+| Tabela | `![legenda](tabelas/dados.csv)` | `tabelas.zip` |
+| Gráfico | `![legenda](graficos/ensaio.png)` | `graficos.zip` (PNG + CSV opcional) |
+| Equação | `$E=mc^2$` ou `$$ ... $$` | no próprio `.md` |
+
+### Tabelas
+
+Cada tabela é um **CSV** (vírgula ou ponto-e-vírgula; primeira linha = cabeçalho). No texto:
+
+```markdown
+![Tabela 1 — Resultados do ensaio](tabelas/resultados-ensaio.csv)
+```
+
+### Gráficos
+
+Sem regra automática de plotagem: o autor envia a **imagem** que deve aparecer no artigo e,
+se quiser, um **CSV** com os dados para referência da redação. Você ajusta o gráfico final
+manualmente quando necessário.
+
+```markdown
+![Figura 3 — Tensão axial vs. tempo](graficos/tensao-axial.png)
+```
+
+Arquivos sugeridos no `graficos.zip`: `tensao-axial.png`, `tensao-axial-dados.csv`.
 
 ## Gerar PDF (manual)
 
 ```bash
 cd template
 python3 build-article.py artigos/001-carlson-medicao-tensoes
-# ou todos:
 python3 build-article.py --all
 ```
 
-Requisitos: `pandoc`, Chrome/Chromium (`google-chrome --headless`), opcional `PyMuPDF` para contar páginas.
+Requisitos: `pandoc`, Chrome/Chromium, opcional `PyMuPDF` para contar páginas.
 
 ## Formulário no site
 
-Página: `site/revista/submissao/`
-
-1. Autor preenche metadados, envia `artigo.md` e `figuras.zip`.
-2. Com o servidor local ativo, o POST cria `artigos/NNN-slug/`, aplica o template e gera o PDF.
+`site/revista/submissao/` — em produção (fase de testes) direciona ao editor; em
+**localhost** com `serve-submissao.py` ativo, aceita os três zips e gera o PDF.
 
 ```bash
-cd template
-python3 serve-submissao.py
-# Em outro terminal, sirva o site em localhost e abra /revista/submissao/
+cd template && python3 serve-submissao.py
 ```
-
-## Formato do Markdown
-
-- Seções com `## Título da seção`
-- Ênfase com `*itálico*`
-- Figuras: `![legenda](figuras/arquivo.png)` — os arquivos devem estar no `.zip` ou em `figuras/`
 
 ## meta.json
 
-Campos principais: `titulo`, `autores` (lista com `nome` e `papel`), datas, `sumario`, `palavras_chave`, `volume`, `numero`, `ano`, `paginas`.
-
-## Próximos passos
-
-- Cabeçalho/rodapé corrido com numeração em todas as páginas (CSS Paged Media ou pós-processamento)
-- API em produção (Vercel Blob + fila de build)
-- Legendas automáticas a partir do alt das imagens
+`titulo`, `autores`, datas, `sumario`, `palavras_chave`, `volume`, `numero`, `mes_ano`, `paginas`.
 
 ## Versionamento (git)
 
-O repositório é **público**, então versionamos apenas a **ferramenta** (código,
-template, CSS, assets de cabeçalho e este README). **Não** entram no git:
-
-- `artigos/` — conteúdo e saídas dos artigos (material do Dr. Carlson, sujeito a
-  direitos; mantido **local**);
-- `_docx-media/`, `*.docx`, `**/saida/`, `**/figuras.zip` — fontes pesadas e
-  arquivos gerados, reproduzíveis pelo pipeline.
-
-Para reprocessar um artigo, coloque-o em `artigos/NNN-slug/` (meta.json + artigo.md
-+ figuras) e rode `python3 build-article.py artigos/NNN-slug`.
+Versionamos a **ferramenta** (código, template, CSS). Conteúdo de `artigos/` e saídas
+geradas ficam em geral **fora** do git público.

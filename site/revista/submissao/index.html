@@ -260,11 +260,27 @@
 
         <label for="markdown">Corpo do artigo (.md)</label>
         <input type="file" id="markdown" name="markdown" accept=".md,text/markdown" required />
-        <p class="hint">Use <code>##</code> para seções. Imagens: <code>![legenda](figuras/nome.png)</code></p>
+        <p class="hint">
+          Seções: <code>##</code>. Figuras: <code>![legenda](figuras/nome.png)</code>.
+          Tabelas: <code>![legenda](tabelas/nome.csv)</code>.
+          Gráficos: <code>![legenda](graficos/nome.png)</code> (envie também o CSV dos dados no zip de gráficos).
+          Equações: LaTeX no texto, ex. <code>$E = mc^2$</code> ou <code>$$ ... $$</code>.
+        </p>
 
-        <label for="figuras_zip">Figuras (.zip)</label>
+        <label for="figuras_zip">Figuras fotográficas (.zip)</label>
         <input type="file" id="figuras_zip" name="figuras_zip" accept=".zip,application/zip" />
-        <p class="hint">Arquivos de imagem na raiz do zip (PNG, JPG, etc.).</p>
+        <p class="hint">Imagens na raiz do zip → pasta <code>figuras/</code> (PNG, JPG, etc.).</p>
+
+        <label for="tabelas_zip">Tabelas (.zip)</label>
+        <input type="file" id="tabelas_zip" name="tabelas_zip" accept=".zip,application/zip" />
+        <p class="hint">Um arquivo <code>.csv</code> por tabela, na raiz do zip → pasta <code>tabelas/</code>.</p>
+
+        <label for="graficos_zip">Gráficos (.zip)</label>
+        <input type="file" id="graficos_zip" name="graficos_zip" accept=".zip,application/zip" />
+        <p class="hint">
+          Para cada gráfico: imagem (<code>.png</code> / <code>.jpg</code>) para o PDF e, se possível,
+          <code>.csv</code> com os dados (referência para a redação; o layout final é ajustado manualmente).
+        </p>
 
         <button type="submit" class="button primary" id="submitBtn">Enviar e gerar PDF</button>
         <div class="status" id="status" role="status" aria-live="polite"></div>

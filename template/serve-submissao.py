@@ -11,13 +11,12 @@ from __future__ import annotations
 import cgi
 import json
 import re
-import shutil
 import subprocess
 import sys
-import zipfile
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from io import BytesIO
 from pathlib import Path
+
+from submission_utils import FIGURE_RE, GRAPHIC_RE, TABLE_RE, extract_zip
 
 ROOT = Path(__file__).resolve().parent
 ARTIGOS = ROOT / "artigos"
@@ -78,8 +77,12 @@ def save_submission(form: cgi.FieldStorage) -> dict:
     num = next_id()
     article_dir = ARTIGOS / f"{num:03d}-{slug}"
     figuras_dir = article_dir / "figuras"
+    tabelas_dir = article_dir / "tabelas"
+    graficos_dir = article_dir / "graficos"
     article_dir.mkdir(parents=True)
     figuras_dir.mkdir()
+    tabelas_dir.mkdir()
+    graficos_dir.mkdir()
 
     md_field = _field(form, "markdown")
     if md_field is None or not getattr(md_field, "file", None):
@@ -93,19 +96,19 @@ def save_submission(form: cgi.FieldStorage) -> dict:
     if zip_field is not None and getattr(zip_field, "file", None):
         zname = getattr(zip_field, "filename", "") or ""
         if zname.lower().endswith(".zip"):
-            data = zip_field.file.read()
-            with zipfile.ZipFile(BytesIO(data)) as zf:
-                for info in zf.infolist():
-                    if info.is_dir():
-                        continue
-                    name = Path(info.filename).name
-                    if name.startswith(".") or "/" in name or "\\" in name:
-                        # ignora subpastas por segurança
-                        if "/" in info.filename or "\\" in info.filename:
-                            name = Path(info.filename).name
-                    if not re.match(r"^[A-Za-z0-9][A-Za-z0-9._\-]*\.(png|jpe?g|gif|webp|svg)$", name, re.I):
-                        continue
-                    (figuras_dir / name).write_bytes(zf.read(info))
+            extract_zip(zip_field.file.read(), figuras_dir, FIGURE_RE)
+
+    tabelas_field = _field(form, "tabelas_zip")
+    if tabelas_field is not None and getattr(tabelas_field, "file", None):
+        zname = getattr(tabelas_field, "filename", "") or ""
+        if zname.lower().endswith(".zip"):
+            extract_zip(tabelas_field.file.read(), tabelas_dir, TABLE_RE)
+
+    graficos_field = _field(form, "graficos_zip")
+    if graficos_field is not None and getattr(graficos_field, "file", None):
+        zname = getattr(graficos_field, "filename", "") or ""
+        if zname.lower().endswith(".zip"):
+            extract_zip(graficos_field.file.read(), graficos_dir, GRAPHIC_RE)
 
     meta = {
         "id": num,

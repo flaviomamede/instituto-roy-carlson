@@ -422,6 +422,55 @@ body {
   text-align: center;
 }
 
+/* Tabelas (CSV → HTML) */
+.article-body .table-block,
+.table-block {
+  margin: 3.5mm 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.article-body .table-block table,
+.table-block table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  text-align: left;
+}
+
+.article-body .table-block th,
+.article-body .table-block td,
+.table-block th,
+.table-block td {
+  border: 0.5pt solid #888;
+  padding: 1mm 1.5mm;
+  vertical-align: top;
+}
+
+.article-body .table-block th,
+.table-block th {
+  font-weight: 700;
+  background: #eef2f7;
+}
+
+.table-caption {
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  line-height: var(--lead);
+  color: var(--muted);
+  margin-top: 1.2mm;
+  text-align: center;
+}
+
+.table-missing {
+  font-family: var(--serif);
+  font-size: var(--pretext-size);
+  color: #a33;
+}
+
 @media screen {
   body {
     max-width: 180mm;
@@ -464,6 +513,11 @@ body {
 
   .article-body figure,
   .figure-block {
+    break-inside: avoid;
+  }
+
+  .article-body .table-block,
+  .table-block {
     break-inside: avoid;
   }
 }

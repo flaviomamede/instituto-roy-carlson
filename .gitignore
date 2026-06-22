@@ -93,3 +93,7 @@ template/artigos/
 template/_docx-media/
 template/*.docx
 template/os
+
+# Python cache
+__pycache__/
+*.pyc

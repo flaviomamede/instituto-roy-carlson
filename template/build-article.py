@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Monta HTML e PDF de um artigo a partir de meta.json + artigo.md + figuras/.
 
+Pipeline: Markdown (+ pré-processamento) → Pandoc → HTML → Chrome → PDF.
+Não há etapa LaTeX intermediária.
+
 Uso:
   python3 build-article.py artigos/001-carlson-medicao-tensoes
   python3 build-article.py --all
@@ -8,12 +11,14 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import csv
+import html
 import json
-import os
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -60,42 +65,118 @@ def header_text(meta: dict) -> str:
     return f"Revista IRC, vol.{vol:02d} nº.{num:02d} ({mes_ano}) p.{pag}"
 
 
-def md_to_html(md_path: Path, article_dir: Path) -> str:
-    html = subprocess.check_output(
-        ["pandoc", str(md_path), "-f", "markdown", "-t", "html", "--wrap=none"],
-        text=True,
-    )
-    # figuras relativas ao artigo
-    html = re.sub(
-        r'src="(?!https?://|data:)([^"]+)"',
-        lambda m: f'src="{(_resolve_fig(article_dir, m.group(1)))}"',
-        html,
-    )
-    # figuras pandoc (<figure>) e imagens soltas
-    html = re.sub(
-        r"<figure>",
-        r'<figure class="figure-block">',
-        html,
-    )
-    html = re.sub(
-        r'<figcaption([^>]*)>([^<]*)</figcaption>',
-        r'<figcaption class="figure-caption"\1>\2</figcaption>',
-        html,
-    )
-    return html
-
-
-def _resolve_fig(article_dir: Path, ref: str) -> str:
+def _resolve_asset(article_dir: Path, ref: str, subdir: str) -> Path | None:
     ref = ref.lstrip("./")
-    if ref.startswith("figuras/"):
+    if ref.startswith(f"{subdir}/"):
         candidate = article_dir / ref
     else:
-        candidate = article_dir / "figuras" / ref
+        candidate = article_dir / subdir / ref
+    if candidate.exists():
+        return candidate
+    alt = article_dir / subdir / Path(ref).name
+    if alt.exists():
+        return alt
+    return None
+
+
+def _sniff_dialect(sample: str) -> csv.Dialect:
+    try:
+        return csv.Sniffer().sniff(sample, delimiters=",;\t")
+    except csv.Error:
+        return csv.excel
+
+
+def csv_to_html_table(csv_path: Path, caption: str = "") -> str:
+    raw = csv_path.read_text(encoding="utf-8-sig")
+    lines = [ln for ln in raw.splitlines() if ln.strip()]
+    if not lines:
+        return '<p class="table-missing">Tabela vazia.</p>'
+    dialect = _sniff_dialect("\n".join(lines[:5]))
+    rows = list(csv.reader(lines, dialect))
+    if not rows:
+        return '<p class="table-missing">Tabela vazia.</p>'
+    parts = ['<figure class="table-block">', "<table>"]
+    for i, row in enumerate(rows):
+        tag = "th" if i == 0 else "td"
+        parts.append("<tr>")
+        for cell in row:
+            parts.append(f"<{tag}>{html.escape(cell.strip())}</{tag}>")
+        parts.append("</tr>")
+    parts.append("</table>")
+    if caption.strip():
+        parts.append(f'<figcaption class="table-caption">{html.escape(caption.strip())}</figcaption>')
+    parts.append("</figure>")
+    return "\n".join(parts)
+
+
+def preprocess_markdown(md: str, article_dir: Path) -> str:
+    """Substitui referências a CSV em tabelas/ por HTML de tabela (antes do Pandoc)."""
+
+    def repl_table(match: re.Match[str]) -> str:
+        caption, path = match.group(1), match.group(2)
+        csv_path = _resolve_asset(article_dir, path, "tabelas")
+        if csv_path is None:
+            return (
+                f'<p class="table-missing">Tabela não encontrada: '
+                f"{html.escape(path)}</p>"
+            )
+        return csv_to_html_table(csv_path, caption)
+
+    md = re.sub(
+        r"!\[([^\]]*)\]\((tabelas/[^)\s]+\.csv)\)",
+        repl_table,
+        md,
+        flags=re.IGNORECASE,
+    )
+    return md
+
+
+def md_to_html(md_path: Path, article_dir: Path) -> str:
+    md = preprocess_markdown(md_path.read_text(encoding="utf-8"), article_dir)
+    with tempfile.NamedTemporaryFile("w", suffix=".md", encoding="utf-8", delete=False) as tmp:
+        tmp.write(md)
+        tmp_path = tmp.name
+    try:
+        html_out = subprocess.check_output(
+            [
+                "pandoc",
+                tmp_path,
+                "-f",
+                "markdown+tex_math_dollars+raw_tex",
+                "-t",
+                "html",
+                "--mathjax",
+                "--wrap=none",
+            ],
+            text=True,
+        )
+    finally:
+        Path(tmp_path).unlink(missing_ok=True)
+
+    html_out = re.sub(
+        r'src="(?!https?://|data:)([^"]+)"',
+        lambda m: f'src="{(_resolve_media_uri(article_dir, m.group(1)))}"',
+        html_out,
+    )
+    html_out = re.sub(r"<figure>", r'<figure class="figure-block">', html_out)
+    html_out = re.sub(
+        r'<figcaption([^>]*)>([^<]*)</figcaption>',
+        r'<figcaption class="figure-caption"\1>\2</figcaption>',
+        html_out,
+    )
+    return html_out
+
+
+def _resolve_media_uri(article_dir: Path, ref: str) -> str:
+    ref = ref.lstrip("./")
+    for sub in ("figuras", "graficos"):
+        if ref.startswith(f"{sub}/") or "/" not in ref:
+            path = _resolve_asset(article_dir, ref, sub)
+            if path is not None:
+                return path.as_uri()
+    candidate = article_dir / ref
     if candidate.exists():
         return candidate.as_uri()
-    alt = article_dir / "figuras" / Path(ref).name
-    if alt.exists():
-        return alt.as_uri()
     return (article_dir / ref).as_uri()
 
 
